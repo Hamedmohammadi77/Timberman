@@ -50,8 +50,9 @@ namespace _Scripts.Timber_Man.Installers
 
         private void PlayerSignals()
         {
-            Container.BindSignal<RequestToMoveLeftSignal>();
-            Container.BindSignal<RequestToMoveRightSignal>();
+            Container.DeclareSignal<RequestToMoveLeftSignal>();
+
+            Container.DeclareSignal<RequestToMoveRightSignal>();
 
             Container.BindSignal<RequestToMoveLeftSignal>()
                 .ToMethod<PlayerHandler>((handler, signal) => handler.OnRequestToMoveLeft(signal))
