@@ -1,4 +1,5 @@
 ﻿using _Scripts.Timber_Man.Services.Abstractions;
+using UnityEngine;
 
 namespace _Scripts.Timber_Man.Services
 {
@@ -6,7 +7,11 @@ namespace _Scripts.Timber_Man.Services
     {
         public void Update()
         {
-            throw new System.NotImplementedException();
+            Touch touch = Input.GetTouch(0);
+
+            Vector2 pos = touch.position;
+
+            Debug.Log($"touch position {pos}");
         }
     }
 }

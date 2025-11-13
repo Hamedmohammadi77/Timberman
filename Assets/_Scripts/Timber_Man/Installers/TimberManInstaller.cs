@@ -1,5 +1,7 @@
-﻿using _Scripts.Timber_Man.Services;
+﻿using _Scripts.Timber_Man.Handlers;
+using _Scripts.Timber_Man.Services;
 using _Scripts.Timber_Man.Services.Abstractions;
+using _Scripts.Timber_Man.Signals.Inputs;
 using Zenject;
 
 namespace _Scripts.Timber_Man.Installers
@@ -9,6 +11,10 @@ namespace _Scripts.Timber_Man.Installers
         public override void InstallBindings()
         {
             AddInputService();
+
+            AddSignals();
+
+            AddHandlers();
         }
 
         private void AddInputService()
@@ -18,6 +24,32 @@ namespace _Scripts.Timber_Man.Installers
 #else
             Container.Bind<IInputService>().To<KeyboardInputService>().AsTransient();
 #endif
+        }
+
+        private void AddSignals()
+        {
+            SignalBusInstaller.Install(Container);
+
+            PlayerSignals();
+        }
+
+        public void AddHandlers()
+        {
+            Container.Bind<PlayerHandler>().AsTransient();
+        }
+
+        private void PlayerSignals()
+        {
+            Container.BindSignal<RequestToMoveLeftSignal>();
+            Container.BindSignal<RequestToMoveRightSignal>();
+
+            Container.BindSignal<RequestToMoveLeftSignal>()
+                .ToMethod<PlayerHandler>((handler, signal) => handler.OnRequestToMoveLeft(signal))
+                .FromResolve();
+
+            Container.BindSignal<RequestToMoveRightSignal>()
+                .ToMethod<PlayerHandler>((handler, signal) => handler.OnRequestToMoveRight(signal))
+                .FromResolve();
         }
     }
 }
