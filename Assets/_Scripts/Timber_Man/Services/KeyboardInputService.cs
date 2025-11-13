@@ -1,21 +1,23 @@
 ﻿using _Scripts.Timber_Man.Services.Abstractions;
+using _Scripts.Timber_Man.Signals.Inputs;
+using Zenject;
 
 namespace _Scripts.Timber_Man.Services
 {
     public class KeyboardInputService : IInputService
     {
+        [Inject] private readonly SignalBus _signalBus;
+
         public void Update()
         {
             if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.LeftArrow))
             {
-                UnityEngine.Debug.Log("Left Arrow Pressed");
-                //event
+                _signalBus.Fire(new RequestToMoveLeftSignal());
             }
 
             if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.RightArrow))
             {
-                UnityEngine.Debug.Log("Right Arrow Pressed");
-                //event
+                _signalBus.Fire(new RequestToMoveRightSignal());
             }
         }
     }
