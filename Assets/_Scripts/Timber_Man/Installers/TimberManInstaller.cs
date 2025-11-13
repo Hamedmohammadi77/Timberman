@@ -1,4 +1,5 @@
-﻿using _Scripts.Timber_Man.Handlers;
+﻿using _Scripts.Timber_Man.Controllers;
+using _Scripts.Timber_Man.Handlers;
 using _Scripts.Timber_Man.Services;
 using _Scripts.Timber_Man.Services.Abstractions;
 using _Scripts.Timber_Man.Signals.Inputs;
@@ -10,11 +11,20 @@ namespace _Scripts.Timber_Man.Installers
     {
         public override void InstallBindings()
         {
+            AddPlayer();
+
             AddInputService();
 
             AddSignals();
 
             AddHandlers();
+        }
+
+        private void AddPlayer()
+        {
+            Container.Bind<PlayerController>()
+                .FromComponentInHierarchy()
+                .AsSingle();
         }
 
         private void AddInputService()
