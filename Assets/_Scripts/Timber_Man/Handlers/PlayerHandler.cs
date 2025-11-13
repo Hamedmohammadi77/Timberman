@@ -6,27 +6,24 @@ namespace _Scripts.Timber_Man.Handlers
     public class PlayerHandler
     {
         private readonly PlayerController _playerController;
-        private readonly InputController _inputController;
 
-        public PlayerHandler(PlayerController playerController, InputController inputController)
+        public PlayerHandler(PlayerController playerController)
         {
             _playerController = playerController;
-            _inputController = inputController;
         }
 
-        public void OnRequestToMoveLeft(RequestToMoveLeft requestToMoveLeft)
+        public void OnRequestToMoveLeft(RequestToMoveLeftSignal requestToMoveLeftSignal)
         {
             _playerController.MoveLeft();
         }
 
-        public void OnRequestToMoveRight(RequestToMoveRight requestToMoveRight)
+        public void OnRequestToMoveRight(RequestToMoveRightSignal requestToMoveRightSignal)
         {
             _playerController.MoveRight();
         }
 
         public void OnPlayerDied()
         {
-            _inputController.enabled = false;
         }
     }
 }

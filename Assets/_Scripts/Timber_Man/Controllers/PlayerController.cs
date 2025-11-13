@@ -8,24 +8,10 @@ namespace _Scripts.Timber_Man.Controllers
     {
         public void MoveLeft()
         {
-                MoveRight();
-                //log
         }
 
-        public async void MoveRight()
+        public void MoveRight()
         {
-            await ThrowAsync();
-            //save
         }
-
-        private async Task ThrowAsync()
-        {
-            await transform.DORotate(Vector3.back, 10).AsyncWaitForCompletion();
-            
-            await transform.DOMove(Vector3.back, 10).AsyncWaitForCompletion();
-            
-        }
-
     }
-    
 }
