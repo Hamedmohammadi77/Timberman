@@ -1,8 +1,12 @@
 ﻿using _Scripts.Timber_Man.Controllers;
 using _Scripts.Timber_Man.Handlers;
+using _Scripts.Timber_Man.Models.Branchs;
+using _Scripts.Timber_Man.Models.Branchs.Abstraction;
+using _Scripts.Timber_Man.Pools;
 using _Scripts.Timber_Man.Services;
 using _Scripts.Timber_Man.Services.Abstractions;
 using _Scripts.Timber_Man.Signals.Inputs;
+using UnityEngine;
 using Zenject;
 
 namespace _Scripts.Timber_Man.Installers
@@ -18,6 +22,36 @@ namespace _Scripts.Timber_Man.Installers
             AddSignals();
 
             AddHandlers();
+
+            Addbranchs();
+        }
+
+        private void AddMemoryPools<TBranch, TBranchPool>()
+            where TBranch : BaseBranch
+            where TBranchPool : BaseBranchPool<TBranch>
+        {
+            var name = typeof(TBranch).Name;
+            Debug.Log(name);
+            ////print(name);
+            Container.Bind<IBranchPooling>()
+                .To<TBranchPool>()
+                .FromResolve()
+                .AsTransient();
+
+            Container.BindMemoryPool<TBranch, TBranchPool>()
+                .WithInitialSize(5)
+                .ExpandByDoubling()
+                .FromComponentInNewPrefabResource($"Prefabs/Branchs/{name}")
+                .UnderTransformGroup("Parent");
+        }
+
+        private void Addbranchs()
+        {
+            AddMemoryPools<LeftBranch, LeftBranchPool>();
+            AddMemoryPools<RightBranch, RightBranchPool>();
+            AddMemoryPools<NoBranch, NoBranchPools>();
+
+            Container.Bind<BranchPool>().AsTransient();
         }
 
         private void AddPlayer()
