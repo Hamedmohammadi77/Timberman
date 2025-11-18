@@ -24,6 +24,13 @@ namespace _Scripts.Timber_Man.Installers
             AddHandlers();
 
             Addbranchs();
+
+            AddTree();
+        }
+
+        private void AddTree()
+        {
+            Container.Bind<TreeController>().FromComponentInHierarchy().AsSingle();
         }
 
         private void AddMemoryPools<TBranch, TBranchPool>()
@@ -31,7 +38,6 @@ namespace _Scripts.Timber_Man.Installers
             where TBranchPool : BaseBranchPool<TBranch>
         {
             var name = typeof(TBranch).Name;
-            Debug.Log(name);
             ////print(name);
             Container.Bind<IBranchPooling>()
                 .To<TBranchPool>()

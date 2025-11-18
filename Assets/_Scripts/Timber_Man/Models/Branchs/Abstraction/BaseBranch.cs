@@ -7,6 +7,14 @@ namespace _Scripts.Timber_Man.Models.Branchs.Abstraction
     {
         public abstract BranchType Type { get; }
 
-        public abstract void Destroy();
+        public void MoveDown()
+        {
+            transform.position= new Vector2(0, transform.position.y-2);
+        }
+
+        public void Branch_Destroy()
+        {
+            
+        }
     }
 }
