@@ -12,15 +12,15 @@ namespace _Scripts.Timber_Man.Controllers
     {
         [Inject] private readonly BranchPool _branchPool;
 
-        private List<BaseBranch> _branch_that_make_tree;
+        private Queue<BaseBranch> _branch_that_make_tree;
 
         private void Start()
         {
-            _branch_that_make_tree = new List<BaseBranch>();
+            _branch_that_make_tree = new Queue<BaseBranch>();
 
             for (int i = 0; i < 5; i++)
             {
-                _branch_that_make_tree.Add(_branchPool.OnSpawned(new Vector2(0, i * 2), BranchType.NoBranch));
+                _branch_that_make_tree.Enqueue(_branchPool.OnSpawned(new Vector2(0, i * 2), BranchType.NoBranch));
             }
         }
 
@@ -29,12 +29,9 @@ namespace _Scripts.Timber_Man.Controllers
             if (_branch_that_make_tree.Count == 0)
                 return;
 
-            var branch = _branch_that_make_tree[0];
+            var branch = _branch_that_make_tree.Dequeue();
 
-            branch.Branch_Destroy();
-            _branchPool.OnDespawn(branch);
-
-            _branch_that_make_tree.RemoveAt(0);
+            branch.Branch_Destroy(playerState,(() => {_branchPool.OnDespawn(branch);}));
 
             foreach (var b in _branch_that_make_tree)
             {
@@ -42,7 +39,7 @@ namespace _Scripts.Timber_Man.Controllers
             }
 
             var newBranch = _branchPool.OnSpawned(new Vector2(0, _branch_that_make_tree.Count * 2));
-            _branch_that_make_tree.Add(newBranch);
+            _branch_that_make_tree.Enqueue(newBranch);
         }
     }
 }
