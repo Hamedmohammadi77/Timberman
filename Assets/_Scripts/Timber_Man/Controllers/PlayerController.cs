@@ -23,7 +23,10 @@ namespace _Scripts.Timber_Man.Controllers
         public void MoveLeft()
         {
             if (_playerState == PlayerState.left)
+            {
+                _treeController.Branch_Cuted(_playerState);
                 return;
+            }
 
 
             _playerState = PlayerState.left;
@@ -35,8 +38,11 @@ namespace _Scripts.Timber_Man.Controllers
         public void MoveRight()
         {
             if (_playerState == PlayerState.right)
+            {
+                _treeController.Branch_Cuted(_playerState);
                 return;
-            
+            }
+
             _treeController.Branch_Cuted(_playerState);
             _playerState = PlayerState.right;
             transform.position = _rightPosition;

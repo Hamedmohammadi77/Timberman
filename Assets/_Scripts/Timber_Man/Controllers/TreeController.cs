@@ -40,18 +40,9 @@ namespace _Scripts.Timber_Man.Controllers
             {
                 b.MoveDown();
             }
-        }
 
-
-        private void Update()
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                foreach (var branch in _branch_that_make_tree)
-                {
-                    branch.MoveDown();
-                }
-            }
+            var newBranch = _branchPool.OnSpawned(new Vector2(0, _branch_that_make_tree.Count * 2));
+            _branch_that_make_tree.Add(newBranch);
         }
     }
 }
