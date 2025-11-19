@@ -43,8 +43,8 @@ namespace _Scripts.Timber_Man.Controllers
                 return;
             }
 
-            _treeController.Branch_Cuted(_playerState);
             _playerState = PlayerState.right;
+            _treeController.Branch_Cuted(_playerState);
             transform.position = _rightPosition;
             transform.localScale = new Vector2(1, 1);
         }

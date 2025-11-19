@@ -24,11 +24,9 @@ namespace _Scripts.Timber_Man.Models.Branchs.Abstraction
             {
                 case PlayerState.right:
                     transform.DOMove(new Vector2(-throw_Vector_x, throw_Vector_y), 0.5f).onComplete += () => action();
-                    Debug.Log(transform.position + " " + transform.name);
                     break;
                 case PlayerState.left:
                     transform.DOMove(new Vector2(throw_Vector_x, throw_Vector_y), 0.5f).onComplete += () => action();
-                    Debug.Log(transform.position + " " + transform.name);
                     break;
             }
         }
