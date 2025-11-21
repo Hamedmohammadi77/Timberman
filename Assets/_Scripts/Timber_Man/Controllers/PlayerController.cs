@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using Zenject;
 
@@ -15,21 +14,21 @@ namespace _Scripts.Timber_Man.Controllers
 
         private void Start()
         {
-            _playerState = PlayerState.left;
+            _playerState = PlayerState.Left;
             transform.position = _leftPosition;
             transform.localScale = new Vector2(-1, 1);
         }
 
         public void MoveLeft()
         {
-            if (_playerState == PlayerState.left)
+            if (_playerState == PlayerState.Left)
             {
                 _treeController.Branch_Cuted(_playerState);
                 return;
             }
 
 
-            _playerState = PlayerState.left;
+            _playerState = PlayerState.Left;
             _treeController.Branch_Cuted(_playerState);
             transform.position = _leftPosition;
             transform.localScale = new Vector2(-1, 1);
@@ -37,13 +36,13 @@ namespace _Scripts.Timber_Man.Controllers
 
         public void MoveRight()
         {
-            if (_playerState == PlayerState.right)
+            if (_playerState == PlayerState.Right)
             {
                 _treeController.Branch_Cuted(_playerState);
                 return;
             }
 
-            _playerState = PlayerState.right;
+            _playerState = PlayerState.Right;
             _treeController.Branch_Cuted(_playerState);
             transform.position = _rightPosition;
             transform.localScale = new Vector2(1, 1);
@@ -52,7 +51,7 @@ namespace _Scripts.Timber_Man.Controllers
 
     public enum PlayerState
     {
-        right,
-        left
+        Right,
+        Left
     }
 }

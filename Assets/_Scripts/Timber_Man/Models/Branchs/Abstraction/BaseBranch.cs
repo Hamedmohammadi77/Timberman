@@ -10,8 +10,8 @@ namespace _Scripts.Timber_Man.Models.Branchs.Abstraction
     {
         public abstract BranchType Type { get; }
 
-        private float throw_Vector_x = 10;
-        private float throw_Vector_y = -4;
+        private readonly float _throwVectorX = 10;
+        private readonly float _throwVectorY = -4;
 
         public void MoveDown()
         {
@@ -22,13 +22,13 @@ namespace _Scripts.Timber_Man.Models.Branchs.Abstraction
         {
             switch (playerState)
             {
-                case PlayerState.right:
-                    transform.DOMove(new Vector2(-throw_Vector_x, throw_Vector_y), 0.5f);
+                case PlayerState.Right:
+                    transform.DOMove(new Vector2(-_throwVectorX, _throwVectorY), 0.5f);
                     transform.DORotate(new Vector3(0, 0, 180), .5f).onComplete += () => action();
 
                     break;
-                case PlayerState.left:
-                    transform.DOMove(new Vector2(throw_Vector_x, throw_Vector_y), 0.5f);
+                case PlayerState.Left:
+                    transform.DOMove(new Vector2(_throwVectorX, _throwVectorY), 0.5f);
                     transform.DORotate(new Vector3(0, 0, -180), .5f).onComplete += () => action();
                     break;
             }

@@ -6,7 +6,6 @@ using _Scripts.Timber_Man.Pools;
 using _Scripts.Timber_Man.Services;
 using _Scripts.Timber_Man.Services.Abstractions;
 using _Scripts.Timber_Man.Signals.Inputs;
-using UnityEngine;
 using Zenject;
 
 namespace _Scripts.Timber_Man.Installers
