@@ -6,6 +6,7 @@ using _Scripts.Timber_Man.Pools;
 using _Scripts.Timber_Man.Services;
 using _Scripts.Timber_Man.Services.Abstractions;
 using _Scripts.Timber_Man.Signals.Inputs;
+using _Scripts.Timber_Man.Signals.Players;
 using Zenject;
 
 namespace _Scripts.Timber_Man.Installers
@@ -92,13 +93,19 @@ namespace _Scripts.Timber_Man.Installers
             Container.DeclareSignal<RequestToMoveLeftSignal>();
 
             Container.DeclareSignal<RequestToMoveRightSignal>();
+            
+            Container.DeclareSignal<PlayerDied>();
 
             Container.BindSignal<RequestToMoveLeftSignal>()
-                .ToMethod<PlayerHandler>((handler, signal) => handler.OnRequestToMoveLeft(signal))
+                .ToMethod<PlayerHandler>((handler, signal) => handler.OnRequestToMoveLeft())
                 .FromResolve();
 
             Container.BindSignal<RequestToMoveRightSignal>()
-                .ToMethod<PlayerHandler>((handler, signal) => handler.OnRequestToMoveRight(signal))
+                .ToMethod<PlayerHandler>((handler, signal) => handler.OnRequestToMoveRight())
+                .FromResolve();
+            
+            Container.BindSignal<PlayerDied>()
+                .ToMethod<PlayerHandler>((handler, signal) => handler.OnPlayerDied())
                 .FromResolve();
         }
     }

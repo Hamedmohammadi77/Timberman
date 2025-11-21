@@ -7,6 +7,8 @@ namespace _Scripts.Timber_Man.Controllers
     {
         [Inject] private readonly TreeController _treeController;
 
+        private bool playerIsAlive;
+
         private Vector2 _leftPosition = new(-5f, 0f);
         private Vector2 _rightPosition = new(5f, 0f);
 
@@ -14,6 +16,7 @@ namespace _Scripts.Timber_Man.Controllers
 
         private void Start()
         {
+            playerIsAlive = true;
             _playerState = PlayerState.Left;
             transform.position = _leftPosition;
             transform.localScale = new Vector2(-1, 1);
@@ -21,6 +24,11 @@ namespace _Scripts.Timber_Man.Controllers
 
         public void MoveLeft()
         {
+            if (!playerIsAlive)
+            {
+                return;
+            }
+
             if (_playerState == PlayerState.Left)
             {
                 _treeController.Branch_Cuted(_playerState);
@@ -36,6 +44,11 @@ namespace _Scripts.Timber_Man.Controllers
 
         public void MoveRight()
         {
+            if (!playerIsAlive)
+            {
+                return;
+            }
+
             if (_playerState == PlayerState.Right)
             {
                 _treeController.Branch_Cuted(_playerState);
@@ -46,6 +59,11 @@ namespace _Scripts.Timber_Man.Controllers
             _treeController.Branch_Cuted(_playerState);
             transform.position = _rightPosition;
             transform.localScale = new Vector2(1, 1);
+        }
+
+        public void PlayerDied()
+        {
+            playerIsAlive = false;
         }
     }
 

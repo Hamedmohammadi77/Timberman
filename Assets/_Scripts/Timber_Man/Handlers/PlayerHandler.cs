@@ -1,5 +1,4 @@
 ﻿using _Scripts.Timber_Man.Controllers;
-using _Scripts.Timber_Man.Signals.Inputs;
 
 namespace _Scripts.Timber_Man.Handlers
 {
@@ -12,18 +11,19 @@ namespace _Scripts.Timber_Man.Handlers
             _playerController = playerController;
         }
 
-        public void OnRequestToMoveLeft(RequestToMoveLeftSignal requestToMoveLeftSignal)
+        public void OnRequestToMoveLeft()
         {
             _playerController.MoveLeft();
         }
 
-        public void OnRequestToMoveRight(RequestToMoveRightSignal requestToMoveRightSignal)
+        public void OnRequestToMoveRight()
         {
             _playerController.MoveRight();
         }
 
         public void OnPlayerDied()
         {
+            _playerController.PlayerDied();
         }
     }
 }

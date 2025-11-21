@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using _Scripts.Timber_Man.Models.Branchs.Abstraction;
 using _Scripts.Timber_Man.Models.Enums;
 using _Scripts.Timber_Man.Pools;
+using _Scripts.Timber_Man.Signals.Players;
 using UnityEngine;
 using Zenject;
 
@@ -11,6 +13,7 @@ namespace _Scripts.Timber_Man.Controllers
     public class TreeController : MonoBehaviour
     {
         [Inject] private readonly BranchPool _branchPool;
+        [Inject] private readonly SignalBus _signalBus;
 
         private Queue<BaseBranch> _branchThatMakeTree;
 
@@ -30,7 +33,6 @@ namespace _Scripts.Timber_Man.Controllers
                 return;
 
             var branch = _branchThatMakeTree.Dequeue();
-            Debug.Log($"Branch cuted: {_branchThatMakeTree.First().Type}");
 
             branch.Branch_Destroy(playerState, () => { _branchPool.OnDespawn(branch); });
 
@@ -41,6 +43,23 @@ namespace _Scripts.Timber_Man.Controllers
 
             var newBranch = _branchPool.OnSpawned(new Vector2(0, _branchThatMakeTree.Count * 2));
             _branchThatMakeTree.Enqueue(newBranch);
+
+            if (!IsPlayerAlive(playerState))
+            {
+                Debug.Log("Player is alive");
+            }
+            else
+            {
+                _signalBus.Fire(new PlayerDied());
+            }
+        }
+
+        private bool IsPlayerAlive(PlayerState playerState)
+        {
+            var deletingbranch = _branchThatMakeTree.First().Type.ToString();
+            deletingbranch = deletingbranch.Replace("Branch", String.Empty);
+
+            return deletingbranch == playerState.ToString();
         }
     }
 }

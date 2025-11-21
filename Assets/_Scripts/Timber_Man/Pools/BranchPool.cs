@@ -78,7 +78,6 @@ namespace _Scripts.Timber_Man.Pools
 
             item.transform.position = new Vector2(0, 0);
             item.transform.rotation = new Quaternion(0, 0, 0, 0);
-            Debug.Log("Removed branch");
         }
 
         public BaseBranch Spawn(Vector2 position)
