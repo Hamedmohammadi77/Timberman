@@ -2,6 +2,7 @@
 using _Scripts.Timber_Man.Handlers;
 using _Scripts.Timber_Man.Models.Branchs;
 using _Scripts.Timber_Man.Models.Branchs.Abstraction;
+using _Scripts.Timber_Man.Models.Parents;
 using _Scripts.Timber_Man.Pools;
 using _Scripts.Timber_Man.Services;
 using _Scripts.Timber_Man.Services.Abstractions;
@@ -65,6 +66,14 @@ namespace _Scripts.Timber_Man.Installers
             Container.Bind<PlayerController>()
                 .FromComponentInHierarchy()
                 .AsSingle();
+
+            Container.Bind<PlayerIsAliveParent>()
+                .FromComponentInHierarchy()
+                .AsSingle();
+
+            Container.Bind<PlayerIsDeadParent>()
+                .FromComponentInHierarchy()
+                .AsSingle();
         }
 
         private void AddInputService()
@@ -93,7 +102,7 @@ namespace _Scripts.Timber_Man.Installers
             Container.DeclareSignal<RequestToMoveLeftSignal>();
 
             Container.DeclareSignal<RequestToMoveRightSignal>();
-            
+
             Container.DeclareSignal<PlayerDied>();
 
             Container.BindSignal<RequestToMoveLeftSignal>()
@@ -103,7 +112,7 @@ namespace _Scripts.Timber_Man.Installers
             Container.BindSignal<RequestToMoveRightSignal>()
                 .ToMethod<PlayerHandler>((handler, signal) => handler.OnRequestToMoveRight())
                 .FromResolve();
-            
+
             Container.BindSignal<PlayerDied>()
                 .ToMethod<PlayerHandler>((handler, signal) => handler.OnPlayerDied())
                 .FromResolve();
