@@ -72,6 +72,15 @@ namespace _Scripts.Timber_Man.Pools
             return baseBranch;
         }
 
+        protected override void Reinitialize(T item)
+        {
+            base.Reinitialize(item);
+
+            item.transform.position = new Vector2(0, 0);
+            item.transform.rotation = new Quaternion(0, 0, 0, 0);
+            Debug.Log("Removed branch");
+        }
+
         public BaseBranch Spawn(Vector2 position)
         {
             return BranchSpawn(position);

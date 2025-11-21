@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using _Scripts.Timber_Man.Models.Branchs.Abstraction;
 using _Scripts.Timber_Man.Models.Enums;
 using _Scripts.Timber_Man.Pools;
@@ -30,8 +31,9 @@ namespace _Scripts.Timber_Man.Controllers
                 return;
 
             var branch = _branch_that_make_tree.Dequeue();
+            Debug.Log($"Branch cuted: {_branch_that_make_tree.First().Type}");
 
-            branch.Branch_Destroy(playerState,(() => {_branchPool.OnDespawn(branch);}));
+            branch.Branch_Destroy(playerState, () => { _branchPool.OnDespawn(branch); });
 
             foreach (var b in _branch_that_make_tree)
             {

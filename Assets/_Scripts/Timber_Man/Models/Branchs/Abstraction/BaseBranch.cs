@@ -23,10 +23,13 @@ namespace _Scripts.Timber_Man.Models.Branchs.Abstraction
             switch (playerState)
             {
                 case PlayerState.right:
-                    transform.DOMove(new Vector2(-throw_Vector_x, throw_Vector_y), 0.5f).onComplete += () => action();
+                    transform.DOMove(new Vector2(-throw_Vector_x, throw_Vector_y), 0.5f);
+                    transform.DORotate(new Vector3(0, 0, 180), .5f).onComplete += () => action();
+
                     break;
                 case PlayerState.left:
-                    transform.DOMove(new Vector2(throw_Vector_x, throw_Vector_y), 0.5f).onComplete += () => action();
+                    transform.DOMove(new Vector2(throw_Vector_x, throw_Vector_y), 0.5f);
+                    transform.DORotate(new Vector3(0, 0, -180), .5f).onComplete += () => action();
                     break;
             }
         }
