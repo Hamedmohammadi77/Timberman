@@ -2,8 +2,8 @@
 {
     public enum BranchType
     {
-        BranchLeft,
-        BranchRight,
-        NoBranch
+        BranchLeft = 1,
+        BranchRight= 2,
+        NoBranch = 3
     }
 }

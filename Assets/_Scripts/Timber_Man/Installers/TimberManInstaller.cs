@@ -67,6 +67,11 @@ namespace _Scripts.Timber_Man.Installers
                 .FromComponentInHierarchy()
                 .AsSingle();
 
+            AddParent();
+        }
+
+        private void AddParent()
+        {
             Container.Bind<PlayerIsAliveParent>()
                 .FromComponentInHierarchy()
                 .AsSingle();

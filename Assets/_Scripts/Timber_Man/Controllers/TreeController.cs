@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using _Scripts.Timber_Man.Helpers;
 using _Scripts.Timber_Man.Models.Branchs.Abstraction;
 using _Scripts.Timber_Man.Models.Enums;
 using _Scripts.Timber_Man.Pools;
@@ -27,14 +28,14 @@ namespace _Scripts.Timber_Man.Controllers
             }
         }
 
-        public void Branch_Cuted(PlayerState playerState)
+        public void BranchCut(PlayerState playerState)
         {
             if (_branchThatMakeTree.Count == 0)
                 return;
 
             var branch = _branchThatMakeTree.Dequeue();
 
-            branch.Branch_Destroy(playerState, () => { _branchPool.OnDespawn(branch); });
+            branch.BranchDestroy(playerState, () => { _branchPool.OnDespawn(branch); });
 
             foreach (var b in _branchThatMakeTree)
             {
@@ -44,7 +45,7 @@ namespace _Scripts.Timber_Man.Controllers
             var newBranch = _branchPool.OnSpawned(new Vector2(0, _branchThatMakeTree.Count * 2));
             _branchThatMakeTree.Enqueue(newBranch);
 
-            if (!IsPlayerAlive(playerState))
+            if (!BranchHelper.IsPlayerAlive(playerState,newBranch.Type))
             {
                 Debug.Log("Player is alive");
             }
@@ -52,14 +53,12 @@ namespace _Scripts.Timber_Man.Controllers
             {
                 _signalBus.Fire(new PlayerDied());
             }
+            
         }
 
-        private bool IsPlayerAlive(PlayerState playerState)
+        private void OnCollisionEnter(Collision other)
         {
-            var deletingbranch = _branchThatMakeTree.First().Type.ToString();
-            deletingbranch = deletingbranch.Replace("Branch", String.Empty);
-
-            return deletingbranch == playerState.ToString();
+            other.gameObject.GetComponent<BaseBranch>();
         }
     }
 }

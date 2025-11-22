@@ -18,7 +18,7 @@ namespace _Scripts.Timber_Man.Models.Branchs.Abstraction
             transform.position = new Vector2(0, transform.position.y - 2);
         }
 
-        public void Branch_Destroy(PlayerState playerState, Action action)
+        public void BranchDestroy(PlayerState playerState, Action action)
         {
             switch (playerState)
             {

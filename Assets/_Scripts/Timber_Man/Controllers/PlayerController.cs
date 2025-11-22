@@ -1,3 +1,4 @@
+using _Scripts.Timber_Man.Models.Enums;
 using _Scripts.Timber_Man.Models.Parents;
 using UnityEngine;
 using Zenject;
@@ -36,13 +37,12 @@ namespace _Scripts.Timber_Man.Controllers
 
             if (_playerState == PlayerState.Left)
             {
-                _treeController.Branch_Cuted(_playerState);
+                _treeController.BranchCut(_playerState);
                 return;
             }
 
-
             _playerState = PlayerState.Left;
-            _treeController.Branch_Cuted(_playerState);
+            _treeController.BranchCut(_playerState);
             transform.position = _leftPosition;
             transform.localScale = new Vector2(-1, 1);
         }
@@ -56,12 +56,12 @@ namespace _Scripts.Timber_Man.Controllers
 
             if (_playerState == PlayerState.Right)
             {
-                _treeController.Branch_Cuted(_playerState);
+                _treeController.BranchCut(_playerState);
                 return;
             }
 
             _playerState = PlayerState.Right;
-            _treeController.Branch_Cuted(_playerState);
+            _treeController.BranchCut(_playerState);
             transform.position = _rightPosition;
             transform.localScale = new Vector2(1, 1);
         }
@@ -72,11 +72,5 @@ namespace _Scripts.Timber_Man.Controllers
             _playerIsDeadParent.SetActiveGameObject(true);
             _playerIsAlive = false;
         }
-    }
-
-    public enum PlayerState
-    {
-        Right,
-        Left
     }
 }
