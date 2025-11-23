@@ -5,8 +5,7 @@ namespace Zenject.Asteroids
 {
     public class GameInstaller : MonoInstaller
     {
-        [Inject]
-        Settings _settings = null;
+        [Inject] Settings _settings = null;
 
         public override void InstallBindings()
         {
@@ -98,7 +97,8 @@ namespace Zenject.Asteroids
             // Note that the ship itself is bound using a ZenjectBinding component (see Ship
             // game object in scene heirarchy)
 
-            Container.BindFactory<ShipStateWaitingToStart, ShipStateWaitingToStart.Factory>().WhenInjectedInto<ShipStateFactory>();
+            Container.BindFactory<ShipStateWaitingToStart, ShipStateWaitingToStart.Factory>()
+                .WhenInjectedInto<ShipStateFactory>();
             Container.BindFactory<ShipStateDead, ShipStateDead.Factory>().WhenInjectedInto<ShipStateFactory>();
             Container.BindFactory<ShipStateMoving, ShipStateMoving.Factory>().WhenInjectedInto<ShipStateFactory>();
         }
@@ -126,4 +126,3 @@ namespace Zenject.Asteroids
         }
     }
 }
-

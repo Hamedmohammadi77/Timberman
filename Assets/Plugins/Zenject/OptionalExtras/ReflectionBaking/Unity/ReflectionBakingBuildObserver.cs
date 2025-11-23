@@ -84,7 +84,8 @@ namespace Zenject.ReflectionBaking
             var assembly = AppDomain.CurrentDomain.GetAssemblies()
                 .Where(x => x.GetName().Name == assemblyName).OnlyOrDefault();
 
-            Assert.IsNotNull(assembly, "Could not find unique assembly '{0}' in currently loaded list of assemblies", assemblyName);
+            Assert.IsNotNull(assembly, "Could not find unique assembly '{0}' in currently loaded list of assemblies",
+                assemblyName);
 
             int numTypesChanged = ReflectionBakingModuleEditor.WeaveAssembly(
                 module, assembly, settings.NamespacePatterns);

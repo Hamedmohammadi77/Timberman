@@ -121,11 +121,11 @@ namespace Zenject.Tests.Conditions
         public void TestCase6()
         {
             Container.Bind<ITest1>().To<Test2>().AsSingle().NonLazy();
-            Container.Bind<Test0>().AsSingle().When(c => c.AllObjectTypes.Where(x => typeof(ITest1).IsAssignableFrom(x)).Any());
+            Container.Bind<Test0>().AsSingle()
+                .When(c => c.AllObjectTypes.Where(x => typeof(ITest1).IsAssignableFrom(x)).Any());
 
             var test1 = Container.Resolve<ITest1>();
             Assert.That(test1 != null);
         }
     }
 }
-

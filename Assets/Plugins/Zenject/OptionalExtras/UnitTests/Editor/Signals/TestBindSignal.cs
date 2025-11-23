@@ -25,7 +25,7 @@ namespace Zenject.Tests.Signals
         [Test]
         public void TestBindWithoutDeclaration()
         {
-            Container.BindSignal<FooSignal>().ToMethod(() => {});
+            Container.BindSignal<FooSignal>().ToMethod(() => { });
 
             Assert.Throws(() => Container.ResolveRoots());
         }
@@ -135,10 +135,7 @@ namespace Zenject.Tests.Signals
                 HasRecievedSignal = true;
             }
 
-            public bool HasRecievedSignal
-            {
-                get; private set;
-            }
+            public bool HasRecievedSignal { get; private set; }
         }
 
         public class Gorp
@@ -148,10 +145,7 @@ namespace Zenject.Tests.Signals
                 ReceivedValue = foo;
             }
 
-            public FooSignal ReceivedValue
-            {
-                get; private set;
-            }
+            public FooSignal ReceivedValue { get; private set; }
         }
 
         public class FooSignal
@@ -159,5 +153,3 @@ namespace Zenject.Tests.Signals
         }
     }
 }
-
-

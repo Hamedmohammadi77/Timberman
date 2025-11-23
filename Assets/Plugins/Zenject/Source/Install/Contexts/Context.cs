@@ -17,13 +17,10 @@ namespace Zenject
         [SerializeField]
         List<ScriptableObjectInstaller> _scriptableObjectInstallers = new List<ScriptableObjectInstaller>();
 
-        [FormerlySerializedAs("Installers")]
-        [FormerlySerializedAs("_installers")]
-        [SerializeField]
+        [FormerlySerializedAs("Installers")] [FormerlySerializedAs("_installers")] [SerializeField]
         List<MonoInstaller> _monoInstallers = new List<MonoInstaller>();
 
-        [SerializeField]
-        List<MonoInstaller> _installerPrefabs = new List<MonoInstaller>();
+        [SerializeField] List<MonoInstaller> _installerPrefabs = new List<MonoInstaller>();
 
         List<InstallerBase> _normalInstallers = new List<InstallerBase>();
         List<Type> _normalInstallerTypes = new List<Type>();
@@ -82,10 +79,7 @@ namespace Zenject
             }
         }
 
-        public abstract DiContainer Container
-        {
-            get;
-        }
+        public abstract DiContainer Container { get; }
         public abstract IEnumerable<GameObject> GetRootGameObjects();
 
 
@@ -114,7 +108,8 @@ namespace Zenject
 #else
                 Assert.That(PrefabUtility.GetPrefabType(installer.gameObject) != PrefabType.Prefab,
 #endif
-                    "Found prefab with name '{0}' in the Installer property of Context '{1}'.  You should use the property 'InstallerPrefabs' for this instead.", installer.name, name);
+                    "Found prefab with name '{0}' in the Installer property of Context '{1}'.  You should use the property 'InstallerPrefabs' for this instead.",
+                    installer.name, name);
 #endif
             }
 
@@ -126,18 +121,20 @@ namespace Zenject
                 // (eg. loading an asset bundle with a scene containing a scene context when inside unity editor)
 //#if UNITY_EDITOR
                 //Assert.That(PrefabUtility.GetPrefabType(installerPrefab.gameObject) == PrefabType.Prefab,
-                    //"Found non-prefab with name '{0}' in the InstallerPrefabs property of Context '{1}'.  You should use the property 'Installer' for this instead",
-                    //installerPrefab.name, this.name);
+                //"Found non-prefab with name '{0}' in the InstallerPrefabs property of Context '{1}'.  You should use the property 'Installer' for this instead",
+                //installerPrefab.name, this.name);
 //#endif
                 Assert.That(installerPrefab.GetComponent<MonoInstaller>() != null,
-                    "Expected to find component with type 'MonoInstaller' on given installer prefab '{0}'", installerPrefab.name);
+                    "Expected to find component with type 'MonoInstaller' on given installer prefab '{0}'",
+                    installerPrefab.name);
             }
         }
 
         protected void InstallInstallers()
         {
             InstallInstallers(
-                _normalInstallers, _normalInstallerTypes, _scriptableObjectInstallers, _monoInstallers, _installerPrefabs);
+                _normalInstallers, _normalInstallerTypes, _scriptableObjectInstallers, _monoInstallers,
+                _installerPrefabs);
         }
 
         protected void InstallInstallers(
@@ -252,7 +249,7 @@ namespace Zenject
                 if (this is SceneContext)
                 {
                     if (binding.Context == null && binding.UseSceneContext
-                        && binding.gameObject.scene == gameObject.scene)
+                                                && binding.gameObject.scene == gameObject.scene)
                     {
                         binding.Context = this;
                     }
@@ -316,7 +313,8 @@ namespace Zenject
                     }
                     case ZenjectBinding.BindTypes.AllInterfacesAndSelf:
                     {
-                        Container.Bind(componentType.Interfaces().Concat(new[] { componentType }).ToArray()).WithId(identifier).FromInstance(component);
+                        Container.Bind(componentType.Interfaces().Concat(new[] { componentType }).ToArray())
+                            .WithId(identifier).FromInstance(component);
                         break;
                     }
                     default:

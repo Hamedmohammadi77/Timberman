@@ -23,10 +23,7 @@ namespace Zenject.Tests.BindFeatures
 
         interface IFoo
         {
-            string Value
-            {
-                get;
-            }
+            string Value { get; }
         }
 
         class Foo : IFoo
@@ -36,12 +33,7 @@ namespace Zenject.Tests.BindFeatures
                 Value = data;
             }
 
-            public string Value
-            {
-                get; private set;
-            }
+            public string Value { get; private set; }
         }
     }
 }
-
-

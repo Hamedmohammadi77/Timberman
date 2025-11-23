@@ -33,25 +33,15 @@ namespace Zenject.Tests.BindFeatures
         {
             public Foo(
                 int value,
-                [InjectOptional]
-                string value2)
+                [InjectOptional] string value2)
             {
                 Value = value;
                 Value2 = value2;
             }
 
-            public int Value
-            {
-                get;
-                private set;
-            }
+            public int Value { get; private set; }
 
-            public string Value2
-            {
-                get;
-                private set;
-            }
+            public string Value2 { get; private set; }
         }
     }
 }
-

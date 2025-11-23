@@ -30,12 +30,7 @@ namespace Zenject.Tests.Bindings
                 Bar = new Bar();
             }
 
-            public Bar Bar
-            {
-                get;
-                private set;
-            }
+            public Bar Bar { get; private set; }
         }
     }
 }
-

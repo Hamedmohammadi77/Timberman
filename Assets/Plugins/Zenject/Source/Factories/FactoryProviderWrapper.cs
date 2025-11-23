@@ -27,10 +27,9 @@ namespace Zenject
             }
 
             Assert.That(instance == null
-                || instance.GetType().DerivesFromOrEqual(_injectContext.MemberType));
+                        || instance.GetType().DerivesFromOrEqual(_injectContext.MemberType));
 
             return (TContract)instance;
         }
     }
 }
-

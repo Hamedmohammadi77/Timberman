@@ -19,8 +19,7 @@ namespace Zenject.Asteroids
         float _timeIntervalBetweenSpawns;
         bool _started;
 
-        [InjectOptional]
-        bool _autoSpawn = true;
+        [InjectOptional] bool _autoSpawn = true;
 
         public AsteroidManager(
             Settings settings, Asteroid.Factory asteroidFactory, LevelHelper level)
@@ -67,7 +66,8 @@ namespace Zenject.Asteroids
                 var sizePx = Random.Range(0.0f, 1.0f);
                 var speed = Random.Range(_settings.minSpeed, _settings.maxSpeed);
 
-                _cachedAttributes.Enqueue(new AsteroidAttributes {
+                _cachedAttributes.Enqueue(new AsteroidAttributes
+                {
                     SizePx = sizePx,
                     InitialSpeed = speed
                 });

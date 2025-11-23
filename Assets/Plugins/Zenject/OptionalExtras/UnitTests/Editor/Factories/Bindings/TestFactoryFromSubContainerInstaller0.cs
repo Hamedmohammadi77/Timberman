@@ -50,6 +50,3 @@ namespace Zenject.Tests.Bindings
         }
     }
 }
-
-
-

@@ -8,26 +8,20 @@ namespace Zenject
 {
     public abstract class KeyedFactoryBase<TBase, TKey> : IValidatable
     {
-        [Inject]
-        readonly DiContainer _container = null;
+        [Inject] readonly DiContainer _container = null;
 
-        [InjectOptional]
-        readonly List<ValuePair<TKey, Type>> _typePairs = null;
+        [InjectOptional] readonly List<ValuePair<TKey, Type>> _typePairs = null;
 
         Dictionary<TKey, Type> _typeMap = null;
 
-        [InjectOptional]
-        readonly Type _fallbackType = null;
+        [InjectOptional] readonly Type _fallbackType = null;
 
         protected DiContainer Container
         {
             get { return _container; }
         }
 
-        protected abstract IEnumerable<Type> ProvidedTypes
-        {
-            get;
-        }
+        protected abstract IEnumerable<Type> ProvidedTypes { get; }
 
         public ICollection<TKey> Keys
         {

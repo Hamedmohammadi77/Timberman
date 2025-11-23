@@ -112,7 +112,8 @@ namespace Zenject.Tests.Bindings
         [Test]
         public void TestCached2()
         {
-            Container.Bind(typeof(Foo), typeof(IFoo)).To<Foo>().FromMethodMultiple(ctx => new[] { new Foo() }).AsSingle().NonLazy();
+            Container.Bind(typeof(Foo), typeof(IFoo)).To<Foo>().FromMethodMultiple(ctx => new[] { new Foo() })
+                .AsSingle().NonLazy();
 
             Assert.IsEqual(Container.Resolve<Foo>(), Container.Resolve<Foo>());
             Assert.IsEqual(Container.Resolve<Foo>(), Container.Resolve<IFoo>());
@@ -127,4 +128,3 @@ namespace Zenject.Tests.Bindings
         }
     }
 }
-

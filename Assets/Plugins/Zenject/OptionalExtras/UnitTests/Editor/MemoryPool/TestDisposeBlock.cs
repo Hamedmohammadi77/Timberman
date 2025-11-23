@@ -27,10 +27,7 @@ namespace Zenject.Tests
                 that.Value = value;
             }
 
-            public string Value
-            {
-                get; private set;
-            }
+            public string Value { get; private set; }
         }
 
         public class Bar : IDisposable
@@ -54,10 +51,7 @@ namespace Zenject.Tests
 
         public class Qux : IDisposable
         {
-            public bool WasDisposed
-            {
-                get; private set;
-            }
+            public bool WasDisposed { get; private set; }
 
             public void Dispose()
             {

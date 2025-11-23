@@ -101,7 +101,6 @@ namespace Zenject.Internal
             Type type, ConstructorInfo constructor)
         {
 #if NET_4_6 && !ENABLE_IL2CPP && !ZEN_DO_NOT_USE_COMPILED_EXPRESSIONS
-
             if (type.ContainsGenericParameters)
             {
                 return null;
@@ -137,7 +136,6 @@ namespace Zenject.Internal
         static ZenInjectMethod TryCreateActionForMethod(MethodInfo methodInfo)
         {
 #if NET_4_6 && !ENABLE_IL2CPP && !ZEN_DO_NOT_USE_COMPILED_EXPRESSIONS
-
             if (methodInfo.DeclaringType.ContainsGenericParameters)
             {
                 return null;
@@ -189,9 +187,13 @@ namespace Zenject.Internal
             Assert.That(!string.IsNullOrEmpty(propertyName));
 
             var allFields = GetAllFields(
-                parentType, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy).ToList();
+                    parentType,
+                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic |
+                    BindingFlags.FlattenHierarchy)
+                .ToList();
 
-            var writeableFields = allFields.Where(f => f.Name == string.Format("<" + propertyName + ">k__BackingField", propertyName)).ToList();
+            var writeableFields = allFields
+                .Where(f => f.Name == string.Format("<" + propertyName + ">k__BackingField", propertyName)).ToList();
 
             if (!writeableFields.Any())
             {
@@ -238,7 +240,6 @@ namespace Zenject.Internal
         static ZenMemberSetterMethod TryGetSetterAsCompiledExpression(Type parentType, MemberInfo memInfo)
         {
 #if NET_4_6 && !ENABLE_IL2CPP && !ZEN_DO_NOT_USE_COMPILED_EXPRESSIONS
-
             if (parentType.ContainsGenericParameters)
             {
                 return null;

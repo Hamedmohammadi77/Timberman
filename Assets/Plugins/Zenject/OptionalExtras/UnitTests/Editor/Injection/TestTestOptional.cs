@@ -12,20 +12,17 @@ namespace Zenject.Tests.Injection
 
         class Test2
         {
-            [Inject]
-            public Test1 val1 = null;
+            [Inject] public Test1 val1 = null;
         }
 
         class Test3
         {
-            [InjectOptional]
-            public Test1 val1 = null;
+            [InjectOptional] public Test1 val1 = null;
         }
 
         class Test0
         {
-            [InjectOptional]
-            public int Val1 = 5;
+            [InjectOptional] public int Val1 = 5;
         }
 
         [Test]
@@ -82,8 +79,7 @@ namespace Zenject.Tests.Injection
             public Test1 Val1;
 
             public Test5(
-                [InjectOptional]
-                Test1 val1)
+                [InjectOptional] Test1 val1)
             {
                 Val1 = val1;
             }
@@ -129,8 +125,7 @@ namespace Zenject.Tests.Injection
             public int Val1;
 
             public Test7(
-                [InjectOptional]
-                int val1)
+                [InjectOptional] int val1)
             {
                 Val1 = val1;
             }
@@ -149,8 +144,7 @@ namespace Zenject.Tests.Injection
             public int Val1;
 
             public Test8(
-                [InjectOptional]
-                int val1 = 5)
+                [InjectOptional] int val1 = 5)
             {
                 Val1 = val1;
             }
@@ -196,8 +190,7 @@ namespace Zenject.Tests.Injection
             public int? Val1;
 
             public Test9(
-                [InjectOptional]
-                int? val1)
+                [InjectOptional] int? val1)
             {
                 Val1 = val1;
             }
@@ -212,6 +205,3 @@ namespace Zenject.Tests.Injection
         }
     }
 }
-
-
-

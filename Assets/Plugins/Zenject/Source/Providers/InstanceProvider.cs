@@ -13,7 +13,8 @@ namespace Zenject
         readonly Action<InjectContext, object> _instantiateCallback;
 
         public InstanceProvider(
-            Type instanceType, object instance, DiContainer container, Action<InjectContext, object> instantiateCallback)
+            Type instanceType, object instance, DiContainer container,
+            Action<InjectContext, object> instantiateCallback)
         {
             _instanceType = instanceType;
             _instance = instance;

@@ -7,12 +7,10 @@ namespace Zenject.Asteroids
 {
     public class Ship : MonoBehaviour
     {
-        [SerializeField]
-        MeshRenderer _meshRenderer;
+        [SerializeField] MeshRenderer _meshRenderer;
 
 #if UNITY_2018_1_OR_NEWER
-        [SerializeField]
-        ParticleSystem _particleSystem;
+        [SerializeField] ParticleSystem _particleSystem;
 #else
         [SerializeField]
         ParticleEmitter _particleEmitter;
@@ -84,4 +82,3 @@ namespace Zenject.Asteroids
         }
     }
 }
-

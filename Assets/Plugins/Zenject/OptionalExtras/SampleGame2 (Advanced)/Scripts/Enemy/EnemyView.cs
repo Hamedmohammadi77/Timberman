@@ -4,20 +4,13 @@ namespace Zenject.SpaceFighter
 {
     public class EnemyView : MonoBehaviour
     {
-        [SerializeField]
-        MeshRenderer _renderer = null;
+        [SerializeField] MeshRenderer _renderer = null;
 
-        [SerializeField]
-        Collider _collider = null;
+        [SerializeField] Collider _collider = null;
 
-        [SerializeField]
-        Rigidbody _rigidBody = null;
+        [SerializeField] Rigidbody _rigidBody = null;
 
-        [Inject]
-        public EnemyFacade Facade
-        {
-            get; set;
-        }
+        [Inject] public EnemyFacade Facade { get; set; }
 
         public MeshRenderer Renderer
         {

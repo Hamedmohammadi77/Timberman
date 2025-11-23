@@ -13,8 +13,7 @@ namespace Zenject
         readonly List<SignalDeclaration> _declarations;
 
         public SignalDeclarationAsyncInitializer(
-            [Inject(Source = InjectSources.Local)]
-            List<SignalDeclaration> declarations,
+            [Inject(Source = InjectSources.Local)] List<SignalDeclaration> declarations,
             [Inject(Optional = true, Source = InjectSources.Local)]
             LazyInject<TickableManager> tickManager)
         {
@@ -37,4 +36,3 @@ namespace Zenject
         }
     }
 }
-

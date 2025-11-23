@@ -2,8 +2,7 @@ namespace Zenject
 {
     public abstract class InstallerBase : IInstaller
     {
-        [Inject]
-        DiContainer _container = null;
+        [Inject] DiContainer _container = null;
 
         protected DiContainer Container
         {
@@ -18,4 +17,3 @@ namespace Zenject
         public abstract void InstallBindings();
     }
 }
-

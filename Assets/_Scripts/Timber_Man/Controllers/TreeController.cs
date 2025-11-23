@@ -45,7 +45,7 @@ namespace _Scripts.Timber_Man.Controllers
             var newBranch = _branchPool.OnSpawned(new Vector2(0, _branchThatMakeTree.Count * 2));
             _branchThatMakeTree.Enqueue(newBranch);
 
-            if (!BranchHelper.IsPlayerAlive(playerState,newBranch.Type))
+            if (BranchHelper.IsPlayerAlive(playerState, _branchThatMakeTree.First().Type))
             {
                 Debug.Log("Player is alive");
             }
@@ -53,7 +53,6 @@ namespace _Scripts.Timber_Man.Controllers
             {
                 _signalBus.Fire(new PlayerDied());
             }
-            
         }
 
         private void OnCollisionEnter(Collision other)

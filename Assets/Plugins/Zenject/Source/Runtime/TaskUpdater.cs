@@ -70,7 +70,7 @@ namespace Zenject
 
                 // Make sure that tasks with priority of int.MaxValue are updated when maxPriority is int.MaxValue
                 if (!taskInfo.IsRemoved && taskInfo.Priority >= minPriority
-                    && (maxPriority == int.MaxValue || taskInfo.Priority < maxPriority))
+                                        && (maxPriority == int.MaxValue || taskInfo.Priority < maxPriority))
                 {
                     UpdateItem(taskInfo.Task);
                 }
@@ -111,6 +111,7 @@ namespace Zenject
                     InsertTaskSorted(task);
                 }
             }
+
             _queuedTasks.Clear();
         }
 

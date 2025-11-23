@@ -32,9 +32,9 @@ namespace Zenject.Tests.Other
 
         Dictionary<string, IFactory<Foo>> GetFooFactories(InjectContext ctx)
         {
-            return ctx.Container.AllContracts.Where(
-                x => x.Type == typeof(Foo.Factory))
-                .ToDictionary(x => (string)x.Identifier, x => (IFactory<Foo>)ctx.Container.ResolveId<Foo.Factory>(x.Identifier));
+            return ctx.Container.AllContracts.Where(x => x.Type == typeof(Foo.Factory))
+                .ToDictionary(x => (string)x.Identifier,
+                    x => (IFactory<Foo>)ctx.Container.ResolveId<Foo.Factory>(x.Identifier));
         }
 
         void InstallFoo2(DiContainer subContainer)
@@ -72,10 +72,7 @@ namespace Zenject.Tests.Other
                 Number = number;
             }
 
-            public int Number
-            {
-                get; private set;
-            }
+            public int Number { get; private set; }
 
             public class Factory : PlaceholderFactory<Foo>
             {
@@ -83,4 +80,3 @@ namespace Zenject.Tests.Other
         }
     }
 }
-

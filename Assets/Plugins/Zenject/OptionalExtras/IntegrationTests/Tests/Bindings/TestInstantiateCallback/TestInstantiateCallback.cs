@@ -1,4 +1,3 @@
-
 using System.Collections;
 using ModestTree;
 using UnityEngine;
@@ -35,10 +34,10 @@ namespace Zenject.Tests.Bindings.InstantiateCallback
 
             Container.Bind<Foo>().FromNewComponentOnNewGameObject()
                 .AsSingle().OnInstantiated<Foo>((ctx, obj) =>
-                    {
-                        Assert.That(obj.WasInjected);
-                        obj.Value = "asdf";
-                    });
+                {
+                    Assert.That(obj.WasInjected);
+                    obj.Value = "asdf";
+                });
 
             PostInstall();
 
@@ -57,10 +56,10 @@ namespace Zenject.Tests.Bindings.InstantiateCallback
 
             Container.Bind<Foo>().FromNewComponentOn(gameObject)
                 .AsSingle().OnInstantiated<Foo>((ctx, obj) =>
-                    {
-                        Assert.That(obj.WasInjected);
-                        obj.Value = "asdf";
-                    });
+                {
+                    Assert.That(obj.WasInjected);
+                    obj.Value = "asdf";
+                });
 
             PostInstall();
 
@@ -79,10 +78,10 @@ namespace Zenject.Tests.Bindings.InstantiateCallback
 
             Container.Bind<Foo>().FromNewComponentOn(ctx => gameObject)
                 .AsSingle().OnInstantiated<Foo>((ctx, obj) =>
-                    {
-                        Assert.That(obj.WasInjected);
-                        obj.Value = "asdf";
-                    });
+                {
+                    Assert.That(obj.WasInjected);
+                    obj.Value = "asdf";
+                });
 
             PostInstall();
 
@@ -99,10 +98,10 @@ namespace Zenject.Tests.Bindings.InstantiateCallback
 
             Container.Bind<Foo>().FromNewComponentOnNewPrefab(EmptyPrefab)
                 .AsSingle().OnInstantiated<Foo>((ctx, obj) =>
-                    {
-                        Assert.That(obj.WasInjected);
-                        obj.Value = "asdf";
-                    });
+                {
+                    Assert.That(obj.WasInjected);
+                    obj.Value = "asdf";
+                });
 
             PostInstall();
 
@@ -119,10 +118,10 @@ namespace Zenject.Tests.Bindings.InstantiateCallback
 
             Container.Bind<Foo>().FromNewComponentOnNewPrefabResource(GetPrefabPath("Empty"))
                 .AsSingle().OnInstantiated<Foo>((ctx, obj) =>
-                    {
-                        Assert.That(obj.WasInjected);
-                        obj.Value = "asdf";
-                    });
+                {
+                    Assert.That(obj.WasInjected);
+                    obj.Value = "asdf";
+                });
 
             PostInstall();
 
@@ -139,10 +138,10 @@ namespace Zenject.Tests.Bindings.InstantiateCallback
 
             Container.Bind<Foo>().FromNewComponentOnRoot()
                 .AsSingle().OnInstantiated<Foo>((ctx, obj) =>
-                    {
-                        Assert.That(obj.WasInjected);
-                        obj.Value = "asdf";
-                    });
+                {
+                    Assert.That(obj.WasInjected);
+                    obj.Value = "asdf";
+                });
 
             PostInstall();
 
@@ -154,8 +153,7 @@ namespace Zenject.Tests.Bindings.InstantiateCallback
 
         public class Bar : MonoBehaviour
         {
-            [Inject]
-            public Foo Foo;
+            [Inject] public Foo Foo;
         }
 
         [UnityTest]
@@ -168,10 +166,10 @@ namespace Zenject.Tests.Bindings.InstantiateCallback
             Container.QueueForInject(bar);
             Container.Bind<Foo>().FromNewComponentSibling()
                 .AsSingle().OnInstantiated<Foo>((ctx, obj) =>
-                    {
-                        Assert.That(obj.WasInjected);
-                        obj.Value = "asdf";
-                    });
+                {
+                    Assert.That(obj.WasInjected);
+                    obj.Value = "asdf";
+                });
 
             PostInstall();
 
@@ -186,10 +184,10 @@ namespace Zenject.Tests.Bindings.InstantiateCallback
 
             Container.Bind<Foo>().FromComponentInNewPrefab(FooPrefab)
                 .AsSingle().OnInstantiated<Foo>((ctx, obj) =>
-                    {
-                        Assert.That(obj.WasInjected);
-                        obj.Value = "asdf";
-                    });
+                {
+                    Assert.That(obj.WasInjected);
+                    obj.Value = "asdf";
+                });
 
             PostInstall();
 
@@ -206,10 +204,10 @@ namespace Zenject.Tests.Bindings.InstantiateCallback
 
             Container.Bind<Foo>().FromComponentInNewPrefabResource(GetPrefabPath("Foo"))
                 .AsSingle().OnInstantiated<Foo>((ctx, obj) =>
-                    {
-                        Assert.That(obj.WasInjected);
-                        obj.Value = "asdf";
-                    });
+                {
+                    Assert.That(obj.WasInjected);
+                    obj.Value = "asdf";
+                });
 
             PostInstall();
 
@@ -218,7 +216,5 @@ namespace Zenject.Tests.Bindings.InstantiateCallback
             Assert.IsEqual(foo.Value, "asdf");
             yield break;
         }
-
     }
 }
-

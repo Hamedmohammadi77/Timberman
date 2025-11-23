@@ -9,8 +9,7 @@ namespace Zenject
     // can get lost during compile errors for classes that are abstract
     public class ScriptableObjectInstallerBase : ScriptableObject, IInstaller
     {
-        [Inject]
-        DiContainer _container = null;
+        [Inject] DiContainer _container = null;
 
         protected DiContainer Container
         {
@@ -30,4 +29,3 @@ namespace Zenject
 }
 
 #endif
-

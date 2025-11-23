@@ -5,23 +5,17 @@ namespace Zenject.ReflectionBaking
 {
     public class ZenjectReflectionBakingSettings : ScriptableObject
     {
-        [SerializeField]
-        bool _isEnabledInBuilds = true;
+        [SerializeField] bool _isEnabledInBuilds = true;
 
-        [SerializeField]
-        bool _isEnabledInEditor = false;
+        [SerializeField] bool _isEnabledInEditor = false;
 
-        [SerializeField]
-        bool _allGeneratedAssemblies = true;
+        [SerializeField] bool _allGeneratedAssemblies = true;
 
-        [SerializeField]
-        List<string> _includeAssemblies = null;
+        [SerializeField] List<string> _includeAssemblies = null;
 
-        [SerializeField]
-        List<string> _excludeAssemblies = null;
+        [SerializeField] List<string> _excludeAssemblies = null;
 
-        [SerializeField]
-        List<string> _namespacePatterns = null;
+        [SerializeField] List<string> _namespacePatterns = null;
 
         public List<string> NamespacePatterns
         {

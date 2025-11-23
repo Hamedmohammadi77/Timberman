@@ -281,7 +281,8 @@ namespace Zenject
             }
         }
 
-        protected override void Reinitialize(TParam1 p1, TParam2 p2, TParam3 p3, TParam4 p4, TParam5 p5, TParam6 p6, TValue item)
+        protected override void Reinitialize(TParam1 p1, TParam2 p2, TParam3 p3, TParam4 p4, TParam5 p5, TParam6 p6,
+            TValue item)
         {
             item.gameObject.SetActive(true);
             item.OnSpawned(p1, p2, p3, p4, p5, p6);
@@ -322,7 +323,8 @@ namespace Zenject
             }
         }
 
-        protected override void Reinitialize(TParam1 p1, TParam2 p2, TParam3 p3, TParam4 p4, TParam5 p5, TParam6 p6, TParam7 p7, TValue item)
+        protected override void Reinitialize(TParam1 p1, TParam2 p2, TParam3 p3, TParam4 p4, TParam5 p5, TParam6 p6,
+            TParam7 p7, TValue item)
         {
             item.gameObject.SetActive(true);
             item.OnSpawned(p1, p2, p3, p4, p5, p6, p7);
@@ -363,7 +365,8 @@ namespace Zenject
             }
         }
 
-        protected override void Reinitialize(TParam1 p1, TParam2 p2, TParam3 p3, TParam4 p4, TParam5 p5, TParam6 p6, TParam7 p7, TParam8 p8, TValue item)
+        protected override void Reinitialize(TParam1 p1, TParam2 p2, TParam3 p3, TParam4 p4, TParam5 p5, TParam6 p6,
+            TParam7 p7, TParam8 p8, TValue item)
         {
             item.gameObject.SetActive(true);
             item.OnSpawned(p1, p2, p3, p4, p5, p6, p7, p8);

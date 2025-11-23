@@ -24,14 +24,12 @@ namespace Zenject.Tests.Injection
 
             public Test0 test0;
 
-            [Inject]
-            public Test1 test1 = null;
+            [Inject] public Test1 test1 = null;
 
             [Inject]
             public void Init(
                 Test0 test0,
-                [InjectOptional]
-                Test2 test2)
+                [InjectOptional] Test2 test2)
             {
                 Assert.That(!HasInitialized);
                 Assert.IsNotNull(test1);

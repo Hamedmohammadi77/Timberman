@@ -10,15 +10,9 @@ namespace Zenject.Tests.Bindings
 
         public class Foo : IInitializable
         {
-            public bool WasInitialized
-            {
-                get; private set;
-            }
+            public bool WasInitialized { get; private set; }
 
-            public int InitializeCount
-            {
-                get; private set;
-            }
+            public int InitializeCount { get; private set; }
 
             public void Initialize()
             {
@@ -29,11 +23,7 @@ namespace Zenject.Tests.Bindings
 
         public class FooFacade
         {
-            [Inject]
-            public Foo Foo
-            {
-                get; private set;
-            }
+            [Inject] public Foo Foo { get; private set; }
         }
 
         public class FooInstaller : Installer<FooInstaller>
@@ -88,10 +78,7 @@ namespace Zenject.Tests.Bindings
 
         public class Bar : IInitializable
         {
-            public int InitializeCount
-            {
-                get; private set;
-            }
+            public int InitializeCount { get; private set; }
 
             public void Initialize()
             {
@@ -146,5 +133,3 @@ namespace Zenject.Tests.Bindings
         }
     }
 }
-
-

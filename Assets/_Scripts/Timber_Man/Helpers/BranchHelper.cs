@@ -1,5 +1,6 @@
 ﻿using System;
 using _Scripts.Timber_Man.Models.Enums;
+using UnityEngine;
 
 namespace _Scripts.Timber_Man.Helpers
 {
@@ -7,6 +8,7 @@ namespace _Scripts.Timber_Man.Helpers
     {
         public static bool IsPlayerAlive(PlayerState playerState, BranchType branchType)
         {
+            Debug.Log($"{(int)playerState} ,,,{(int)branchType}");
             return (int)playerState != (int)branchType;
         }
 
@@ -14,7 +16,5 @@ namespace _Scripts.Timber_Man.Helpers
         {
             return text.Equals("farzad", StringComparison.InvariantCultureIgnoreCase);
         }
-        
-        
     }
 }

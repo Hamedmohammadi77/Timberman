@@ -1,4 +1,3 @@
-
 using System.Collections;
 using ModestTree;
 using UnityEngine.TestTools;
@@ -132,8 +131,7 @@ namespace Zenject.Tests.Bindings
 
         public class Qux
         {
-            [Inject(Optional = true)]
-            public LazyInject<Bar> Bar;
+            [Inject(Optional = true)] public LazyInject<Bar> Bar;
         }
 
         public class Gorp
@@ -142,4 +140,3 @@ namespace Zenject.Tests.Bindings
         }
     }
 }
-

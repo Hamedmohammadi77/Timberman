@@ -59,5 +59,3 @@ namespace Zenject.Tests.Injection
         }
     }
 }
-
-

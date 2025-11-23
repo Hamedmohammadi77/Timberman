@@ -21,8 +21,7 @@ namespace Zenject.Tests.Injection
             public int? val;
 
             public Test2(
-                [InjectOptional]
-                int? val)
+                [InjectOptional] int? val)
             {
                 this.val = val;
             }

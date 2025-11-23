@@ -5,8 +5,7 @@ namespace Zenject.Tests
 {
     public class SceneContextEventsTester : MonoBehaviour
     {
-        [SerializeField]
-        SceneContext _sceneContext = null;
+        [SerializeField] SceneContext _sceneContext = null;
 
         bool _calledPreInstall;
         bool _calledPostInstall;

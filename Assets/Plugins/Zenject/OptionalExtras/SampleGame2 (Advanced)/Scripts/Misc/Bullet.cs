@@ -15,14 +15,11 @@ namespace Zenject.SpaceFighter
         float _speed;
         float _lifeTime;
 
-        [SerializeField]
-        MeshRenderer _renderer = null;
+        [SerializeField] MeshRenderer _renderer = null;
 
-        [SerializeField]
-        Material _playerMaterial = null;
+        [SerializeField] Material _playerMaterial = null;
 
-        [SerializeField]
-        Material _enemyMaterial = null;
+        [SerializeField] Material _enemyMaterial = null;
 
         IMemoryPool _pool;
 

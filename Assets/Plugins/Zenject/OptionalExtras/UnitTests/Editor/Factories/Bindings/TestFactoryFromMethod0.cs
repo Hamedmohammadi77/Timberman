@@ -42,4 +42,3 @@ namespace Zenject.Tests.Bindings
         }
     }
 }
-

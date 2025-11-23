@@ -83,10 +83,12 @@ namespace Zenject
                 creator.GetAllInstances(context, args, allInstances);
 
                 Assert.That(allInstances.Count > 0,
-                    "Provider returned zero instances when one was expected when looking up type '{0}'", context.MemberType);
+                    "Provider returned zero instances when one was expected when looking up type '{0}'",
+                    context.MemberType);
 
                 Assert.That(allInstances.Count == 1,
-                    "Provider returned multiple instances when only one was expected when looking up type '{0}'", context.MemberType);
+                    "Provider returned multiple instances when only one was expected when looking up type '{0}'",
+                    context.MemberType);
 
                 return allInstances[0];
             }

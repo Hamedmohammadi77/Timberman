@@ -111,7 +111,8 @@ namespace Zenject.Tests.Bindings
 
             Assert.Throws(() => Container.InstantiatePrefabResource(ResourcePrefix + "Gorp"));
 
-            var gorp = Container.InstantiatePrefabResourceForComponent<Gorp>(ResourcePrefix + "Gorp", new object[] { "asdf" });
+            var gorp = Container.InstantiatePrefabResourceForComponent<Gorp>(ResourcePrefix + "Gorp",
+                new object[] { "asdf" });
 
             Assert.IsEqual(gorp.Arg, "asdf");
             yield break;
@@ -153,7 +154,8 @@ namespace Zenject.Tests.Bindings
 
             Assert.Throws(() => Container.InstantiateScriptableObjectResource<Gorp2>(ResourcePrefix + "Gorp2"));
 
-            var gorp = Container.InstantiateScriptableObjectResource<Gorp2>(ResourcePrefix + "Gorp2", new object[] { "asdf" });
+            var gorp = Container.InstantiateScriptableObjectResource<Gorp2>(ResourcePrefix + "Gorp2",
+                new object[] { "asdf" });
 
             Assert.IsEqual(gorp.Arg, "asdf");
             yield break;
@@ -252,7 +254,8 @@ namespace Zenject.Tests.Bindings
             parentGameObject.transform.position = new Vector3(100, 100, 100);
             var parentTransform = parentGameObject.transform;
 
-            var go = (Foo)Container.InstantiatePrefabForComponentExplicit(typeof(Foo), FooPrefab, new List<TypeValuePair>(), new GameObjectCreationParameters { ParentTransform = parentTransform });
+            var go = (Foo)Container.InstantiatePrefabForComponentExplicit(typeof(Foo), FooPrefab,
+                new List<TypeValuePair>(), new GameObjectCreationParameters { ParentTransform = parentTransform });
 
             var foo = go.GetComponentInChildren<Foo>();
 
@@ -270,12 +273,13 @@ namespace Zenject.Tests.Bindings
             parentGameObject.transform.rotation = Quaternion.Euler(10, 10, 10);
             var parentTransform = parentGameObject.transform;
 
-            var go = (Foo)Container.InstantiatePrefabForComponentExplicit(typeof(Foo), FooPrefab, new List<TypeValuePair>(), new GameObjectCreationParameters
-            {
-                ParentTransform = parentTransform,
-                Position = new Vector3(50, 50, 50),
-                Rotation = Quaternion.Euler(20, 20, 20)
-            });
+            var go = (Foo)Container.InstantiatePrefabForComponentExplicit(typeof(Foo), FooPrefab,
+                new List<TypeValuePair>(), new GameObjectCreationParameters
+                {
+                    ParentTransform = parentTransform,
+                    Position = new Vector3(50, 50, 50),
+                    Rotation = Quaternion.Euler(20, 20, 20)
+                });
 
             var foo = go.GetComponentInChildren<Foo>();
 
@@ -287,17 +291,13 @@ namespace Zenject.Tests.Bindings
         static bool Approximately(Vector3 left, Vector3 right)
         {
             return Mathf.Approximately(left.x, right.x)
-                && Mathf.Approximately(left.y, right.y)
-                && Mathf.Approximately(left.z, right.z);
+                   && Mathf.Approximately(left.y, right.y)
+                   && Mathf.Approximately(left.z, right.z);
         }
 
         public class Qux
         {
-            public static bool WasInjected
-            {
-                get;
-                set;
-            }
+            public static bool WasInjected { get; set; }
 
             [Inject]
             public void Construct()

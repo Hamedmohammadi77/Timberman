@@ -6,11 +6,9 @@ namespace Zenject.SpaceFighter
 {
     public class Explosion : MonoBehaviour, IPoolable<IMemoryPool>
     {
-        [SerializeField]
-        float _lifeTime;
+        [SerializeField] float _lifeTime;
 
-        [SerializeField]
-        ParticleSystem _particleSystem;
+        [SerializeField] ParticleSystem _particleSystem;
 
         float _startTime;
 
@@ -42,4 +40,3 @@ namespace Zenject.SpaceFighter
         }
     }
 }
-

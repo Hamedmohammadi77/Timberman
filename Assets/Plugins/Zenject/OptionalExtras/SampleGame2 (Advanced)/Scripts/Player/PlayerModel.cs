@@ -22,10 +22,7 @@ namespace Zenject.SpaceFighter
             get { return _renderer; }
         }
 
-        public bool IsDead
-        {
-            get; set;
-        }
+        public bool IsDead { get; set; }
 
         public float Health
         {

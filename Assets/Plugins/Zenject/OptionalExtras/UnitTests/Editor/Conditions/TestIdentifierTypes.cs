@@ -19,8 +19,7 @@ namespace Zenject.Tests.Conditions
         class Test0
         {
             public Test0(
-                [Inject(Id = "asdf")]
-                Foo foo)
+                [Inject(Id = "asdf")] Foo foo)
             {
             }
         }
@@ -46,8 +45,7 @@ namespace Zenject.Tests.Conditions
         class Test1
         {
             public Test1(
-                [Inject(Id = 5)]
-                Foo foo)
+                [Inject(Id = 5)] Foo foo)
             {
             }
         }
@@ -82,8 +80,7 @@ namespace Zenject.Tests.Conditions
         class Test2
         {
             public Test2(
-                [Inject(Id = Things.Thing1)]
-                Foo foo)
+                [Inject(Id = Things.Thing1)] Foo foo)
             {
             }
         }
@@ -116,4 +113,3 @@ namespace Zenject.Tests.Conditions
         }
     }
 }
-

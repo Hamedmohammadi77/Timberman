@@ -73,7 +73,7 @@ namespace Zenject
             }
 
             Assert.That(buffer.Count > 0,
-            "Could not find resource at path '{0}' with type '{1}'", _resourcePath, _resourceType);
+                "Could not find resource at path '{0}' with type '{1}'", _resourcePath, _resourceType);
 
             injectAction = () =>
             {

@@ -13,16 +13,14 @@ namespace Zenject.Tests.Conditions
         class Test1
         {
             public Test1(
-                [Inject(Id ="foo")]
-                Test0 name1)
+                [Inject(Id = "foo")] Test0 name1)
             {
             }
         }
 
         class Test2
         {
-            [Inject(Id ="foo")]
-            public Test0 name2 = null;
+            [Inject(Id = "foo")] public Test0 name2 = null;
         }
 
         [Test]
@@ -77,15 +75,13 @@ namespace Zenject.Tests.Conditions
         class Test3
         {
             public Test3(
-                [Inject(Id ="TestValue2")]
-                Test0 test0)
+                [Inject(Id = "TestValue2")] Test0 test0)
             {
             }
         }
 
         class Test4
         {
-
         }
 
         [Test]

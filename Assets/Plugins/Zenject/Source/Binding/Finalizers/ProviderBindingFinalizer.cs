@@ -19,11 +19,7 @@ namespace Zenject
             get { return BindInfo.BindingInheritanceMethod; }
         }
 
-        protected BindInfo BindInfo
-        {
-            get;
-            private set;
-        }
+        protected BindInfo BindInfo { get; private set; }
 
         protected ScopeTypes GetScope()
         {
@@ -84,7 +80,8 @@ namespace Zenject
                 BindInfo.Condition,
                 provider, BindInfo.NonLazy);
 
-            if (contractType.IsValueType() && !(contractType.IsGenericType() && contractType.GetGenericTypeDefinition() == typeof(Nullable<>)))
+            if (contractType.IsValueType() && !(contractType.IsGenericType() &&
+                                                contractType.GetGenericTypeDefinition() == typeof(Nullable<>)))
             {
                 var nullableType = typeof(Nullable<>).MakeGenericType(contractType);
 

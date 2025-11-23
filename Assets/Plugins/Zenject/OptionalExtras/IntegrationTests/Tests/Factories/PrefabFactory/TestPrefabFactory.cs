@@ -69,7 +69,8 @@ namespace Zenject.Tests.Factories
         {
             PreInstall();
 
-            Container.BindFactory<string, string, Foo2, Foo2.Factory2>().FromFactory<PrefabResourceFactory<string, Foo2>>();
+            Container.BindFactory<string, string, Foo2, Foo2.Factory2>()
+                .FromFactory<PrefabResourceFactory<string, Foo2>>();
             Container.Bind<IInitializable>().To<Runner4>().AsSingle().WithArguments(Foo2PrefabResourcePath);
 
             PostInstall();

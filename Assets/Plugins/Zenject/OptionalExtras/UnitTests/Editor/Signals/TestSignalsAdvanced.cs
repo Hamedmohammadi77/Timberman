@@ -55,15 +55,9 @@ namespace Zenject.Tests.Signals
 
             Action handler2 = () => received = true;
 
-            Action handler = () =>
-            {
-                signalBus.Subscribe<FooSignal>(handler2);
-            };
+            Action handler = () => { signalBus.Subscribe<FooSignal>(handler2); };
 
-            Action handler3 = () =>
-            {
-                signalBus.Unsubscribe<FooSignal>(handler2);
-            };
+            Action handler3 = () => { signalBus.Unsubscribe<FooSignal>(handler2); };
 
             signalBus.Subscribe<FooSignal>(handler);
 
@@ -239,4 +233,3 @@ namespace Zenject.Tests.Signals
         }
     }
 }
-

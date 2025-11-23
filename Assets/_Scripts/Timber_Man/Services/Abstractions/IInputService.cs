@@ -1,9 +1,7 @@
 namespace _Scripts.Timber_Man.Services.Abstractions
 {
-    public interface IInputService 
+    public interface IInputService
     {
         void Update();
-    
-    
     }
 }

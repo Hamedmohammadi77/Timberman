@@ -62,8 +62,8 @@ namespace Zenject
                         container,
                         concreteTypes,
                         (_, concreteType) =>
-                        new SubContainerDependencyProvider(
-                            concreteType, _subIdentifier, containerCreator, _resolveAll));
+                            new SubContainerDependencyProvider(
+                                concreteType, _subIdentifier, containerCreator, _resolveAll));
                     break;
                 }
                 default:
@@ -96,8 +96,8 @@ namespace Zenject
                     RegisterProviderPerContract(
                         container,
                         (_, contractType) =>
-                        new SubContainerDependencyProvider(
-                            contractType, _subIdentifier, containerCreator, _resolveAll));
+                            new SubContainerDependencyProvider(
+                                contractType, _subIdentifier, containerCreator, _resolveAll));
                     break;
                 }
                 default:

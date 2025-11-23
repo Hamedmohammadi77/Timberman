@@ -35,11 +35,13 @@ namespace Zenject
         [SerializeField]
         bool _parentNewObjectsUnderSceneContext;
 
-        [Tooltip("Optional contract names for this SceneContext, allowing contexts in subsequently loaded scenes to depend on it and be parented to it, and also for previously loaded decorators to be included")]
+        [Tooltip(
+            "Optional contract names for this SceneContext, allowing contexts in subsequently loaded scenes to depend on it and be parented to it, and also for previously loaded decorators to be included")]
         [SerializeField]
         List<string> _contractNames = new List<string>();
 
-        [Tooltip("Optional contract names of SceneContexts in previously loaded scenes that this context depends on and to which it should be parented")]
+        [Tooltip(
+            "Optional contract names of SceneContexts in previously loaded scenes that this context depends on and to which it should be parented")]
         [SerializeField]
         List<string> _parentContractNames = new List<string>();
 
@@ -67,10 +69,7 @@ namespace Zenject
 
         public bool IsValidating
         {
-            get
-            {
-                return ProjectContext.Instance.Container.IsValidating;
-            }
+            get { return ProjectContext.Instance.Container.IsValidating; }
         }
 
         public IEnumerable<string> ContractNames
@@ -91,10 +90,7 @@ namespace Zenject
                 result.AddRange(_parentContractNames);
                 return result;
             }
-            set
-            {
-                _parentContractNames = value.ToList();
-            }
+            set { _parentContractNames = value.ToList(); }
         }
 
         public bool ParentNewObjectsUnderSceneContext

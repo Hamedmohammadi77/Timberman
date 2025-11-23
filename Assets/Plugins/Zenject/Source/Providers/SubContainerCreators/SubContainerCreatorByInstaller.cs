@@ -26,7 +26,8 @@ namespace Zenject
             _containerBindInfo = containerBindInfo;
 
             Assert.That(installerType.DerivesFrom<InstallerBase>(),
-                "Invalid installer type given during bind command.  Expected type '{0}' to derive from 'Installer<>'", installerType);
+                "Invalid installer type given during bind command.  Expected type '{0}' to derive from 'Installer<>'",
+                installerType);
         }
 
         public SubContainerCreatorByInstaller(
@@ -55,10 +56,7 @@ namespace Zenject
 
             installer.InstallBindings();
 
-            injectAction = () => 
-            {
-                subContainer.ResolveRoots();
-            };
+            injectAction = () => { subContainer.ResolveRoots(); };
 
             return subContainer;
         }

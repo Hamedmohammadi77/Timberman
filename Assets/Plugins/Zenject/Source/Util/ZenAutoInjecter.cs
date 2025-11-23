@@ -5,8 +5,7 @@ namespace Zenject
 {
     public class ZenAutoInjecter : MonoBehaviour
     {
-        [SerializeField]
-        ContainerSources _containerSource = ContainerSources.SearchHierarchy;
+        [SerializeField] ContainerSources _containerSource = ContainerSources.SearchHierarchy;
 
         bool _hasInjected;
 

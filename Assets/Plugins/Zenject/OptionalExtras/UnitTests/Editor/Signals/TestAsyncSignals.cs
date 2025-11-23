@@ -8,20 +8,15 @@ namespace Zenject.Tests.Signals
     {
         static int CallCount;
 
-        [Inject]
-        SignalBus _signalBus = null;
+        [Inject] SignalBus _signalBus = null;
 
-        [Inject]
-        Receiver1 _receiver1 = null;
+        [Inject] Receiver1 _receiver1 = null;
 
-        [Inject]
-        Receiver2 _receiver2 = null;
+        [Inject] Receiver2 _receiver2 = null;
 
-        [Inject]
-        TickableManager _tickManager = null;
+        [Inject] TickableManager _tickManager = null;
 
-        [InjectOptional]
-        Foo _foo = null;
+        [InjectOptional] Foo _foo = null;
 
         public override void Setup()
         {
@@ -104,10 +99,7 @@ namespace Zenject.Tests.Signals
 
         public class Foo : ITickable
         {
-            public int CallIndex
-            {
-                get; set;
-            }
+            public int CallIndex { get; set; }
 
             public void Tick()
             {
@@ -125,10 +117,7 @@ namespace Zenject.Tests.Signals
 
         public class Receiver1
         {
-            public int CallIndex
-            {
-                get; set;
-            }
+            public int CallIndex { get; set; }
 
             public void OnSignal()
             {
@@ -138,10 +127,7 @@ namespace Zenject.Tests.Signals
 
         public class Receiver2
         {
-            public int CallIndex
-            {
-                get; set;
-            }
+            public int CallIndex { get; set; }
 
             public void OnSignal()
             {
@@ -150,4 +136,3 @@ namespace Zenject.Tests.Signals
         }
     }
 }
-

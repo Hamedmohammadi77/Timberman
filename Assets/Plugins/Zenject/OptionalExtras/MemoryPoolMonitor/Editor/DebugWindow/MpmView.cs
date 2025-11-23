@@ -170,7 +170,7 @@ namespace Zenject.MemoryPoolMonitor
 
             //if (poolType.Namespace == "Zenject")
             //{
-                //return false;
+            //return false;
             //}
 
             if (_actualFilter.IsEmpty())
@@ -195,7 +195,8 @@ namespace Zenject.MemoryPoolMonitor
                 0, 0, _settings.FilterPaddingLeft, _settings.FilterHeight), "Filter:", _settings.FilterTextStyle);
 
             var searchFilter = GUI.TextField(
-                new Rect(_settings.FilterPaddingLeft, _settings.FilterPaddingTop, _settings.FilterWidth, _settings.FilterInputHeight), _searchFilter, 999);
+                new Rect(_settings.FilterPaddingLeft, _settings.FilterPaddingTop, _settings.FilterWidth,
+                    _settings.FilterInputHeight), _searchFilter, 999);
 
             if (searchFilter != _searchFilter)
             {
@@ -235,7 +236,8 @@ namespace Zenject.MemoryPoolMonitor
         void DrawColumnHeaders(float width)
         {
             GUI.DrawTexture(new Rect(
-                0, _settings.FilterHeight - 0.5f * _settings.SplitterWidth, width, _settings.SplitterWidth), LineTexture);
+                    0, _settings.FilterHeight - 0.5f * _settings.SplitterWidth, width, _settings.SplitterWidth),
+                LineTexture);
 
             GUI.DrawTexture(new Rect(
                 0, HeaderTop - 0.5f * _settings.SplitterWidth, width, _settings.SplitterWidth), LineTexture);
@@ -276,7 +278,8 @@ namespace Zenject.MemoryPoolMonitor
             {
                 case EventType.ScrollWheel:
                 {
-                    _scrollPosition = Mathf.Clamp(_scrollPosition + Event.current.delta.y * _settings.ScrollSpeed, 0, TotalHeight);
+                    _scrollPosition = Mathf.Clamp(_scrollPosition + Event.current.delta.y * _settings.ScrollSpeed, 0,
+                        TotalHeight);
                     break;
                 }
                 case EventType.MouseDown:
@@ -431,12 +434,14 @@ namespace Zenject.MemoryPoolMonitor
                 case 4:
                 {
                     var buttonBounds = new Rect(
-                        bounds.x + _settings.ButtonMargin, bounds.y, bounds.width - _settings.ButtonMargin, bounds.height);
+                        bounds.x + _settings.ButtonMargin, bounds.y, bounds.width - _settings.ButtonMargin,
+                        bounds.height);
 
                     if (GUI.Button(buttonBounds, "Clear"))
                     {
                         pool.Clear();
                     }
+
                     break;
                 }
                 case 5:
@@ -448,6 +453,7 @@ namespace Zenject.MemoryPoolMonitor
                     {
                         pool.ExpandBy(5);
                     }
+
                     break;
                 }
                 default:

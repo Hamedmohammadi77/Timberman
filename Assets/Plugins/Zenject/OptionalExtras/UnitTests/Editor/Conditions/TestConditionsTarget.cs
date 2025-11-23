@@ -50,5 +50,3 @@ namespace Zenject.Tests.Conditions
         }
     }
 }
-
-

@@ -89,6 +89,7 @@ namespace ModestTree
 #endif
                 _isValueType[type] = result;
             }
+
             return result;
         }
 
@@ -150,6 +151,7 @@ namespace ModestTree
             return type.IsGenericType;
 #endif
         }
+
         public static bool IsGenericTypeDefinition(this Type type)
         {
 #if UNITY_WSA && ENABLE_DOTNET && !UNITY_EDITOR
@@ -234,6 +236,7 @@ namespace ModestTree
 #endif
                 _interfaces.Add(type, result);
             }
+
             return result;
         }
 
@@ -273,6 +276,7 @@ namespace ModestTree
                 result = type.IsGenericType() && type != type.GetGenericTypeDefinition();
                 _isClosedGenericType[type] = result;
             }
+
             return result;
         }
 
@@ -299,6 +303,7 @@ namespace ModestTree
                 result = type.IsGenericType() && type == type.GetGenericTypeDefinition();
                 _isOpenGenericType[type] = result;
             }
+
             return result;
         }
 

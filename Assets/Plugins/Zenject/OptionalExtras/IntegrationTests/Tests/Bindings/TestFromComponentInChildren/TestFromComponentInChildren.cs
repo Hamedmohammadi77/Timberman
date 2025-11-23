@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using ModestTree;
@@ -204,11 +203,9 @@ namespace Zenject.Tests.Bindings
 
         public class Root : MonoBehaviour
         {
-            [Inject]
-            public Grandchild Grandchild;
+            [Inject] public Grandchild Grandchild;
 
-            [Inject]
-            public List<Child> Childs;
+            [Inject] public List<Child> Childs;
         }
 
         public class Child : MonoBehaviour
@@ -221,9 +218,7 @@ namespace Zenject.Tests.Bindings
 
         public class RootWithOptional : MonoBehaviour
         {
-            [InjectOptional]
-            public Child Child;
+            [InjectOptional] public Child Child;
         }
     }
 }
-

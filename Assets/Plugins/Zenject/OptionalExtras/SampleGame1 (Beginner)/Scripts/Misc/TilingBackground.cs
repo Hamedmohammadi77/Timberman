@@ -6,8 +6,7 @@ namespace Zenject.Asteroids
 {
     public class TilingBackground : MonoBehaviour
     {
-        [SerializeField]
-        float _speed;
+        [SerializeField] float _speed;
 
         Vector2 _offset;
         Renderer _renderer;

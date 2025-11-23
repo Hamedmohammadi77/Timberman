@@ -51,8 +51,7 @@ namespace Zenject
         void Construct(
             IFactory<TContract> factory,
             DiContainer container,
-            [InjectOptional]
-            MemoryPoolSettings settings)
+            [InjectOptional] MemoryPoolSettings settings)
         {
             _settings = settings ?? MemoryPoolSettings.Default;
             _factory = factory;
@@ -148,7 +147,8 @@ namespace Zenject
 
                 if (!_container.IsValidating)
                 {
-                    Assert.IsNotNull(item, "Factory '{0}' returned null value when creating via {1}!", _factory.GetType(), GetType());
+                    Assert.IsNotNull(item, "Factory '{0}' returned null value when creating via {1}!",
+                        _factory.GetType(), GetType());
                     OnCreated(item);
                 }
 
@@ -215,7 +215,7 @@ namespace Zenject
             {
                 throw new PoolExceededFixedSizeException(
                     "Pool factory '{0}' attempted resize but pool set to fixed size of '{1}'!"
-                    .Fmt(GetType(), _inactiveItems.Count));
+                        .Fmt(GetType(), _inactiveItems.Count));
             }
 
             Assert.That(desiredPoolSize >= 0, "Attempted to resize the pool to a negative amount");
@@ -241,7 +241,7 @@ namespace Zenject
                 {
                     throw new PoolExceededFixedSizeException(
                         "Pool factory '{0}' exceeded its fixed size of '{1}'!"
-                        .Fmt(GetType(), _inactiveItems.Count));
+                            .Fmt(GetType(), _inactiveItems.Count));
                 }
                 case PoolExpandMethods.OneAtATime:
                 {
@@ -258,6 +258,7 @@ namespace Zenject
                     {
                         ExpandBy(NumTotal);
                     }
+
                     break;
                 }
                 default:

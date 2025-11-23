@@ -21,16 +21,9 @@ namespace Zenject
         {
         }
 
-        public static Thread UnityMainThread
-        {
-            get; set;
-        }
+        public static Thread UnityMainThread { get; set; }
 
-        public static Regex ProfilePattern
-        {
-            get;
-            set;
-        }
+        public static Regex ProfilePattern { get; set; }
 
         static int GetHashCode(object p1, object p2)
         {

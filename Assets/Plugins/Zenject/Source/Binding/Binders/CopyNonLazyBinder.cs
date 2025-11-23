@@ -20,6 +20,7 @@ namespace Zenject
             {
                 _secondaryBindInfos = new List<BindInfo>();
             }
+
             _secondaryBindInfos.Add(bindInfo);
         }
 

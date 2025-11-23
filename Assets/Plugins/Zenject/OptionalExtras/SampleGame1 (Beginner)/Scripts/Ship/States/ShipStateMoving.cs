@@ -15,8 +15,7 @@ namespace Zenject.Asteroids
 
         public ShipStateMoving(
             Settings settings, Ship ship,
-            [Inject(Id = "Main")]
-            Camera mainCamera)
+            [Inject(Id = "Main")] Camera mainCamera)
         {
             _ship = ship;
             _settings = settings;
@@ -39,7 +38,8 @@ namespace Zenject.Asteroids
 
             _oscillationTheta += thetaMoveSpeed * Time.deltaTime;
 
-            obj.transform.position = obj.transform.parent.position + new Vector3(0, _settings.oscillationAmplitude * Mathf.Sin(_oscillationTheta), 0);
+            obj.transform.position = obj.transform.parent.position +
+                                     new Vector3(0, _settings.oscillationAmplitude * Mathf.Sin(_oscillationTheta), 0);
         }
 
         void UpdateThruster()
@@ -62,7 +62,8 @@ namespace Zenject.Asteroids
             mousePos.z = 0;
 
             _lastPosition = _ship.Position;
-            _ship.Position = Vector3.Lerp(_ship.Position, mousePos, Mathf.Min(1.0f, _settings.moveSpeed * Time.deltaTime));
+            _ship.Position = Vector3.Lerp(_ship.Position, mousePos,
+                Mathf.Min(1.0f, _settings.moveSpeed * Time.deltaTime));
 
             var moveDelta = _ship.Position - _lastPosition;
             var moveDistance = moveDelta.magnitude;

@@ -76,7 +76,8 @@ namespace Zenject.SpaceFighter
             }
 
             // If the player runs away then chase them
-            if ((_player.Position - _view.Position).magnitude > _commonSettings.AttackDistance + _settings.AttackRangeBuffer)
+            if ((_player.Position - _view.Position).magnitude >
+                _commonSettings.AttackDistance + _settings.AttackRangeBuffer)
             {
                 _stateManager.ChangeState(EnemyStates.Follow);
             }

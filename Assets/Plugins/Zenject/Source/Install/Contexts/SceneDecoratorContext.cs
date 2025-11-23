@@ -11,11 +11,9 @@ namespace Zenject
 {
     public class SceneDecoratorContext : Context
     {
-        [SerializeField]
-        List<MonoInstaller> _lateInstallers = new List<MonoInstaller>();
+        [SerializeField] List<MonoInstaller> _lateInstallers = new List<MonoInstaller>();
 
-        [SerializeField]
-        List<MonoInstaller> _lateInstallerPrefabs = new List<MonoInstaller>();
+        [SerializeField] List<MonoInstaller> _lateInstallerPrefabs = new List<MonoInstaller>();
 
         [SerializeField]
         List<ScriptableObjectInstaller> _lateScriptableObjectInstallers = new List<ScriptableObjectInstaller>();
@@ -50,8 +48,7 @@ namespace Zenject
             }
         }
 
-        [FormerlySerializedAs("SceneName")]
-        [SerializeField]
+        [FormerlySerializedAs("SceneName")] [SerializeField]
         string _decoratedContractName = null;
 
         DiContainer _container;
@@ -114,7 +111,8 @@ namespace Zenject
 
         public void InstallLateDecoratorInstallers()
         {
-            InstallInstallers(new List<InstallerBase>(), new List<Type>(), _lateScriptableObjectInstallers, _lateInstallers, _lateInstallerPrefabs);
+            InstallInstallers(new List<InstallerBase>(), new List<Type>(), _lateScriptableObjectInstallers,
+                _lateInstallers, _lateInstallerPrefabs);
         }
     }
 }

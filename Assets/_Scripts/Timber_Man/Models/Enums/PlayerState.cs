@@ -3,6 +3,6 @@
     public enum PlayerState
     {
         Right = 2,
-        Left= 1
+        Left = 1
     }
 }

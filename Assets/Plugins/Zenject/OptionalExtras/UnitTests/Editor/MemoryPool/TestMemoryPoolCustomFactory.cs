@@ -48,5 +48,3 @@ namespace Zenject.Tests.Bindings
         }
     }
 }
-
-

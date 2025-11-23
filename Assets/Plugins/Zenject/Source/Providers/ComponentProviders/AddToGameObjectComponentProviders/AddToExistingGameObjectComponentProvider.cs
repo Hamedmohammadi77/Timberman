@@ -60,7 +60,8 @@ namespace Zenject
         protected override GameObject GetGameObject(InjectContext context)
         {
             var gameObj = _gameObjectGetter(context);
-            Assert.IsNotNull(gameObj, "Provided Func<InjectContext, GameObject> returned null value for game object when using FromComponentOn");
+            Assert.IsNotNull(gameObj,
+                "Provided Func<InjectContext, GameObject> returned null value for game object when using FromComponentOn");
             return gameObj;
         }
     }

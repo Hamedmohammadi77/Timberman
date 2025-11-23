@@ -8,41 +8,17 @@ namespace Zenject
     [NoReflectionBaking]
     public class GameObjectCreationParameters
     {
-        public string Name
-        {
-            get;
-            set;
-        }
+        public string Name { get; set; }
 
-        public string GroupName
-        {
-            get;
-            set;
-        }
+        public string GroupName { get; set; }
 
-        public Transform ParentTransform
-        {
-            get;
-            set;
-        }
+        public Transform ParentTransform { get; set; }
 
-        public Func<InjectContext, Transform> ParentTransformGetter
-        {
-            get;
-            set;
-        }
+        public Func<InjectContext, Transform> ParentTransformGetter { get; set; }
 
-        public Vector3? Position
-        {
-            get;
-            set;
-        }
+        public Vector3? Position { get; set; }
 
-        public Quaternion? Rotation
-        {
-            get;
-            set;
-        }
+        public Quaternion? Rotation { get; set; }
 
         public static readonly GameObjectCreationParameters Default = new GameObjectCreationParameters();
 
@@ -80,7 +56,7 @@ namespace Zenject
         public static bool operator ==(GameObjectCreationParameters left, GameObjectCreationParameters right)
         {
             return Equals(left.Name, right.Name)
-                && Equals(left.GroupName, right.GroupName);
+                   && Equals(left.GroupName, right.GroupName);
         }
 
         public static bool operator !=(GameObjectCreationParameters left, GameObjectCreationParameters right)

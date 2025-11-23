@@ -170,7 +170,7 @@ namespace Zenject.Internal
 
                 // Can be null for broken component references
                 if (monoBehaviour != null
-                        && monoBehaviour.GetType().DerivesFromOrEqual<GameObjectContext>())
+                    && monoBehaviour.GetType().DerivesFromOrEqual<GameObjectContext>())
                 {
                     // Need to make sure we don't inject on any MonoBehaviour's that are below a GameObjectContext
                     // Since that is the responsibility of the GameObjectContext
@@ -238,8 +238,8 @@ namespace Zenject.Internal
                 // We also make sure not to inject into the project root objects which are injected by ProjectContext.
                 return Resources.FindObjectsOfTypeAll<GameObject>()
                     .Where(x => x.transform.parent == null
-                            && x.GetComponent<ProjectContext>() == null
-                            && x.scene == scene);
+                                && x.GetComponent<ProjectContext>() == null
+                                && x.scene == scene);
             }
         }
 
@@ -249,13 +249,15 @@ namespace Zenject.Internal
         // without any of their Awake() methods firing.
         public static Transform GetOrCreateInactivePrefabParent()
         {
-            if(_disabledIndestructibleGameObject == null || (!Application.isPlaying && _disabledIndestructibleGameObject.scene != SceneManager.GetActiveScene()))
+            if (_disabledIndestructibleGameObject == null || (!Application.isPlaying &&
+                                                              _disabledIndestructibleGameObject.scene !=
+                                                              SceneManager.GetActiveScene()))
             {
                 var go = new GameObject("ZenUtilInternal_PrefabParent");
                 go.hideFlags = HideFlags.HideAndDontSave;
                 go.SetActive(false);
 
-                if(Application.isPlaying)
+                if (Application.isPlaying)
                 {
                     UnityEngine.Object.DontDestroyOnLoad(go);
                 }

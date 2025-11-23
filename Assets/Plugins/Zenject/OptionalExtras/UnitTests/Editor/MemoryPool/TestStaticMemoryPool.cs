@@ -230,10 +230,7 @@ namespace Zenject.Tests
             public static readonly StaticMemoryPool<string, Foo> Pool =
                 new StaticMemoryPool<string, Foo>(OnSpawned, OnDespawned);
 
-            public string Value
-            {
-                get; private set;
-            }
+            public string Value { get; private set; }
 
             public void Dispose()
             {

@@ -32,6 +32,7 @@ namespace Zenject.MemoryPoolMonitor
                     len = half;
                 }
             }
+
             return from;
         }
 
@@ -52,6 +53,7 @@ namespace Zenject.MemoryPoolMonitor
                     len = len - half - 1;
                 }
             }
+
             return from;
         }
 
@@ -84,6 +86,7 @@ namespace Zenject.MemoryPoolMonitor
                 m = n;
                 n = t;
             }
+
             return m;
         }
 
@@ -106,6 +109,7 @@ namespace Zenject.MemoryPoolMonitor
             {
                 return;
             }
+
             int n = Gcd(to - from, mid - from);
             while (n-- != 0)
             {
@@ -125,6 +129,7 @@ namespace Zenject.MemoryPoolMonitor
                         p2 = from + (shift - (to - p2));
                     }
                 }
+
                 list[p1] = val;
             }
         }

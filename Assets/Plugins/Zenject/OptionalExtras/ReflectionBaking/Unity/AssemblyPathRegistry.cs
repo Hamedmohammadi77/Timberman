@@ -50,8 +50,8 @@ namespace Zenject.ReflectionBaking
 
                     result.AddRange(
                         dirInfo.GetFiles().Select(x => x.FullName)
-                        .Where(IsManagedAssembly)
-                        .Select(ReflectionBakingInternalUtil.ConvertAbsoluteToAssetPath));
+                            .Where(IsManagedAssembly)
+                            .Select(ReflectionBakingInternalUtil.ConvertAbsoluteToAssetPath));
 
                     var directories = dirInfo.GetDirectories();
 

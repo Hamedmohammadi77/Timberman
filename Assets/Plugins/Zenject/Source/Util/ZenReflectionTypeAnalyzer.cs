@@ -105,8 +105,7 @@ namespace Zenject.Internal
 
             if (constructor != null)
             {
-                args.AddRange(constructor.GetParameters().Select(
-                    x => CreateInjectableInfoForParam(type, x)));
+                args.AddRange(constructor.GetParameters().Select(x => CreateInjectableInfoForParam(type, x)));
             }
 
             return new ReflectionTypeInfo.InjectConstructorInfo(constructor, args);
@@ -118,7 +117,8 @@ namespace Zenject.Internal
             var injectAttributes = paramInfo.AllAttributes<InjectAttributeBase>().ToList();
 
             Assert.That(injectAttributes.Count <= 1,
-                "Found multiple 'Inject' attributes on type parameter '{0}' of type '{1}'.  Parameter should only have one", paramInfo.Name, parentType);
+                "Found multiple 'Inject' attributes on type parameter '{0}' of type '{1}'.  Parameter should only have one",
+                paramInfo.Name, parentType);
 
             var injectAttr = injectAttributes.SingleOrDefault();
 
@@ -133,7 +133,8 @@ namespace Zenject.Internal
                 sourceType = injectAttr.Source;
             }
 
-            bool isOptionalWithADefaultValue = (paramInfo.Attributes & ParameterAttributes.HasDefault) == ParameterAttributes.HasDefault;
+            bool isOptionalWithADefaultValue = (paramInfo.Attributes & ParameterAttributes.HasDefault) ==
+                                               ParameterAttributes.HasDefault;
 
             return new ReflectionTypeInfo.InjectParameterInfo(
                 paramInfo,
@@ -151,7 +152,8 @@ namespace Zenject.Internal
             var injectAttributes = memInfo.AllAttributes<InjectAttributeBase>().ToList();
 
             Assert.That(injectAttributes.Count <= 1,
-            "Found multiple 'Inject' attributes on type field '{0}' of type '{1}'.  Field should only container one Inject attribute", memInfo.Name, parentType);
+                "Found multiple 'Inject' attributes on type field '{0}' of type '{1}'.  Field should only container one Inject attribute",
+                memInfo.Name, parentType);
 
             var injectAttr = injectAttributes.SingleOrDefault();
 
@@ -167,7 +169,8 @@ namespace Zenject.Internal
             }
 
             Type memberType = memInfo is FieldInfo
-                ? ((FieldInfo)memInfo).FieldType : ((PropertyInfo)memInfo).PropertyType;
+                ? ((FieldInfo)memInfo).FieldType
+                : ((PropertyInfo)memInfo).PropertyType;
 
             return new InjectableInfo(
                 isOptional,
@@ -207,7 +210,9 @@ namespace Zenject.Internal
 
             if (constructors.HasMoreThan(1))
             {
-                var explicitConstructor = (from c in constructors where _injectAttributeTypes.Any(a => c.HasAttribute(a)) select c).SingleOrDefault();
+                var explicitConstructor =
+                    (from c in constructors where _injectAttributeTypes.Any(a => c.HasAttribute(a)) select c)
+                    .SingleOrDefault();
 
                 if (explicitConstructor != null)
                 {

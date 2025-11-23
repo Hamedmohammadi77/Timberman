@@ -66,6 +66,3 @@ namespace Zenject.Tests.Other
         }
     }
 }
-
-
-

@@ -61,7 +61,7 @@ namespace Zenject.Tests.AutoInjecter
             var gorp = Container.Resolve<Gorp>();
 
             var qux = GameObject.Instantiate(
-                GetPrefab("QuxSearch"), Vector3.zero, Quaternion.identity, gorp.transform)
+                    GetPrefab("QuxSearch"), Vector3.zero, Quaternion.identity, gorp.transform)
                 .GetComponentInChildren<Qux>();
 
             Assert.IsEqual(qux.Container, gorp.Container);
@@ -87,7 +87,7 @@ namespace Zenject.Tests.AutoInjecter
             yield return null;
 
             var qux = GameObject.Instantiate(
-                GetPrefab("QuxSearch"), Vector3.zero, Quaternion.identity, ProjectContext.Instance.transform)
+                    GetPrefab("QuxSearch"), Vector3.zero, Quaternion.identity, ProjectContext.Instance.transform)
                 .GetComponentInChildren<Qux>();
 
             Assert.IsEqual(qux.Container, ProjectContext.Instance.Container);
@@ -130,4 +130,3 @@ namespace Zenject.Tests.AutoInjecter
         }
     }
 }
-

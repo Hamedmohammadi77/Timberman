@@ -52,7 +52,8 @@ namespace Zenject
             }
             else
             {
-                BindingUtil.AssertIsDerivedFromTypes(concreteTypes, BindInfo.ContractTypes, BindInfo.InvalidBindResponse);
+                BindingUtil.AssertIsDerivedFromTypes(concreteTypes, BindInfo.ContractTypes,
+                    BindInfo.InvalidBindResponse);
             }
 
             return this;

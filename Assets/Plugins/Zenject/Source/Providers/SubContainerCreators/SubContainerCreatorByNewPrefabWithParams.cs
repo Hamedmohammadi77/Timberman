@@ -31,13 +31,13 @@ namespace Zenject
             get { return _container; }
         }
 
-        IEnumerable<InjectableInfo> GetAllInjectableIncludingBaseTypes() 
+        IEnumerable<InjectableInfo> GetAllInjectableIncludingBaseTypes()
         {
             var info = TypeAnalyzer.GetInfo(_installerType);
 
-            while (info != null) 
+            while (info != null)
             {
-                foreach (var injectable in info.AllInjectables) 
+                foreach (var injectable in info.AllInjectables)
                 {
                     yield return injectable;
                 }
@@ -71,7 +71,8 @@ namespace Zenject
             return tempSubContainer;
         }
 
-        public DiContainer CreateSubContainer(List<TypeValuePair> args, InjectContext parentContext, out Action injectAction)
+        public DiContainer CreateSubContainer(List<TypeValuePair> args, InjectContext parentContext,
+            out Action injectAction)
         {
             Assert.That(!args.IsEmpty());
 
@@ -89,7 +90,7 @@ namespace Zenject
 
             context.Install(tempContainer);
 
-            injectAction = () => 
+            injectAction = () =>
             {
                 // Note: We don't need to call ResolveRoots here because GameObjectContext does this for us
                 tempContainer.Inject(context);
@@ -111,4 +112,3 @@ namespace Zenject
 }
 
 #endif
-

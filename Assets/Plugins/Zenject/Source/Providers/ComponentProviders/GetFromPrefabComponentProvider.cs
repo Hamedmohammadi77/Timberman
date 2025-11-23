@@ -54,7 +54,7 @@ namespace Zenject
                 var match = gameObject.GetComponentInChildren(_componentType, true);
 
                 Assert.IsNotNull(match, "Could not find component with type '{0}' on prefab '{1}'",
-                _componentType, _prefabInstantiator.GetPrefab(context).name);
+                    _componentType, _prefabInstantiator.GetPrefab(context).name);
 
                 buffer.Add(match);
                 return;

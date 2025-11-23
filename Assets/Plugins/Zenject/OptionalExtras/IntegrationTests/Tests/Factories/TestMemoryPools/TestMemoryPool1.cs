@@ -1,4 +1,3 @@
-
 using System.Collections;
 using ModestTree;
 using UnityEngine.TestTools;
@@ -79,16 +78,9 @@ namespace Zenject.Tests.Bindings
 
         class Foo
         {
-            public string Value
-            {
-                get;
-                private set;
-            }
+            public string Value { get; private set; }
 
-            public int ResetCount
-            {
-                get; private set;
-            }
+            public int ResetCount { get; private set; }
 
             public class Pool : MemoryPool<string, Foo>
             {
@@ -142,4 +134,3 @@ namespace Zenject.Tests.Bindings
         }
     }
 }
-

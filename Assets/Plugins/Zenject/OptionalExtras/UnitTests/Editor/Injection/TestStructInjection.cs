@@ -37,16 +37,9 @@ namespace Zenject.Tests.Injection
             public int ValueField;
 #pragma warning restore 649
 
-            [Inject]
-            public string ValueProperty
-            {
-                get; private set;
-            }
+            [Inject] public string ValueProperty { get; private set; }
 
-            public float ValueConstructor
-            {
-                get; private set;
-            }
+            public float ValueConstructor { get; private set; }
         }
 
         [Test]
@@ -69,10 +62,7 @@ namespace Zenject.Tests.Injection
                 Value = value;
             }
 
-            public string Value
-            {
-                get; private set;
-            }
+            public string Value { get; private set; }
         }
 
         [Test]

@@ -39,22 +39,22 @@ namespace Zenject.Tests.Bindings.Singletons
             Container.Bind<Foo>().AsSingle();
 
             Assert.Throws(() =>
-                {
-                    Container.Bind<Foo>().FromMethod(container => new Foo()).AsSingle();
-                    Container.FlushBindings();
-                });
+            {
+                Container.Bind<Foo>().FromMethod(container => new Foo()).AsSingle();
+                Container.FlushBindings();
+            });
 
             Assert.Throws(() =>
-                {
-                    Container.Bind<Foo>().FromInstance(new Foo()).AsSingle();
-                    Container.FlushBindings();
-                });
+            {
+                Container.Bind<Foo>().FromInstance(new Foo()).AsSingle();
+                Container.FlushBindings();
+            });
 
             Assert.Throws(() =>
-                {
-                    Container.Bind<Foo>().FromIFactory(b => b.To<FooFactory>().AsCached()).AsSingle();
-                    Container.FlushBindings();
-                });
+            {
+                Container.Bind<Foo>().FromIFactory(b => b.To<FooFactory>().AsCached()).AsSingle();
+                Container.FlushBindings();
+            });
         }
 
         [Test]
@@ -63,22 +63,22 @@ namespace Zenject.Tests.Bindings.Singletons
             Container.Bind<Foo>().FromMethod(container => new Foo()).AsSingle();
 
             Assert.Throws(() =>
-                {
-                    Container.Bind<Foo>().AsSingle();
-                    Container.FlushBindings();
-                });
+            {
+                Container.Bind<Foo>().AsSingle();
+                Container.FlushBindings();
+            });
 
             Assert.Throws(() =>
-                {
-                    Container.Bind<Foo>().FromInstance(new Foo()).AsSingle();
-                    Container.FlushBindings();
-                });
+            {
+                Container.Bind<Foo>().FromInstance(new Foo()).AsSingle();
+                Container.FlushBindings();
+            });
 
             Assert.Throws(() =>
-                {
-                    Container.Bind<Foo>().FromIFactory(b => b.To<FooFactory>().AsCached()).AsSingle();
-                    Container.FlushBindings();
-                });
+            {
+                Container.Bind<Foo>().FromIFactory(b => b.To<FooFactory>().AsCached()).AsSingle();
+                Container.FlushBindings();
+            });
         }
 
         [Test]
@@ -87,22 +87,22 @@ namespace Zenject.Tests.Bindings.Singletons
             Container.Bind<Foo>().FromInstance(new Foo()).AsSingle();
 
             Assert.Throws(() =>
-                {
-                    Container.Bind<Foo>().AsSingle();
-                    Container.FlushBindings();
-                });
+            {
+                Container.Bind<Foo>().AsSingle();
+                Container.FlushBindings();
+            });
 
             Assert.Throws(() =>
-                {
-                    Container.Bind<Foo>().FromMethod(container => new Foo()).AsSingle();
-                    Container.FlushBindings();
-                });
+            {
+                Container.Bind<Foo>().FromMethod(container => new Foo()).AsSingle();
+                Container.FlushBindings();
+            });
 
             Assert.Throws(() =>
-                {
-                    Container.Bind<Foo>().FromIFactory(b => b.To<FooFactory>().AsCached()).AsSingle();
-                    Container.FlushBindings();
-                });
+            {
+                Container.Bind<Foo>().FromIFactory(b => b.To<FooFactory>().AsCached()).AsSingle();
+                Container.FlushBindings();
+            });
         }
 
         [Test]
@@ -111,22 +111,22 @@ namespace Zenject.Tests.Bindings.Singletons
             Container.Bind<Foo>().FromIFactory(b => b.To<FooFactory>().AsCached()).AsSingle();
 
             Assert.Throws(() =>
-                {
-                    Container.Bind<Foo>().AsSingle();
-                    Container.FlushBindings();
-                });
+            {
+                Container.Bind<Foo>().AsSingle();
+                Container.FlushBindings();
+            });
 
             Assert.Throws(() =>
-                {
-                    Container.Bind<Foo>().FromMethod(container => new Foo()).AsSingle();
-                    Container.FlushBindings();
-                });
+            {
+                Container.Bind<Foo>().FromMethod(container => new Foo()).AsSingle();
+                Container.FlushBindings();
+            });
 
             Assert.Throws(() =>
-                {
-                    Container.Bind<Foo>().FromInstance(new Foo()).AsSingle();
-                    Container.FlushBindings();
-                });
+            {
+                Container.Bind<Foo>().FromInstance(new Foo()).AsSingle();
+                Container.FlushBindings();
+            });
         }
 
         class Bar
@@ -154,5 +154,3 @@ namespace Zenject.Tests.Bindings.Singletons
         }
     }
 }
-
-

@@ -28,6 +28,7 @@ namespace Zenject
                 {
                     that._disposables[i].Dispose();
                 }
+
                 ListPool<IDisposable>.Instance.Despawn(that._disposables);
                 that._disposables = null;
             }
@@ -40,6 +41,7 @@ namespace Zenject
                     var pair = that._objectPoolPairs[i];
                     pair.Pool.Despawn(pair.Object);
                 }
+
                 ListPool<SpawnedObjectPoolPair>.Instance.Despawn(that._objectPoolPairs);
                 that._objectPoolPairs = null;
             }
@@ -95,6 +97,7 @@ namespace Zenject
                 {
                     _objectPoolPairs = ListPool<SpawnedObjectPoolPair>.Instance.Spawn();
                 }
+
                 _objectPoolPairs.Add(pair);
             }
         }
@@ -113,42 +116,52 @@ namespace Zenject
             return obj;
         }
 
-        public TValue Spawn<TValue, TParam1, TParam2>(IMemoryPool<TParam1, TParam2, TValue> pool, TParam1 p1, TParam2 p2)
+        public TValue Spawn<TValue, TParam1, TParam2>(IMemoryPool<TParam1, TParam2, TValue> pool, TParam1 p1,
+            TParam2 p2)
         {
             var obj = pool.Spawn(p1, p2);
             StoreSpawnedObject(obj, pool);
             return obj;
         }
 
-        public TValue Spawn<TValue, TParam1, TParam2, TParam3>(IMemoryPool<TParam1, TParam2, TParam3, TValue> pool, TParam1 p1, TParam2 p2, TParam3 p3)
+        public TValue Spawn<TValue, TParam1, TParam2, TParam3>(IMemoryPool<TParam1, TParam2, TParam3, TValue> pool,
+            TParam1 p1, TParam2 p2, TParam3 p3)
         {
             var obj = pool.Spawn(p1, p2, p3);
             StoreSpawnedObject(obj, pool);
             return obj;
         }
 
-        public TValue Spawn<TValue, TParam1, TParam2, TParam3, TParam4>(IMemoryPool<TParam1, TParam2, TParam3, TParam4, TValue> pool, TParam1 p1, TParam2 p2, TParam3 p3, TParam4 p4)
+        public TValue Spawn<TValue, TParam1, TParam2, TParam3, TParam4>(
+            IMemoryPool<TParam1, TParam2, TParam3, TParam4, TValue> pool, TParam1 p1, TParam2 p2, TParam3 p3,
+            TParam4 p4)
         {
             var obj = pool.Spawn(p1, p2, p3, p4);
             StoreSpawnedObject(obj, pool);
             return obj;
         }
 
-        public TValue Spawn<TValue, TParam1, TParam2, TParam3, TParam4, TParam5>(IMemoryPool<TParam1, TParam2, TParam3, TParam4, TParam5, TValue> pool, TParam1 p1, TParam2 p2, TParam3 p3, TParam4 p4, TParam5 p5)
+        public TValue Spawn<TValue, TParam1, TParam2, TParam3, TParam4, TParam5>(
+            IMemoryPool<TParam1, TParam2, TParam3, TParam4, TParam5, TValue> pool, TParam1 p1, TParam2 p2, TParam3 p3,
+            TParam4 p4, TParam5 p5)
         {
             var obj = pool.Spawn(p1, p2, p3, p4, p5);
             StoreSpawnedObject(obj, pool);
             return obj;
         }
 
-        public TValue Spawn<TValue, TParam1, TParam2, TParam3, TParam4, TParam5, TParam6>(IMemoryPool<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TValue> pool, TParam1 p1, TParam2 p2, TParam3 p3, TParam4 p4, TParam5 p5, TParam6 p6)
+        public TValue Spawn<TValue, TParam1, TParam2, TParam3, TParam4, TParam5, TParam6>(
+            IMemoryPool<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TValue> pool, TParam1 p1, TParam2 p2,
+            TParam3 p3, TParam4 p4, TParam5 p5, TParam6 p6)
         {
             var obj = pool.Spawn(p1, p2, p3, p4, p5, p6);
             StoreSpawnedObject(obj, pool);
             return obj;
         }
 
-        public TValue Spawn<TValue, TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7>(IMemoryPool<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TValue> pool, TParam1 p1, TParam2 p2, TParam3 p3, TParam4 p4, TParam5 p5, TParam6 p6, TParam7 p7)
+        public TValue Spawn<TValue, TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7>(
+            IMemoryPool<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TValue> pool, TParam1 p1,
+            TParam2 p2, TParam3 p3, TParam4 p4, TParam5 p5, TParam6 p6, TParam7 p7)
         {
             var obj = pool.Spawn(p1, p2, p3, p4, p5, p6, p7);
             StoreSpawnedObject(obj, pool);

@@ -34,9 +34,11 @@ namespace Zenject.ReflectionBaking
                 var candidate = AssetDatabase.LoadAssetAtPath<ZenjectReflectionBakingSettings>(
                     AssetDatabase.GUIDToAssetPath(guid));
 
-                if ((Application.isEditor && candidate.IsEnabledInEditor) || (BuildPipeline.isBuildingPlayer && candidate.IsEnabledInBuilds))
+                if ((Application.isEditor && candidate.IsEnabledInEditor) ||
+                    (BuildPipeline.isBuildingPlayer && candidate.IsEnabledInBuilds))
                 {
-                    Assert.IsNull(enabledSettings, "Found multiple enabled ZenjectReflectionBakingSettings objects!  Please disable/delete one to continue.");
+                    Assert.IsNull(enabledSettings,
+                        "Found multiple enabled ZenjectReflectionBakingSettings objects!  Please disable/delete one to continue.");
                     enabledSettings = candidate;
                 }
             }

@@ -38,7 +38,7 @@ namespace Zenject
 
                 Assert.That(result == null || result.GetType().DerivesFromOrEqual<TValue>());
 
-                return (TValue) result;
+                return (TValue)result;
             }
             catch (Exception e)
             {
@@ -53,9 +53,6 @@ namespace Zenject
                 _injectContext, ValidationUtil.CreateDefaultArgs(ParamTypes.ToArray()));
         }
 
-        protected abstract IEnumerable<Type> ParamTypes
-        {
-            get;
-        }
+        protected abstract IEnumerable<Type> ParamTypes { get; }
     }
 }

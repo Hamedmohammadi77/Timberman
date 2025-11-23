@@ -34,10 +34,7 @@ namespace Zenject
         public const string ReflectionBakingFieldSetterPrefix = "__zenFieldSetter";
         public const string ReflectionBakingPropertySetterPrefix = "__zenPropertySetter";
 
-        public static ReflectionBakingCoverageModes ReflectionBakingCoverageMode
-        {
-            get; set;
-        }
+        public static ReflectionBakingCoverageModes ReflectionBakingCoverageMode { get; set; }
 
         public static bool ShouldAllowDuringValidation<T>()
         {
@@ -202,7 +199,9 @@ namespace Zenject
 #if !(UNITY_WSA && ENABLE_DOTNET) || UNITY_EDITOR
             if (ReflectionBakingCoverageMode == ReflectionBakingCoverageModes.FallbackToDirectReflectionWithWarning)
             {
-                Log.Warn("No reflection baking information found for type '{0}' - using more costly direct reflection instead", type);
+                Log.Warn(
+                    "No reflection baking information found for type '{0}' - using more costly direct reflection instead",
+                    type);
             }
 #endif
 
@@ -217,8 +216,8 @@ namespace Zenject
         public static bool ShouldSkipTypeAnalysis(Type type)
         {
             return type == null || type.IsEnum() || type.IsArray || type.IsInterface()
-                || type.ContainsGenericParameters() || IsStaticType(type)
-                || type == typeof(object);
+                   || type.ContainsGenericParameters() || IsStaticType(type)
+                   || type == typeof(object);
         }
 
         static bool IsStaticType(Type type)
@@ -237,10 +236,10 @@ namespace Zenject
             var injectMethods = reflectionInfo.InjectMethods.Select(
                 ReflectionInfoTypeInfoConverter.ConvertMethod).ToArray();
 
-            var memberInfos = reflectionInfo.InjectFields.Select(
-                x => ReflectionInfoTypeInfoConverter.ConvertField(type, x)).Concat(
-                    reflectionInfo.InjectProperties.Select(
-                        x => ReflectionInfoTypeInfoConverter.ConvertProperty(type, x))).ToArray();
+            var memberInfos = reflectionInfo.InjectFields
+                .Select(x => ReflectionInfoTypeInfoConverter.ConvertField(type, x)).Concat(
+                    reflectionInfo.InjectProperties.Select(x =>
+                        ReflectionInfoTypeInfoConverter.ConvertProperty(type, x))).ToArray();
 
             return new InjectTypeInfo(
                 type, injectConstructor, injectMethods, memberInfos);

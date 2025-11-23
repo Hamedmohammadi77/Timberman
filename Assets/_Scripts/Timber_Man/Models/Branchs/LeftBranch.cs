@@ -6,7 +6,5 @@ namespace _Scripts.Timber_Man.Models.Branchs
     public class LeftBranch : BaseBranch
     {
         public override BranchType Type => BranchType.BranchLeft;
-
-       
     }
 }

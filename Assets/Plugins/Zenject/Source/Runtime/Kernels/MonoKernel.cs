@@ -10,17 +10,13 @@ namespace Zenject
 {
     public abstract class MonoKernel : MonoBehaviour
     {
-        [InjectLocal]
-        TickableManager _tickableManager = null;
+        [InjectLocal] TickableManager _tickableManager = null;
 
-        [InjectLocal]
-        InitializableManager _initializableManager = null;
+        [InjectLocal] InitializableManager _initializableManager = null;
 
-        [InjectLocal]
-        DisposableManager _disposablesManager = null;
+        [InjectLocal] DisposableManager _disposablesManager = null;
 
-        [InjectOptional] 
-        private IDecoratableMonoKernel decoratableMonoKernel;
+        [InjectOptional] private IDecoratableMonoKernel decoratableMonoKernel;
 
         bool _hasInitialized;
         bool _isDestroyed;
@@ -32,7 +28,7 @@ namespace Zenject
 
         public virtual void Start()
         {
-            if (decoratableMonoKernel?.ShouldInitializeOnStart()??true)
+            if (decoratableMonoKernel?.ShouldInitializeOnStart() ?? true)
             {
                 Initialize();
             }

@@ -11,20 +11,24 @@ namespace Zenject
     public class SignalBus : ILateDisposable
     {
         readonly SignalSubscription.Pool _subscriptionPool;
-        readonly Dictionary<BindingId, SignalDeclaration> _localDeclarationMap = new Dictionary<BindingId, SignalDeclaration>();
+
+        readonly Dictionary<BindingId, SignalDeclaration> _localDeclarationMap =
+            new Dictionary<BindingId, SignalDeclaration>();
+
         readonly SignalBus _parentBus;
-        readonly Dictionary<SignalSubscriptionId, SignalSubscription> _subscriptionMap = new Dictionary<SignalSubscriptionId, SignalSubscription>();
+
+        readonly Dictionary<SignalSubscriptionId, SignalSubscription> _subscriptionMap =
+            new Dictionary<SignalSubscriptionId, SignalSubscription>();
+
         readonly ZenjectSettings.SignalSettings _settings;
         readonly SignalDeclaration.Factory _signalDeclarationFactory;
         readonly DiContainer _container;
 
         public SignalBus(
-            [Inject(Source = InjectSources.Local)]
-            List<SignalDeclaration> signalDeclarations,
+            [Inject(Source = InjectSources.Local)] List<SignalDeclaration> signalDeclarations,
             [Inject(Source = InjectSources.Parent, Optional = true)]
             SignalBus parentBus,
-            [InjectOptional]
-            ZenjectSettings zenjectSettings,
+            [InjectOptional] ZenjectSettings zenjectSettings,
             SignalSubscription.Pool subscriptionPool,
             SignalDeclaration.Factory signalDeclarationFactory,
             DiContainer container)
@@ -35,14 +39,14 @@ namespace Zenject
             _signalDeclarationFactory = signalDeclarationFactory;
             _container = container;
 
-           signalDeclarations.ForEach(x =>
-			{
-				if (!_localDeclarationMap.ContainsKey(x.BindingId))
-				{
-					_localDeclarationMap.Add(x.BindingId, x);
-				}
-				else _localDeclarationMap[x.BindingId].Subscriptions.AllocFreeAddRange(x.Subscriptions);
-			});
+            signalDeclarations.ForEach(x =>
+            {
+                if (!_localDeclarationMap.ContainsKey(x.BindingId))
+                {
+                    _localDeclarationMap.Add(x.BindingId, x);
+                }
+                else _localDeclarationMap[x.BindingId].Subscriptions.AllocFreeAddRange(x.Subscriptions);
+            });
             _parentBus = parentBus;
         }
 
@@ -59,11 +63,12 @@ namespace Zenject
 
         //Fires Signals with their interfaces
         public void AbstractFire<TSignal>() where TSignal : new() => AbstractFire(new TSignal());
-		public void AbstractFire<TSignal>(TSignal signal) => AbstractFireId(null, signal);
-		public void AbstractFireId<TSignal>(object identifier, TSignal signal)
-		{
-			// Do this before creating the signal so that it throws if the signal was not declared
-			Type signalType = typeof(TSignal);
+        public void AbstractFire<TSignal>(TSignal signal) => AbstractFireId(null, signal);
+
+        public void AbstractFireId<TSignal>(object identifier, TSignal signal)
+        {
+            // Do this before creating the signal so that it throws if the signal was not declared
+            Type signalType = typeof(TSignal);
             InternalFire(signalType, signal, identifier, true);
 
             Type[] interfaces = signalType.GetInterfaces();
@@ -72,7 +77,7 @@ namespace Zenject
             {
                 InternalFire(interfaces[i], signal, identifier, true);
             }
-		}
+        }
 
         public void LateDispose()
         {
@@ -139,12 +144,12 @@ namespace Zenject
             return IsSignalDeclared(typeof(TSignal), identifier);
         }
 
-        public bool IsSignalDeclared(Type signalType)  
+        public bool IsSignalDeclared(Type signalType)
         {
             return IsSignalDeclared(signalType, null);
         }
 
-        public bool IsSignalDeclared(Type signalType, object identifier) 
+        public bool IsSignalDeclared(Type signalType, object identifier)
         {
             var signalId = new BindingId(signalType, identifier);
             return GetDeclaration(signalId) != null;
@@ -398,13 +403,15 @@ namespace Zenject
         }
 
         public void DeclareSignal<T>(
-            object identifier = null, SignalMissingHandlerResponses? missingHandlerResponse = null, bool? forceAsync = null, int? asyncTickPriority = null)
+            object identifier = null, SignalMissingHandlerResponses? missingHandlerResponse = null,
+            bool? forceAsync = null, int? asyncTickPriority = null)
         {
             DeclareSignal(typeof(T), identifier, missingHandlerResponse, forceAsync, asyncTickPriority);
         }
 
         public void DeclareSignal(
-            Type signalType, object identifier = null, SignalMissingHandlerResponses? missingHandlerResponse = null, bool? forceAsync = null, int? asyncTickPriority = null)
+            Type signalType, object identifier = null, SignalMissingHandlerResponses? missingHandlerResponse = null,
+            bool? forceAsync = null, int? asyncTickPriority = null)
         {
             var bindInfo = SignalExtensions.CreateDefaultSignalDeclarationBindInfo(_container, signalType);
 

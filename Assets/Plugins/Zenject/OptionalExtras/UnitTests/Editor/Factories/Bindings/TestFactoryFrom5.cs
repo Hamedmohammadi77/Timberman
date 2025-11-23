@@ -48,11 +48,7 @@ namespace Zenject.Tests.Bindings
                 P1 = p1;
             }
 
-            public string P1
-            {
-                get;
-                private set;
-            }
+            public string P1 { get; private set; }
 
             public class Factory : PlaceholderFactory<string, int, string, float, int, Foo>
             {
@@ -60,5 +56,3 @@ namespace Zenject.Tests.Bindings
         }
     }
 }
-
-

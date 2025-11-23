@@ -26,14 +26,13 @@ namespace Zenject
         [SerializeField]
         bool _parentNewObjectsUnderContext = true;
 
-        [SerializeField]
-        ReflectionBakingCoverageModes _editorReflectionBakingCoverageMode = ReflectionBakingCoverageModes.FallbackToDirectReflection;
+        [SerializeField] ReflectionBakingCoverageModes _editorReflectionBakingCoverageMode =
+            ReflectionBakingCoverageModes.FallbackToDirectReflection;
 
-        [SerializeField]
-        ReflectionBakingCoverageModes _buildsReflectionBakingCoverageMode = ReflectionBakingCoverageModes.FallbackToDirectReflection;
+        [SerializeField] ReflectionBakingCoverageModes _buildsReflectionBakingCoverageMode =
+            ReflectionBakingCoverageModes.FallbackToDirectReflection;
 
-        [SerializeField]
-        ZenjectSettings _settings = null;
+        [SerializeField] ZenjectSettings _settings = null;
 
         DiContainer _container;
 
@@ -61,11 +60,7 @@ namespace Zenject
             }
         }
 
-        public static bool ValidateOnNextRun
-        {
-            get;
-            set;
-        }
+        public static bool ValidateOnNextRun { get; set; }
 
         public override IEnumerable<GameObject> GetRootGameObjects()
         {
@@ -123,10 +118,11 @@ namespace Zenject
 
                     GameObject gameObjectInstance;
 #if UNITY_EDITOR
-                    if(prefabWasActive)
+                    if (prefabWasActive)
                     {
                         // This ensures the prefab's Awake() methods don't fire (and, if in the editor, that the prefab file doesn't get modified)
-                        gameObjectInstance = GameObject.Instantiate(prefab, ZenUtilInternal.GetOrCreateInactivePrefabParent());
+                        gameObjectInstance =
+                            GameObject.Instantiate(prefab, ZenUtilInternal.GetOrCreateInactivePrefabParent());
                         gameObjectInstance.SetActive(false);
                         gameObjectInstance.transform.SetParent(null, false);
                     }
@@ -150,7 +146,8 @@ namespace Zenject
                     _instance = gameObjectInstance.GetComponent<ProjectContext>();
 
                     Assert.IsNotNull(_instance,
-                        "Could not find ProjectContext component on prefab 'Resources/{0}.prefab'", ProjectContextResourcePath);
+                        "Could not find ProjectContext component on prefab 'Resources/{0}.prefab'",
+                        ProjectContextResourcePath);
                 }
             }
 
@@ -290,7 +287,6 @@ namespace Zenject
             InstallSceneBindings(injectableMonoBehaviours);
 
             InstallInstallers();
-
         }
     }
 }

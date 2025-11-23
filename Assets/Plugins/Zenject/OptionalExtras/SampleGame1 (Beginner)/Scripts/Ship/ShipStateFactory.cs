@@ -19,7 +19,7 @@ namespace Zenject.Asteroids
         public ShipStateFactory(
             ShipStateDead.Factory deadFactory,
             ShipStateMoving.Factory movingFactory,
-            ShipStateWaitingToStart.Factory  waitingFactory)
+            ShipStateWaitingToStart.Factory waitingFactory)
         {
             _waitingFactory = waitingFactory;
             _movingFactory = movingFactory;

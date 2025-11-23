@@ -1,5 +1,4 @@
-﻿
-using System.Collections;
+﻿using System.Collections;
 using ModestTree;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -109,11 +108,9 @@ namespace Zenject.Tests.Bindings.FromPrefabInstaller
 
         public class Qux
         {
-            [Inject]
-            public string Data;
+            [Inject] public string Data;
 
-            [Inject]
-            public Foo Foo;
+            [Inject] public Foo Foo;
         }
 
         public class FooInstaller : Installer<FooInstaller>
@@ -125,4 +122,3 @@ namespace Zenject.Tests.Bindings.FromPrefabInstaller
         }
     }
 }
-

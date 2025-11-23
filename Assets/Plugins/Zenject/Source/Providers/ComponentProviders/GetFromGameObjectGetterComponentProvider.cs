@@ -58,7 +58,7 @@ namespace Zenject
                     var match = gameObject.GetComponent(_componentType);
 
                     Assert.IsNotNull(match, "Could not find component with type '{0}' on game object '{1}'",
-                    _componentType, gameObject.name);
+                        _componentType, gameObject.name);
 
                     buffer.Add(match);
                     return;
@@ -67,8 +67,8 @@ namespace Zenject
                 var allComponents = gameObject.GetComponents(_componentType);
 
                 Assert.That(allComponents.Length >= 1,
-                "Expected to find at least one component with type '{0}' on prefab '{1}'",
-                _componentType, gameObject.name);
+                    "Expected to find at least one component with type '{0}' on prefab '{1}'",
+                    _componentType, gameObject.name);
 
                 buffer.AllocFreeAddRange(allComponents);
             }
@@ -77,5 +77,3 @@ namespace Zenject
 }
 
 #endif
-
-

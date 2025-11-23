@@ -99,10 +99,12 @@ namespace Zenject.ReflectionBaking
                     return methodDef;
                 }
             }
+
             return null;
         }
 
-        public static MethodDefinition GetMethod(this TypeDefinition instance, string name, params Type[] parameterTypes)
+        public static MethodDefinition GetMethod(this TypeDefinition instance, string name,
+            params Type[] parameterTypes)
         {
             for (int i = 0; i < instance.Methods.Count; i++)
             {
@@ -129,10 +131,12 @@ namespace Zenject.ReflectionBaking
                     }
                 }
             }
+
             return null;
         }
 
-        public static MethodDefinition GetMethod(this TypeDefinition instance, string name, params TypeReference[] parameterTypes)
+        public static MethodDefinition GetMethod(this TypeDefinition instance, string name,
+            params TypeReference[] parameterTypes)
         {
             if (instance.Methods != null)
             {
@@ -146,7 +150,8 @@ namespace Zenject.ReflectionBaking
                         for (int x = methodDefinition.Parameters.Count - 1; x >= 0; x--)
                         {
                             ParameterDefinition parameter = methodDefinition.Parameters[x];
-                            if (!string.Equals(parameter.ParameterType.Name, parameterTypes[x].Name, StringComparison.Ordinal))
+                            if (!string.Equals(parameter.ParameterType.Name, parameterTypes[x].Name,
+                                    StringComparison.Ordinal))
                             {
                                 break;
                             }
@@ -159,6 +164,7 @@ namespace Zenject.ReflectionBaking
                     }
                 }
             }
+
             return null;
         }
 
@@ -173,6 +179,7 @@ namespace Zenject.ReflectionBaking
                     return methodDef;
                 }
             }
+
             return null;
         }
 
@@ -188,6 +195,7 @@ namespace Zenject.ReflectionBaking
                     return preopertyDef;
                 }
             }
+
             return null;
         }
 
@@ -200,7 +208,7 @@ namespace Zenject.ReflectionBaking
 
             Collection<CustomAttribute> attributes = instance.CustomAttributes;
 
-            for(int i = 0;  i < attributes.Count; i++)
+            for (int i = 0; i < attributes.Count; i++)
             {
                 if (attributes[i].AttributeType.FullName.Equals(typeof(T).FullName, StringComparison.Ordinal))
                 {
@@ -252,6 +260,7 @@ namespace Zenject.ReflectionBaking
                     return attributes[i];
                 }
             }
+
             return null;
         }
 
@@ -341,7 +350,8 @@ namespace Zenject.ReflectionBaking
                     {
                         for (int i = 0; i < typeDef.GenericParameters.Count; i++)
                         {
-                            genericArgMap[typeDef.GenericParameters[i].Name] = specificTypeRefGenericInstance.GenericArguments[i];
+                            genericArgMap[typeDef.GenericParameters[i].Name] =
+                                specificTypeRefGenericInstance.GenericArguments[i];
                         }
                     }
                 }
@@ -366,7 +376,8 @@ namespace Zenject.ReflectionBaking
 
                 if (arg.IsGenericParameter)
                 {
-                    Assert.That(genericArgMap.ContainsKey(arg.Name), "Could not find key '{0}' for type '{1}'", arg.Name, type.FullName);
+                    Assert.That(genericArgMap.ContainsKey(arg.Name), "Could not find key '{0}' for type '{1}'",
+                        arg.Name, type.FullName);
 
                     genericTypeClone.GenericArguments.Add(genericArgMap[arg.Name]);
                 }

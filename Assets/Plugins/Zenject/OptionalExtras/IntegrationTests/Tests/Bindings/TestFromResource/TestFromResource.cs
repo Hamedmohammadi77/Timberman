@@ -1,5 +1,4 @@
-﻿
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using ModestTree;
 using UnityEngine;
@@ -103,4 +102,3 @@ namespace Zenject.Tests.Bindings
         }
     }
 }
-

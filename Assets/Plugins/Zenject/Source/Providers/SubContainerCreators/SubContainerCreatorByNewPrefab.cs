@@ -36,7 +36,8 @@ namespace Zenject
             var context = gameObject.GetComponent<GameObjectContext>();
 
             Assert.That(context != null,
-                "Expected prefab with name '{0}' to contain a component of type 'GameObjectContext' on the root", prefab.name);
+                "Expected prefab with name '{0}' to contain a component of type 'GameObjectContext' on the root",
+                prefab.name);
 
             context.Install(_container);
 

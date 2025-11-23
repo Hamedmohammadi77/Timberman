@@ -126,7 +126,8 @@ namespace Zenject.ReflectionBaking
         {
             if (actualType.IsEnum || actualType.IsValueType || actualType.IsInterface
                 || actualType.HasAttribute<NoReflectionBakingAttribute>()
-                || IsStaticClass(actualType) || actualType.DerivesFromOrEqual<Delegate>() || actualType.DerivesFromOrEqual<Attribute>())
+                || IsStaticClass(actualType) || actualType.DerivesFromOrEqual<Delegate>() ||
+                actualType.DerivesFromOrEqual<Attribute>())
             {
                 return false;
             }
@@ -272,7 +273,8 @@ namespace Zenject.ReflectionBaking
         }
 
         void AddPostInjectMethodBody(
-            ILProcessor processor, ReflectionTypeInfo.InjectMethodInfo postInjectInfo, TypeDefinition typeDef, TypeReference genericTypeDef)
+            ILProcessor processor, ReflectionTypeInfo.InjectMethodInfo postInjectInfo, TypeDefinition typeDef,
+            TypeReference genericTypeDef)
         {
             processor.Emit(OpCodes.Nop);
 
@@ -280,7 +282,7 @@ namespace Zenject.ReflectionBaking
             MethodReference actualMethodDef;
 
             if (!TryFindLocalMethod(
-                genericTypeDef, postInjectInfo.MethodInfo.Name, out declaringTypeDef, out actualMethodDef))
+                    genericTypeDef, postInjectInfo.MethodInfo.Name, out declaringTypeDef, out actualMethodDef))
             {
                 throw Assert.CreateException();
             }
@@ -304,7 +306,8 @@ namespace Zenject.ReflectionBaking
         }
 
         MethodDefinition AddPostInjectMethod(
-            string name, ReflectionTypeInfo.InjectMethodInfo postInjectInfo, TypeDefinition typeDef, TypeReference genericTypeDef)
+            string name, ReflectionTypeInfo.InjectMethodInfo postInjectInfo, TypeDefinition typeDef,
+            TypeReference genericTypeDef)
         {
             var methodDef = new MethodDefinition(
                 name,
@@ -339,7 +342,8 @@ namespace Zenject.ReflectionBaking
             {
                 postInjectMethods.Add(
                     AddPostInjectMethod(
-                        TypeAnalyzer.ReflectionBakingInjectMethodPrefix + i, typeInfo.InjectMethods[i], typeDef, genericTypeDef));
+                        TypeAnalyzer.ReflectionBakingInjectMethodPrefix + i, typeInfo.InjectMethods[i], typeDef,
+                        genericTypeDef));
             }
 
             return postInjectMethods;
@@ -592,7 +596,8 @@ namespace Zenject.ReflectionBaking
         }
 
         bool TryFindLocalMethod(
-            TypeReference specificTypeRef, string methodName, out TypeReference declaringTypeRef, out MethodReference methodRef)
+            TypeReference specificTypeRef, string methodName, out TypeReference declaringTypeRef,
+            out MethodReference methodRef)
         {
             foreach (var typeRef in specificTypeRef.GetSpecificBaseTypesAndSelf())
             {
@@ -637,7 +642,8 @@ namespace Zenject.ReflectionBaking
             else
             {
                 throw Assert.CreateException(
-                    "Cannot process values with type '{0}' currently.  Feel free to add support for this and submit a pull request to github.", identifier.GetType());
+                    "Cannot process values with type '{0}' currently.  Feel free to add support for this and submit a pull request to github.",
+                    identifier.GetType());
             }
         }
 
@@ -657,7 +663,8 @@ namespace Zenject.ReflectionBaking
             if (memberType.IsArray)
             {
                 return new ArrayType(
-                    CreateGenericInstanceIfNecessary(memberType.GetElementType(), genericParams), memberType.GetArrayRank());
+                    CreateGenericInstanceIfNecessary(memberType.GetElementType(), genericParams),
+                    memberType.GetArrayRank());
             }
 
             var genericMemberType = memberType.GetGenericTypeDefinition();
@@ -738,7 +745,8 @@ namespace Zenject.ReflectionBaking
 
             instructions.Add(Instruction.Create(OpCodes.Ldstr, injectableInfo.MemberName));
 
-            instructions.Add(Instruction.Create(OpCodes.Ldtoken, CreateGenericInstanceIfNecessary(injectableInfo.MemberType, typeDef.GenericParameters)));
+            instructions.Add(Instruction.Create(OpCodes.Ldtoken,
+                CreateGenericInstanceIfNecessary(injectableInfo.MemberType, typeDef.GenericParameters)));
 
             instructions.Add(Instruction.Create(OpCodes.Call, _getTypeFromHandleMethod));
 

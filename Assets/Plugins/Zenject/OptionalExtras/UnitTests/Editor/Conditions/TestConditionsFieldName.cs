@@ -8,7 +8,6 @@ namespace Zenject.Tests.Conditions
     {
         class Test0
         {
-
         }
 
         class Test1
@@ -51,5 +50,3 @@ namespace Zenject.Tests.Conditions
         }
     }
 }
-
-

@@ -9,11 +9,9 @@ namespace Zenject
 {
     public class ProjectKernel : MonoKernel
     {
-        [Inject]
-        ZenjectSettings _settings = null;
+        [Inject] ZenjectSettings _settings = null;
 
-        [Inject]
-        SceneContextRegistry _contextRegistry = null;
+        [Inject] SceneContextRegistry _contextRegistry = null;
 
         // One issue with relying on MonoKernel.OnDestroy to call IDisposable.Dispose
         // is that the order that OnDestroy is called in is difficult to predict
@@ -69,7 +67,8 @@ namespace Zenject
 
             // Destroy the scene contexts from bottom to top
             // Since this is the reverse order that they were loaded in
-            foreach (var sceneContext in _contextRegistry.SceneContexts.OrderByDescending(x => sceneOrder.IndexOf(x.gameObject.scene)).ToList())
+            foreach (var sceneContext in _contextRegistry.SceneContexts
+                         .OrderByDescending(x => sceneOrder.IndexOf(x.gameObject.scene)).ToList())
             {
                 if (immediate)
                 {

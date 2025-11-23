@@ -34,10 +34,7 @@ namespace Zenject.Tests.Other
             }
         }
 
-        DiContainer Container
-        {
-            get; set;
-        }
+        DiContainer Container { get; set; }
 
         [SetUp]
         public void Setup()
@@ -84,4 +81,3 @@ namespace Zenject.Tests.Other
         }
     }
 }
-

@@ -10,8 +10,7 @@ namespace Zenject.Tests.Injection
         {
             public static int CreateCount;
 
-            [Inject]
-            public Test2 Other = null;
+            [Inject] public Test2 Other = null;
 
             public Test1()
             {
@@ -23,8 +22,7 @@ namespace Zenject.Tests.Injection
         {
             public static int CreateCount;
 
-            [Inject]
-            public Test1 Other = null;
+            [Inject] public Test1 Other = null;
 
             public Test2()
             {
@@ -151,5 +149,3 @@ namespace Zenject.Tests.Injection
         }
     }
 }
-
-

@@ -19,10 +19,7 @@ namespace Zenject.SpaceFighter
             _view = view;
         }
 
-        public Vector2 DesiredLookDir
-        {
-            get; set;
-        }
+        public Vector2 DesiredLookDir { get; set; }
 
         public void FixedTick()
         {

@@ -335,10 +335,7 @@ namespace Zenject.Tests.Bindings
 
         class Foo
         {
-            public int ResetCount
-            {
-                get; private set;
-            }
+            public int ResetCount { get; private set; }
 
             public class Pool : MemoryPool<Foo>
             {
@@ -381,4 +378,3 @@ namespace Zenject.Tests.Bindings
         }
     }
 }
-

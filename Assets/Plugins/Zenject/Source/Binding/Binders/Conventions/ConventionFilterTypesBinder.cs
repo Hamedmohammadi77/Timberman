@@ -131,7 +131,7 @@ namespace Zenject
             }
 
             return actualNs.StartsWith(requiredNs)
-                && (actualNs.Length == requiredNs.Length || actualNs[requiredNs.Length] == '.');
+                   && (actualNs.Length == requiredNs.Length || actualNs[requiredNs.Length] == '.');
         }
     }
 }

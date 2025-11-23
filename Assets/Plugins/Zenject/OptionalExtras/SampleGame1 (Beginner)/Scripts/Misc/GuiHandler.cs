@@ -10,26 +10,19 @@ namespace Zenject.Asteroids
     {
         GameController _gameController;
 
-        [SerializeField]
-        GUIStyle _titleStyle;
+        [SerializeField] GUIStyle _titleStyle;
 
-        [SerializeField]
-        GUIStyle _instructionsStyle;
+        [SerializeField] GUIStyle _instructionsStyle;
 
-        [SerializeField]
-        GUIStyle _timeStyle;
+        [SerializeField] GUIStyle _timeStyle;
 
-        [SerializeField]
-        float _gameOverFadeInTime;
+        [SerializeField] float _gameOverFadeInTime;
 
-        [SerializeField]
-        float _gameOverStartFadeTime;
+        [SerializeField] float _gameOverStartFadeTime;
 
-        [SerializeField]
-        float _restartTextStartFadeTime;
+        [SerializeField] float _restartTextStartFadeTime;
 
-        [SerializeField]
-        float _restartTextFadeInTime;
+        [SerializeField] float _restartTextFadeInTime;
 
         float _gameOverElapsed;
         SignalBus _signalBus;
@@ -215,4 +208,3 @@ namespace Zenject.Asteroids
         }
     }
 }
-

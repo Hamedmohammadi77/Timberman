@@ -22,8 +22,7 @@ namespace Zenject
 
         public SignalDeclaration(
             SignalDeclarationBindInfo bindInfo,
-            [InjectOptional]
-            ZenjectSettings zenjectSettings)
+            [InjectOptional] ZenjectSettings zenjectSettings)
         {
             zenjectSettings = zenjectSettings ?? ZenjectSettings.Default;
             _settings = zenjectSettings.Signals ?? ZenjectSettings.SignalSettings.Default;
@@ -41,12 +40,9 @@ namespace Zenject
         }
 #endif
 
-		public List<SignalSubscription> Subscriptions => _subscriptions;
+        public List<SignalSubscription> Subscriptions => _subscriptions;
 
-        public int TickPriority
-        {
-            get; private set;
-        }
+        public int TickPriority { get; private set; }
 
         public bool IsAsync
         {
@@ -107,16 +103,19 @@ namespace Zenject
 #if ZEN_SIGNALS_ADD_UNIRX
                 && !_stream.HasObservers
 #endif
-                )
+               )
             {
                 if (_missingHandlerResponses == SignalMissingHandlerResponses.Warn)
                 {
-                    Log.Warn("Fired signal '{0}' but no subscriptions found!  If this is intentional then either add OptionalSubscriber() to the binding or change the default in ZenjectSettings", signal.GetType());
+                    Log.Warn(
+                        "Fired signal '{0}' but no subscriptions found!  If this is intentional then either add OptionalSubscriber() to the binding or change the default in ZenjectSettings",
+                        signal.GetType());
                 }
                 else if (_missingHandlerResponses == SignalMissingHandlerResponses.Throw)
                 {
                     throw Assert.CreateException(
-                        "Fired signal '{0}' but no subscriptions found!  If this is intentional then either add OptionalSubscriber() to the binding or change the default in ZenjectSettings", signal.GetType());
+                        "Fired signal '{0}' but no subscriptions found!  If this is intentional then either add OptionalSubscriber() to the binding or change the default in ZenjectSettings",
+                        signal.GetType());
                 }
             }
 

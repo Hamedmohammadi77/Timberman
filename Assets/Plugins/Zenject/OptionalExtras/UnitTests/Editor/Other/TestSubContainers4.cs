@@ -61,17 +61,14 @@ namespace Zenject.Tests.Other
 
         public class RotorController
         {
-            [Inject]
-            public RotorModel Model;
+            [Inject] public RotorModel Model;
         }
 
         public class RotorView
         {
-            [Inject]
-            public RotorController Controller;
+            [Inject] public RotorController Controller;
 
-            [Inject]
-            public RotorModel Model;
+            [Inject] public RotorModel Model;
         }
 
         public class RotorModel
@@ -79,4 +76,3 @@ namespace Zenject.Tests.Other
         }
     }
 }
-

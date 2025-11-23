@@ -70,7 +70,9 @@ namespace ModestTree
         {
             if (!(obj is T))
             {
-                throw CreateException("Assert Hit! {0}\nWrong type found. Expected '{1}' (left) but found '{2}' (right). ", message, typeof(T).PrettyName(), obj.GetType().PrettyName());
+                throw CreateException(
+                    "Assert Hit! {0}\nWrong type found. Expected '{1}' (left) but found '{2}' (right). ", message,
+                    typeof(T).PrettyName(), obj.GetType().PrettyName());
             }
         }
 
@@ -92,7 +94,8 @@ namespace ModestTree
         {
             if (!type.DerivesFromOrEqual<T>())
             {
-                throw CreateException("Expected type '{0}' to derive from or be equal to '{1}'", type.Name, typeof(T).Name);
+                throw CreateException("Expected type '{0}' to derive from or be equal to '{1}'", type.Name,
+                    typeof(T).Name);
             }
         }
 
@@ -114,7 +117,8 @@ namespace ModestTree
         {
             if (!childType.DerivesFromOrEqual(parentType))
             {
-                throw CreateException("Expected type '{0}' to derive from or be equal to '{1}'", childType.Name, parentType.Name);
+                throw CreateException("Expected type '{0}' to derive from or be equal to '{1}'", childType.Name,
+                    parentType.Name);
             }
         }
 
@@ -137,7 +141,8 @@ namespace ModestTree
             {
                 left = left ?? "<NULL>";
                 right = right ?? "<NULL>";
-                throw CreateException("Assert Hit! {0}.  Expected '{1}' (left) but found '{2}' (right). ", messageGenerator(), left, right);
+                throw CreateException("Assert Hit! {0}.  Expected '{1}' (left) but found '{2}' (right). ",
+                    messageGenerator(), left, right);
             }
         }
 
@@ -164,7 +169,8 @@ namespace ModestTree
             {
                 left = left ?? "<NULL>";
                 right = right ?? "<NULL>";
-                throw CreateException("Assert Hit! {0}\nExpected '{1}' (left) but found '{2}' (right). ", message, left, right);
+                throw CreateException("Assert Hit! {0}\nExpected '{1}' (left) but found '{2}' (right). ", message, left,
+                    right);
             }
         }
 
@@ -183,11 +189,12 @@ namespace ModestTree
 #endif
         public static void IsNotEqual(object left, object right, Func<string> messageGenerator)
         {
-            if(object.Equals(left, right))
+            if (object.Equals(left, right))
             {
                 left = left ?? "<NULL>";
                 right = right ?? "<NULL>";
-                throw CreateException("Assert Hit! {0}.  Expected '{1}' (left) to differ from '{2}' (right). ", messageGenerator(), left, right);
+                throw CreateException("Assert Hit! {0}.  Expected '{1}' (left) to differ from '{2}' (right). ",
+                    messageGenerator(), left, right);
             }
         }
 
@@ -281,7 +288,8 @@ namespace ModestTree
         {
             if (!val.Any())
             {
-                throw CreateException("Assert Hit! Expected empty collection but found {0} values. {1}", val.Count(), message);
+                throw CreateException("Assert Hit! Expected empty collection but found {0} values. {1}", val.Count(),
+                    message);
             }
         }
 
@@ -425,7 +433,8 @@ namespace ModestTree
             return new ZenjectException(message.Fmt(parameters));
         }
 
-        public static ZenjectException CreateException(Exception innerException, string message, params object[] parameters)
+        public static ZenjectException CreateException(Exception innerException, string message,
+            params object[] parameters)
         {
             return new ZenjectException(message.Fmt(parameters), innerException);
         }

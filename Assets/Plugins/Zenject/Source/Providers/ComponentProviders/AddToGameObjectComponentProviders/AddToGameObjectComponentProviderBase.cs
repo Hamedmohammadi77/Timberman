@@ -52,10 +52,7 @@ namespace Zenject
             get { return _componentType; }
         }
 
-        protected abstract bool ShouldToggleActive
-        {
-            get;
-        }
+        protected abstract bool ShouldToggleActive { get; }
 
         public Type GetInstanceType(InjectContext context)
         {

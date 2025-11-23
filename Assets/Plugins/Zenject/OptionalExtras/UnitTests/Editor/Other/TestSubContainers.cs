@@ -26,8 +26,7 @@ namespace Zenject.Tests.Other
 
         class Test1
         {
-            [Inject]
-            public Test0 Test = null;
+            [Inject] public Test0 Test = null;
         }
 
         [Test]
@@ -90,4 +89,3 @@ namespace Zenject.Tests.Other
         }
     }
 }
-

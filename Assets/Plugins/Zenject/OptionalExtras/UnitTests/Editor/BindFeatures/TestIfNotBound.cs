@@ -38,4 +38,3 @@ namespace Zenject.Tests.BindFeatures
         }
     }
 }
-
