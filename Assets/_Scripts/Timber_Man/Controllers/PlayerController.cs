@@ -1,3 +1,4 @@
+using _Scripts.Timber_Man.Behaviour.HitBehaviour;
 using _Scripts.Timber_Man.Models.Enums;
 using _Scripts.Timber_Man.Models.Parents;
 using UnityEngine;
@@ -20,9 +21,20 @@ namespace _Scripts.Timber_Man.Controllers
 
         private void Start()
         {
+            StartParent();
+            _playerIsAlive = true;
+            StartPosition();
+        }
+
+
+        private void StartParent()
+        {
             _playerIsAliveParent.SetActiveGameObject(true);
             _playerIsDeadParent.SetActiveGameObject(false);
-            _playerIsAlive = true;
+        }
+
+        private void StartPosition()
+        {
             _playerState = PlayerState.Left;
             transform.position = _leftPosition;
             transform.localScale = new Vector2(-1, 1);
