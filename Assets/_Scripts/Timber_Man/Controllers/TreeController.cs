@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using _Scripts.Timber_Man.Helpers;
+﻿using System.Collections.Generic;
 using _Scripts.Timber_Man.Models.Branchs.Abstraction;
 using _Scripts.Timber_Man.Models.Enums;
 using _Scripts.Timber_Man.Pools;
-using _Scripts.Timber_Man.Signals.Players;
 using UnityEngine;
 using Zenject;
 
@@ -14,7 +10,6 @@ namespace _Scripts.Timber_Man.Controllers
     public class TreeController : MonoBehaviour
     {
         [Inject] private readonly BranchPool _branchPool;
-        [Inject] private readonly SignalBus _signalBus;
 
         private Queue<BaseBranch> _branchThatMakeTree;
 
@@ -44,20 +39,6 @@ namespace _Scripts.Timber_Man.Controllers
 
             var newBranch = _branchPool.OnSpawned(new Vector2(0, _branchThatMakeTree.Count * 2));
             _branchThatMakeTree.Enqueue(newBranch);
-
-            if (BranchHelper.IsPlayerAlive(playerState, _branchThatMakeTree.First().Type))
-            {
-                Debug.Log("Player is alive");
-            }
-            else
-            {
-                _signalBus.Fire(new PlayerDied());
-            }
-        }
-
-        private void OnCollisionEnter(Collision other)
-        {
-            other.gameObject.GetComponent<BaseBranch>();
         }
     }
 }
