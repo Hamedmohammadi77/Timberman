@@ -9,7 +9,7 @@ namespace _Scripts.Timber_Man.Repository
 {
     public class JsonRepository
     {
-        private readonly string _path = Path.Combine(Application.persistentDataPath, "leaderboard.json");
+        private readonly string _path = Path.Combine(Application.persistentDataPath, "Assets/Resources/leaderboard.json");
 
         public void Save(List<LeaderboardRecord> recs)
         {
@@ -25,12 +25,17 @@ namespace _Scripts.Timber_Man.Repository
         {
             if (!File.Exists(_path))
             {
+                Debug.Log("no list");
                 return new List<LeaderboardRecord>();
             }
 
             string json = File.ReadAllText(_path);
-            LeaderboardWrapper wrapper = JsonUtility.FromJson<LeaderboardWrapper>(json);
 
+            if (string.IsNullOrWhiteSpace(json))
+                return new List<LeaderboardRecord>();
+
+            LeaderboardWrapper wrapper = JsonUtility.FromJson<LeaderboardWrapper>(json);
+            
             return wrapper.records;
         }
     }

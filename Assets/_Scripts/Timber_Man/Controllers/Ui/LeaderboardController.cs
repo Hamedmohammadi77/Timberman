@@ -1,4 +1,5 @@
-﻿using _Scripts.Timber_Man.Services;
+﻿using System;
+using _Scripts.Timber_Man.Services;
 using UnityEngine;
 using Zenject;
 
@@ -8,6 +9,11 @@ namespace _Scripts.Timber_Man.Controllers.Ui
     {
         [Inject] private readonly LeaderboardService _leaderboardService;
 
+        private void Start()
+        {
+            Debug.Log("_leaderboardService.GetAll()");
+            Show();
+        }
 
         public void Show()
         {
@@ -16,8 +22,6 @@ namespace _Scripts.Timber_Man.Controllers.Ui
             foreach (var rec in recs)
                 Debug.Log($"record {rec.Score}  {rec.SubmitDateTimeUtc }");
             
-            
-            gameObject.SetActive(true);
         }
 
     }

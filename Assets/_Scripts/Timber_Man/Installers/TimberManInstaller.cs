@@ -4,6 +4,7 @@ using _Scripts.Timber_Man.Models.Branchs;
 using _Scripts.Timber_Man.Models.Branchs.Abstraction;
 using _Scripts.Timber_Man.Models.Parents;
 using _Scripts.Timber_Man.Pools;
+using _Scripts.Timber_Man.Repository;
 using _Scripts.Timber_Man.Services;
 using _Scripts.Timber_Man.Services.Abstractions;
 using _Scripts.Timber_Man.Signals.Inputs;
@@ -27,6 +28,15 @@ namespace _Scripts.Timber_Man.Installers
             Addbranchs();
 
             AddTree();
+
+            AddLeaderBoard();
+        }
+
+        private void AddLeaderBoard()
+        {
+            Container.Bind<LeaderboardService>().AsSingle();
+
+            Container.Bind<JsonRepository>().AsSingle();
         }
 
         private void AddTree()

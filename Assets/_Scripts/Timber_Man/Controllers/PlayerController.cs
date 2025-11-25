@@ -1,4 +1,3 @@
-using _Scripts.Timber_Man.Behaviour.HitBehaviour;
 using _Scripts.Timber_Man.Models.Enums;
 using _Scripts.Timber_Man.Models.Parents;
 using _Scripts.Timber_Man.Services;
@@ -12,16 +11,21 @@ namespace _Scripts.Timber_Man.Controllers
         [Inject] private readonly TreeController _treeController;
         [Inject] private readonly PlayerIsAliveParent _playerIsAliveParent;
         [Inject] private readonly PlayerIsDeadParent _playerIsDeadParent;
+        [Inject] private readonly LeaderboardService _leaderboardService;
 
         private bool _playerIsAlive;
 
         private Vector2 _leftPosition = new(-5f, 0f);
         private Vector2 _rightPosition = new(5f, 0f);
+        // scale
+
+        private int _score;
 
         private PlayerState _playerState;
 
         private void Start()
         {
+            _score = 0;
             StartParent();
             _playerIsAlive = true;
             StartPosition();
@@ -50,11 +54,13 @@ namespace _Scripts.Timber_Man.Controllers
 
             if (_playerState == PlayerState.Left)
             {
+                _score++;
                 _treeController.BranchCut(_playerState);
                 return;
             }
 
             _playerState = PlayerState.Left;
+            _score++;
             _treeController.BranchCut(_playerState);
             transform.position = _leftPosition;
             transform.localScale = new Vector2(-1, 1);
@@ -69,11 +75,13 @@ namespace _Scripts.Timber_Man.Controllers
 
             if (_playerState == PlayerState.Right)
             {
+                _score++;
                 _treeController.BranchCut(_playerState);
                 return;
             }
 
             _playerState = PlayerState.Right;
+            _score++;
             _treeController.BranchCut(_playerState);
             transform.position = _rightPosition;
             transform.localScale = new Vector2(1, 1);
@@ -81,6 +89,7 @@ namespace _Scripts.Timber_Man.Controllers
 
         public void PlayerDied()
         {
+            _leaderboardService.Submit(_score);
             _playerIsAliveParent.SetActiveGameObject(false);
             _playerIsDeadParent.SetActiveGameObject(true);
             _playerIsAlive = false;
