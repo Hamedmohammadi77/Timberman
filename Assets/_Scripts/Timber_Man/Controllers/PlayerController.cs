@@ -1,6 +1,7 @@
 using _Scripts.Timber_Man.Behaviour.HitBehaviour;
 using _Scripts.Timber_Man.Models.Enums;
 using _Scripts.Timber_Man.Models.Parents;
+using _Scripts.Timber_Man.Services;
 using UnityEngine;
 using Zenject;
 
