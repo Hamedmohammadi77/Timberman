@@ -36,7 +36,7 @@ namespace _Scripts.Timber_Man.Installers
         {
             Container.Bind<LeaderboardService>().AsSingle();
 
-            Container.Bind<JsonRepository>().AsSingle();
+            Container.Bind<LeaderboardRepository>().AsSingle();
         }
 
         private void AddTree()

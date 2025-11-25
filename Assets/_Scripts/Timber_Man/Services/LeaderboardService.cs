@@ -10,7 +10,7 @@ namespace _Scripts.Timber_Man.Services
 {
     public class LeaderboardService
     {
-        [Inject] private readonly JsonRepository _repository;
+        [Inject] private readonly LeaderboardRepository _repository;
 
         private void Save(List<LeaderboardRecord> recs)
         {
@@ -21,7 +21,7 @@ namespace _Scripts.Timber_Man.Services
         {
             var rec = new LeaderboardRecord
             {
-                Score = score,
+                Score = (int)score,
                 SubmitDateTimeUtc = DateTime.UtcNow
             };
 

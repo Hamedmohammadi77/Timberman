@@ -6,6 +6,6 @@ namespace _Scripts.Timber_Man.Domain
     {
         public DateTime SubmitDateTimeUtc { get; set; }
         
-        public double Score { get; set; }
+        public int Score { get; set; }
     }
 }
