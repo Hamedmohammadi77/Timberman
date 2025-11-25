@@ -13,6 +13,9 @@ namespace _Scripts.Timber_Man.Controllers.Ui
         {
             var recs = _leaderboardService.GetAll();
             //add to view
+            foreach (var rec in recs)
+                Debug.Log($"record {rec.Score}  {rec.SubmitDateTimeUtc }");
+            
             
             gameObject.SetActive(true);
         }

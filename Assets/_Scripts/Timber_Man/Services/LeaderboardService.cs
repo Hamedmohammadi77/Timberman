@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using _Scripts.Timber_Man.Domain; 
+using _Scripts.Timber_Man.Domain;
 using System.Linq;
+using _Scripts.Timber_Man.Repository;
+using Zenject;
 
 namespace _Scripts.Timber_Man.Services
 {
     public class LeaderboardService
     {
-        public void Save(List<LeaderboardRecord> recs)
+        [Inject] private readonly JsonRepository _repository;
+
+        private void Save(List<LeaderboardRecord> recs)
         {
-            
+            _repository.Save(recs);
         }
 
         public void Submit(double score)
@@ -20,22 +24,21 @@ namespace _Scripts.Timber_Man.Services
                 SubmitDateTimeUtc = DateTime.UtcNow
             };
 
-            var allRecords =GetAll();
-            
+            var allRecords = GetAll();
+
             allRecords.Add(rec);
 
             allRecords = allRecords
-                .OrderByDescending(rec => rec.Score)
+                .OrderByDescending(record => record.Score)
                 .Take(5)
                 .ToList();
-            
-            Save(allRecords);
 
+            Save(allRecords);
         }
 
         public List<LeaderboardRecord> GetAll()
         {
-            return new List<LeaderboardRecord>();
+            return _repository.Load();
         }
     }
 }
