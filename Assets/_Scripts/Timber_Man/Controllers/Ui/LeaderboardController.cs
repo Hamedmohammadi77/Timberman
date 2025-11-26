@@ -1,5 +1,4 @@
-﻿using System;
-using _Scripts.Timber_Man.Services;
+﻿using _Scripts.Timber_Man.Services;
 using UnityEngine;
 using Zenject;
 

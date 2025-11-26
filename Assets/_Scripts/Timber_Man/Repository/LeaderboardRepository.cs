@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using _Scripts.Timber_Man.Domain;
-using _Scripts.Timber_Man.Wrapper;
 using UnityEngine;
 
 
@@ -11,15 +9,16 @@ namespace _Scripts.Timber_Man.Repository
 {
     public class LeaderboardRepository
     {
-        private const string _scoreSave = "Score_";
-        private const string _dataTime = "PlayerIsAliveParent";
+        private const string ScoreSave = "Score_";
+        private const string DataTime = "PlayerIsAliveParent";
 
         public void Save(List<LeaderboardRecord> recs)
         {
             for (int i = 0; i < 5; i++)
             {
-                PlayerPrefs.SetInt(_scoreSave + i, recs[i].Score);
-                PlayerPrefs.SetString(_dataTime+i, recs[i].SubmitDateTimeUtc.ToString());
+                PlayerPrefs.SetInt(ScoreSave + i, recs[i].Score);
+                PlayerPrefs.SetString(DataTime + i, recs[i].SubmitDateTimeUtc.ToString());
+                
             }
         }
 
@@ -29,7 +28,7 @@ namespace _Scripts.Timber_Man.Repository
 
             for (int i = 0; i < 5; i++)
             {
-                string dateStr = PlayerPrefs.GetString(_dataTime + i, "");
+                string dateStr = PlayerPrefs.GetString(DataTime + i, "");
 
                 DateTime dateValue;
 
@@ -38,7 +37,7 @@ namespace _Scripts.Timber_Man.Repository
 
                 refineRecords.Add(new LeaderboardRecord
                 {
-                    Score =  PlayerPrefs.GetInt(_scoreSave + i),
+                    Score = PlayerPrefs.GetInt(ScoreSave + i),
                     SubmitDateTimeUtc = dateValue
                 });
             }
@@ -47,6 +46,5 @@ namespace _Scripts.Timber_Man.Repository
                 .OrderByDescending(record => record.Score)
                 .ToList();
         }
-
     }
 }
