@@ -9,6 +9,7 @@ using _Scripts.Timber_Man.Services;
 using _Scripts.Timber_Man.Services.Abstractions;
 using _Scripts.Timber_Man.Signals.Inputs;
 using _Scripts.Timber_Man.Signals.Players;
+using _Scripts.Timber_Man.Storages;
 using Zenject;
 
 namespace _Scripts.Timber_Man.Installers
@@ -37,6 +38,8 @@ namespace _Scripts.Timber_Man.Installers
             Container.Bind<LeaderboardService>().AsSingle();
 
             Container.Bind<LeaderboardRepository>().AsSingle();
+
+            Container.Bind<PlayerPrefsStorage>().AsSingle();
         }
 
         private void AddTree()

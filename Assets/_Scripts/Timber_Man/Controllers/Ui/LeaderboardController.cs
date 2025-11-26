@@ -10,7 +10,6 @@ namespace _Scripts.Timber_Man.Controllers.Ui
 
         private void Start()
         {
-            Debug.Log("_leaderboardService.GetAll()");
             Show();
         }
 

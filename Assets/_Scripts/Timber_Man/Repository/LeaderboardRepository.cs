@@ -2,45 +2,40 @@
 using System.Collections.Generic;
 using System.Linq;
 using _Scripts.Timber_Man.Domain;
+using _Scripts.Timber_Man.Extensions;
+using _Scripts.Timber_Man.Storages;
+using Newtonsoft.Json;
 using UnityEngine;
+using Zenject;
 
 
 namespace _Scripts.Timber_Man.Repository
 {
     public class LeaderboardRepository
     {
-        private const string ScoreSave = "Score_";
-        private const string DataTime = "PlayerIsAliveParent";
+        //controller - controler game object
+        // service -> execute - validation, logic, event publish
+        // repository -> load and save data, how to get data
+        // storage - how to save, file, database, player prefs, sever
+
+        private const string LeaderBoardKey = "LeaderBoard";
+
+        [Inject] private readonly PlayerPrefsStorage _playerPrefsStorage;
 
         public void Save(List<LeaderboardRecord> recs)
         {
-            for (int i = 0; i < 5; i++)
-            {
-                PlayerPrefs.SetInt(ScoreSave + i, recs[i].Score);
-                PlayerPrefs.SetString(DataTime + i, recs[i].SubmitDateTimeUtc.ToString());
-                
-            }
+            var json = recs.ToJson();
+            _playerPrefsStorage.Save(LeaderBoardKey, json);
         }
 
         public List<LeaderboardRecord> Load()
         {
-            List<LeaderboardRecord> refineRecords = new List<LeaderboardRecord>();
+            var refineRecordsString = _playerPrefsStorage.Load(LeaderBoardKey, string.Empty);
 
-            for (int i = 0; i < 5; i++)
-            {
-                string dateStr = PlayerPrefs.GetString(DataTime + i, "");
+            if (string.IsNullOrEmpty(refineRecordsString))
+                return new List<LeaderboardRecord>();
 
-                DateTime dateValue;
-
-                if (!DateTime.TryParse(dateStr, out dateValue))
-                    dateValue = DateTime.UtcNow;
-
-                refineRecords.Add(new LeaderboardRecord
-                {
-                    Score = PlayerPrefs.GetInt(ScoreSave + i),
-                    SubmitDateTimeUtc = dateValue
-                });
-            }
+            var refineRecords = ObjectExtensions.FromJson<List<LeaderboardRecord>>(refineRecordsString);
 
             return refineRecords
                 .OrderByDescending(record => record.Score)
