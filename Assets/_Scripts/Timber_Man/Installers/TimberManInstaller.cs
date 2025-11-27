@@ -9,6 +9,7 @@ using _Scripts.Timber_Man.Services;
 using _Scripts.Timber_Man.Services.Abstractions;
 using _Scripts.Timber_Man.Signals.Inputs;
 using _Scripts.Timber_Man.Signals.Players;
+using _Scripts.Timber_Man.Signals.UI;
 using _Scripts.Timber_Man.Storages;
 using Zenject;
 
@@ -38,6 +39,8 @@ namespace _Scripts.Timber_Man.Installers
         private void AddUI()
         {
             Container.Bind<UIController>().FromComponentsInHierarchy().AsSingle();
+            
+            Container.Bind<LeaderBoardUI>().FromComponentInHierarchy().AsSingle();
         }
 
         private void AddLeaderBoard()
@@ -115,6 +118,23 @@ namespace _Scripts.Timber_Man.Installers
             SignalBusInstaller.Install(Container);
 
             PlayerSignals();
+
+            UISignals();
+        }
+
+        private void UISignals()
+        {
+            Container.DeclareSignal<CloseLeaderBoardSignal>();
+            
+            Container.DeclareSignal<OpenLeaderBoardSignal>();
+            
+            Container.BindSignal<CloseLeaderBoardSignal>()
+                .ToMethod<UIHandler>((handler, signal) => handler.CloseLeaderBoard())
+                .FromResolve();
+            
+            Container.BindSignal<OpenLeaderBoardSignal>()
+                .ToMethod<UIHandler>((handler, signal) => handler.OpenLeaderBoard())
+                .FromResolve();
         }
 
         public void AddHandlers()

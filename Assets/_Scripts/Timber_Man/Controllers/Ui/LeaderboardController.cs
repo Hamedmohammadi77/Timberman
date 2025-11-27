@@ -22,9 +22,9 @@ namespace _Scripts.Timber_Man.Controllers.Ui
             var recs = _leaderboardService.GetAll();
             //add to view
             foreach (var rec in recs)
-                showleaderBoard = $"record {rec.Score}  {rec.SubmitDateTimeUtc} \n";
+                showleaderBoard = $"record {rec.Score}  {rec.SubmitDateTimeUtc} ";
             
-//            _leaderboardText.text = showleaderBoard;
+            _leaderboardText.text = showleaderBoard;
 
         }
 

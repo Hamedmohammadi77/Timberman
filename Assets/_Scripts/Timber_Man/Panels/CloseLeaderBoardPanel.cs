@@ -1,22 +1,25 @@
+using _Scripts.Timber_Man.Signals.UI;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace _Scripts.Timber_Man.Panels
 {
     public class CloseLeaderBoardPanel : MonoBehaviour
     {
+        [Inject] private readonly SignalBus _signalBus;
         private Button _closeLeaderBoardButton;
 
         void Start()
         {
             _closeLeaderBoardButton = GetComponent<Button>();
 
-            _closeLeaderBoardButton.onClick.AddListener(ExitToGame);
+            _closeLeaderBoardButton.onClick.AddListener(CloseLeaderBoard);
         }
 
-        private void ExitToGame()
+        private void CloseLeaderBoard()
         {
-            Application.Quit();
+            _signalBus.Fire(new CloseLeaderBoardSignal());
         }
     }
 }
