@@ -31,6 +31,13 @@ namespace _Scripts.Timber_Man.Installers
             AddTree();
 
             AddLeaderBoard();
+
+            AddUI();
+        }
+
+        private void AddUI()
+        {
+            Container.Bind<UIController>().FromComponentsInHierarchy().AsSingle();
         }
 
         private void AddLeaderBoard()
@@ -113,6 +120,8 @@ namespace _Scripts.Timber_Man.Installers
         public void AddHandlers()
         {
             Container.Bind<PlayerHandler>().AsTransient();
+            
+            Container.Bind<UIHandler>().AsTransient();
         }
 
         private void PlayerSignals()
@@ -133,6 +142,10 @@ namespace _Scripts.Timber_Man.Installers
 
             Container.BindSignal<PlayerDied>()
                 .ToMethod<PlayerHandler>((handler, signal) => handler.OnPlayerDied())
+                .FromResolve();
+            
+            Container.BindSignal<PlayerDied>()
+                .ToMethod<UIHandler>((handler, signal) => handler.OnPlayerDied())
                 .FromResolve();
         }
     }

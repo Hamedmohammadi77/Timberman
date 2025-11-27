@@ -24,7 +24,7 @@ namespace _Scripts.Timber_Man.Controllers.Ui
             foreach (var rec in recs)
                 showleaderBoard = $"record {rec.Score}  {rec.SubmitDateTimeUtc} \n";
             
-            _leaderboardText.text = showleaderBoard;
+//            _leaderboardText.text = showleaderBoard;
 
         }
 
