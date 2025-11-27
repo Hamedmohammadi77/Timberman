@@ -1,4 +1,5 @@
-﻿using _Scripts.Timber_Man.Services;
+﻿using System;
+using _Scripts.Timber_Man.Services;
 using TMPro;
 using UnityEngine;
 using Zenject;
@@ -22,8 +23,11 @@ namespace _Scripts.Timber_Man.Controllers.Ui
             var recs = _leaderboardService.GetAll();
             //add to view
             foreach (var rec in recs)
-                showleaderBoard = $"record {rec.Score}  {rec.SubmitDateTimeUtc} ";
-            
+            {
+                showleaderBoard += $"record {rec.Score}  {rec.SubmitDateTimeUtc} {Environment.NewLine}";
+                Debug.Log($"record {rec.Score}  {rec.SubmitDateTimeUtc} ");
+            }
+
             _leaderboardText.text = showleaderBoard;
 
         }
