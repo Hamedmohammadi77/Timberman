@@ -4,15 +4,15 @@ using UnityEngine.UI;
 
 namespace _Scripts.Timber_Man.Panels
 {
-    public class LeaderBoardPanel : MonoBehaviour
+    public class OpenLeaderBoardPanel : MonoBehaviour
     {
-        private Button _playButton;
+        private Button _openLeaderBoardButton;
 
         void Start()
         {
-            _playButton = GetComponent<Button>();
+            _openLeaderBoardButton = GetComponent<Button>();
 
-            _playButton.onClick.AddListener(PlayToGame);
+            _openLeaderBoardButton.onClick.AddListener(PlayToGame);
         }
 
         private void PlayToGame()
