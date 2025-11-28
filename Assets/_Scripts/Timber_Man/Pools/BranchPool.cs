@@ -75,9 +75,10 @@ namespace _Scripts.Timber_Man.Pools
         protected override void Reinitialize(T item)
         {
             base.Reinitialize(item);
-
+            
             item.transform.position = new Vector2(0, 0);
             item.transform.rotation = new Quaternion(0, 0, 0, 0);
+            item.SetActiveCollider();
         }
 
         public BaseBranch Spawn(Vector2 position)

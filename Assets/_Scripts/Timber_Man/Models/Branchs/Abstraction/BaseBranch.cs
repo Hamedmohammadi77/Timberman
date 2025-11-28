@@ -15,7 +15,7 @@ namespace _Scripts.Timber_Man.Models.Branchs.Abstraction
 
         private BoxCollider2D _boxCollider2D;
         
-        private void Start()
+        private void Awake()
         {
             _boxCollider2D=GetComponent<BoxCollider2D>();
         }
@@ -40,6 +40,11 @@ namespace _Scripts.Timber_Man.Models.Branchs.Abstraction
                     transform.DORotate(new Vector3(0, 0, -180), .5f).onComplete += () => action();
                     break;
             }
+        }
+
+        public void SetActiveCollider()
+        {
+            _boxCollider2D.enabled = true;
         }
     }
 }
