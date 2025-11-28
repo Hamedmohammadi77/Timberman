@@ -32,7 +32,7 @@ namespace _Scripts.Timber_Man.Repository
             if (string.IsNullOrEmpty(refineRecordsString))
                 return new List<LeaderboardRecord>();
 
-            var refineRecords = ObjectExtensions.FromJson<List<LeaderboardRecord>>(refineRecordsString);
+            var refineRecords = refineRecordsString.FromJson<List<LeaderboardRecord>>();
 
             return refineRecords
                 .OrderByDescending(record => record.Score)

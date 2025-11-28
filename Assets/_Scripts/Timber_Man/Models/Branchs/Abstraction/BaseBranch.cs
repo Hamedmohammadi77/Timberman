@@ -1,5 +1,4 @@
 ﻿using System;
-using _Scripts.Timber_Man.Controllers;
 using _Scripts.Timber_Man.Models.Enums;
 using DG.Tweening;
 using UnityEngine;
