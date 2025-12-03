@@ -32,7 +32,7 @@ namespace _Scripts.Timber_Man.Services
                 .OrderByDescending(record => record.Score)
                 .Take(5)
                 .ToList();
-            
+
             Save(allRecords);
         }
 

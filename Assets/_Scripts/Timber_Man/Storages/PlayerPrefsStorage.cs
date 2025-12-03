@@ -1,30 +1,28 @@
-﻿using Bayegan.Builder;
-using Bayegan.Storage.Abstractions;
+﻿using _Scripts.Timber_Man.Enums;
+using _Scripts.Timber_Man.Storages.Abstraction;
+using UnityEngine;
 
 namespace _Scripts.Timber_Man.Storages
 {
-    public class PlayerPrefsStorage
+    public class PlayerPrefsStorage : IKeyValueStorage
     {
-        private readonly IBayeganDictionary _bayeganDictionaryBuilder;
-
-        private const string EncryptionKey = "12345678901234567890123456789012";
-        private const string Iv = "1234567890123456";
-
-        public PlayerPrefsStorage()
-        {
-            _bayeganDictionaryBuilder = new BayeganDictionaryBuilder()
-                .UseDefaultSecurePlayerPrefs(EncryptionKey, Iv)
-                .Build();
-        }
+        public StorageType Type => StorageType.PlayerPrefsStorage;
 
         public void Save(string key, string value)
         {
-            _bayeganDictionaryBuilder.Store(key, value);
+            PlayerPrefs.SetString(key, value);
         }
 
         public string Load(string key, string defaultValue)
         {
-            return _bayeganDictionaryBuilder.Load(key, defaultValue);
+            var getdata = PlayerPrefs.GetString(key);
+
+            if (!string.IsNullOrEmpty(getdata))
+            {
+                return getdata;
+            }
+
+            return defaultValue;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using _Scripts.Timber_Man.Models.Enums;
+﻿using _Scripts.Timber_Man.Enums;
 
 namespace _Scripts.Timber_Man.Helpers
 {

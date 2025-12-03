@@ -1,5 +1,5 @@
-﻿using _Scripts.Timber_Man.Models.Branchs.Abstraction;
-using _Scripts.Timber_Man.Models.Enums;
+﻿using _Scripts.Timber_Man.Enums;
+using _Scripts.Timber_Man.Models.Branchs.Abstraction;
 
 namespace _Scripts.Timber_Man.Models.Branchs
 {

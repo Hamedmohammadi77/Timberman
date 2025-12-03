@@ -1,4 +1,4 @@
-using _Scripts.Timber_Man.Models.Enums;
+using _Scripts.Timber_Man.Enums;
 using _Scripts.Timber_Man.Models.Parents;
 using _Scripts.Timber_Man.Services;
 using _Scripts.Timber_Man.Signals.UI;

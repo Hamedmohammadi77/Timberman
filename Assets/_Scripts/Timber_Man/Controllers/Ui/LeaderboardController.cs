@@ -6,14 +6,14 @@ using Zenject;
 
 namespace _Scripts.Timber_Man.Controllers.Ui
 {
-    public class LeaderboardController: MonoBehaviour
+    public class LeaderboardController : MonoBehaviour
     {
         [Inject] private readonly LeaderboardService _leaderboardService;
         private TextMeshProUGUI _leaderboardText;
 
         private void Start()
         {
-            _leaderboardText= GetComponent<TextMeshProUGUI>();
+            _leaderboardText = GetComponent<TextMeshProUGUI>();
             Show();
         }
 
@@ -28,8 +28,6 @@ namespace _Scripts.Timber_Man.Controllers.Ui
             }
 
             _leaderboardText.text = showleaderBoard;
-
         }
-
     }
 }

@@ -1,5 +1,4 @@
 ﻿using _Scripts.Timber_Man.Behaviour.HitBehaviour.abstraction;
-using _Scripts.Timber_Man.Models.Enums;
 using UnityEngine;
 
 namespace _Scripts.Timber_Man.Behaviour.DamagableBehaviour.Abstraction

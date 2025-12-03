@@ -5,7 +5,7 @@ namespace _Scripts.Timber_Man.Handlers
     public class PlayerHandler
     {
         private readonly PlayerController _playerController;
-        
+
 
         public PlayerHandler(PlayerController playerController)
         {

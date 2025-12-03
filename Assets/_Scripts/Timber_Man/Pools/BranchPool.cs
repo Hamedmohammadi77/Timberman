@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
+using _Scripts.Timber_Man.Enums;
 using _Scripts.Timber_Man.Models.Branchs;
 using _Scripts.Timber_Man.Models.Branchs.Abstraction;
-using _Scripts.Timber_Man.Models.Enums;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
@@ -75,7 +75,7 @@ namespace _Scripts.Timber_Man.Pools
         protected override void Reinitialize(T item)
         {
             base.Reinitialize(item);
-            
+
             item.transform.position = new Vector2(0, 0);
             item.transform.rotation = new Quaternion(0, 0, 0, 0);
             item.SetActiveCollider();

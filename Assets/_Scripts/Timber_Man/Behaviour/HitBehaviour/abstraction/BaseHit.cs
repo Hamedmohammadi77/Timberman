@@ -6,5 +6,4 @@ namespace _Scripts.Timber_Man.Behaviour.HitBehaviour.abstraction
     {
         public abstract void Damage();
     }
-
 }

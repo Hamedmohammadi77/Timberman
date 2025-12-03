@@ -8,7 +8,5 @@ namespace _Scripts.Timber_Man.Extensions
         {
             return JsonConvert.SerializeObject(obj);
         }
-
-        
     }
 }

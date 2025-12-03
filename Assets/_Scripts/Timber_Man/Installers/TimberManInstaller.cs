@@ -53,7 +53,7 @@ namespace _Scripts.Timber_Man.Installers
 
             Container.Bind<LeaderboardRepository>().AsSingle();
 
-            Container.Bind<PlayerPrefsStorage>().AsSingle();
+            Container.Bind<BayeganStorage>().AsSingle();
         }
 
         private void AddTree()

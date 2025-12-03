@@ -17,17 +17,17 @@ namespace _Scripts.Timber_Man.Repository
 
         private const string LeaderBoardKey = "LeaderBoard";
 
-        [Inject] private readonly PlayerPrefsStorage _playerPrefsStorage;
+        [Inject] private readonly BayeganStorage _bayeganStorage;
 
         public void Save(List<LeaderboardRecord> recs)
         {
             var json = recs.ToJson();
-            _playerPrefsStorage.Save(LeaderBoardKey, json);
+            _bayeganStorage.Save(LeaderBoardKey, json);
         }
 
         public List<LeaderboardRecord> Load()
         {
-            var refineRecordsString = _playerPrefsStorage.Load(LeaderBoardKey, string.Empty);
+            var refineRecordsString = _bayeganStorage.Load(LeaderBoardKey, string.Empty);
 
             if (string.IsNullOrEmpty(refineRecordsString))
                 return new List<LeaderboardRecord>();
