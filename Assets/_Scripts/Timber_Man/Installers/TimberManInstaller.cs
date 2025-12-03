@@ -41,8 +41,10 @@ namespace _Scripts.Timber_Man.Installers
         private void AddUI()
         {
             Container.Bind<UIController>().FromComponentsInHierarchy().AsSingle();
-            
+
             Container.Bind<LeaderBoardUI>().FromComponentInHierarchy().AsSingle();
+
+            Container.Bind<ScoreUIController>().FromComponentInHierarchy().AsSingle();
         }
 
         private void AddLeaderBoard()
@@ -127,22 +129,28 @@ namespace _Scripts.Timber_Man.Installers
         private void UISignals()
         {
             Container.DeclareSignal<CloseLeaderBoardSignal>();
-            
+
             Container.DeclareSignal<OpenLeaderBoardSignal>();
-            
+
+            Container.DeclareSignal<ScoreSignal>();
+
             Container.BindSignal<CloseLeaderBoardSignal>()
                 .ToMethod<UIHandler>((handler, signal) => handler.CloseLeaderBoard())
                 .FromResolve();
-            
+
             Container.BindSignal<OpenLeaderBoardSignal>()
                 .ToMethod<UIHandler>((handler, signal) => handler.OpenLeaderBoard())
+                .FromResolve();
+
+            Container.BindSignal<ScoreSignal>()
+                .ToMethod<UIHandler>((handler, signal) => handler.ShowScoreboard(signal))
                 .FromResolve();
         }
 
         public void AddHandlers()
         {
             Container.Bind<PlayerHandler>().AsTransient();
-            
+
             Container.Bind<UIHandler>().AsTransient();
         }
 
@@ -165,7 +173,7 @@ namespace _Scripts.Timber_Man.Installers
             Container.BindSignal<PlayerDied>()
                 .ToMethod<PlayerHandler>((handler, signal) => handler.OnPlayerDied())
                 .FromResolve();
-            
+
             Container.BindSignal<PlayerDied>()
                 .ToMethod<UIHandler>((handler, signal) => handler.OnPlayerDied())
                 .FromResolve();

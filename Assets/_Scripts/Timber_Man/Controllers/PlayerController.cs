@@ -1,6 +1,7 @@
 using _Scripts.Timber_Man.Models.Enums;
 using _Scripts.Timber_Man.Models.Parents;
 using _Scripts.Timber_Man.Services;
+using _Scripts.Timber_Man.Signals.UI;
 using UnityEngine;
 using Zenject;
 
@@ -12,6 +13,7 @@ namespace _Scripts.Timber_Man.Controllers
         [Inject] private readonly PlayerIsAliveParent _playerIsAliveParent;
         [Inject] private readonly PlayerIsDeadParent _playerIsDeadParent;
         [Inject] private readonly LeaderboardService _leaderboardService;
+        [Inject] private readonly SignalBus _signalBus;
 
         private bool _playerIsAlive;
 
@@ -55,12 +57,14 @@ namespace _Scripts.Timber_Man.Controllers
             if (_playerState == PlayerState.Left)
             {
                 _score++;
+                _signalBus.Fire(new ScoreSignal(_score));
                 _treeController.BranchCut(_playerState);
                 return;
             }
 
             _playerState = PlayerState.Left;
             _score++;
+            _signalBus.Fire(new ScoreSignal(_score));
             _treeController.BranchCut(_playerState);
             transform.position = _leftPosition;
             transform.localScale = new Vector2(-1, 1);
@@ -76,12 +80,14 @@ namespace _Scripts.Timber_Man.Controllers
             if (_playerState == PlayerState.Right)
             {
                 _score++;
+                _signalBus.Fire(new ScoreSignal(_score));
                 _treeController.BranchCut(_playerState);
                 return;
             }
 
             _playerState = PlayerState.Right;
             _score++;
+            _signalBus.Fire(new ScoreSignal(_score));
             _treeController.BranchCut(_playerState);
             transform.position = _rightPosition;
             transform.localScale = new Vector2(1, 1);
