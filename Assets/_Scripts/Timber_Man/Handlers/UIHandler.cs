@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using _Scripts.Timber_Man.Controllers.Ui;
+using _Scripts.Timber_Man.UI;
+using UnityEngine;
 
 namespace _Scripts.Timber_Man.Handlers
 {

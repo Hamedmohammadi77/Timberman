@@ -1,15 +1,17 @@
-using System;
 using UnityEngine;
 
-public class UIController : MonoBehaviour
+namespace _Scripts.Timber_Man.Controllers.Ui
 {
-   private void Start()
+   public class UIController : MonoBehaviour
    {
-      gameObject.SetActive(false);
-   }
+      private void Start()
+      {
+         gameObject.SetActive(false);
+      }
 
-   public void ShowLostUIController()
-   {
-      gameObject.SetActive(true);
+      public void ShowLostUIController()
+      {
+         gameObject.SetActive(true);
+      }
    }
 }

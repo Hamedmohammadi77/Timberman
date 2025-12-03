@@ -1,19 +1,22 @@
 using UnityEngine;
 
-public class LeaderBoardUI : MonoBehaviour
+namespace _Scripts.Timber_Man.UI
 {
-    private void Start()
+    public class LeaderBoardUI : MonoBehaviour
     {
-        gameObject.SetActive(false);
-    }
+        private void Start()
+        {
+            gameObject.SetActive(false);
+        }
 
-    public void OpenLeaderBoardUIController()
-    {
-        gameObject.SetActive(true);
-    }
+        public void OpenLeaderBoardUIController()
+        {
+            gameObject.SetActive(true);
+        }
 
-    public void CloseLeaderBoardUIController()
-    {
-        gameObject.SetActive(false);
+        public void CloseLeaderBoardUIController()
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

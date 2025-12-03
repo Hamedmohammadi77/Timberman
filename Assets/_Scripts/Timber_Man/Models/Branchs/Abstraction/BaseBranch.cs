@@ -13,10 +13,10 @@ namespace _Scripts.Timber_Man.Models.Branchs.Abstraction
         private readonly float _throwVectorY = -4;
 
         private BoxCollider2D _boxCollider2D;
-        
+
         private void Awake()
         {
-            _boxCollider2D=GetComponent<BoxCollider2D>();
+            _boxCollider2D = GetComponent<BoxCollider2D>();
         }
 
         public void MoveDown()
