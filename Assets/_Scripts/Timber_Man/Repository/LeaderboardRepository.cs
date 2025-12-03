@@ -2,7 +2,7 @@
 using System.Linq;
 using _Scripts.Timber_Man.Domain;
 using _Scripts.Timber_Man.Extensions;
-using _Scripts.Timber_Man.Storages;
+using _Scripts.Timber_Man.Storages.Abstraction;
 using Zenject;
 
 
@@ -17,7 +17,7 @@ namespace _Scripts.Timber_Man.Repository
 
         private const string LeaderBoardKey = "LeaderBoard";
 
-        [Inject] private readonly BayeganStorage _bayeganStorage;
+        [Inject] private readonly IKeyValueStorage _bayeganStorage;
 
         public void Save(List<LeaderboardRecord> recs)
         {

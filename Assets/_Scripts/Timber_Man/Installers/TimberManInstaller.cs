@@ -12,6 +12,7 @@ using _Scripts.Timber_Man.Signals.Inputs;
 using _Scripts.Timber_Man.Signals.Players;
 using _Scripts.Timber_Man.Signals.UI;
 using _Scripts.Timber_Man.Storages;
+using _Scripts.Timber_Man.Storages.Abstraction;
 using _Scripts.Timber_Man.UI;
 using Zenject;
 
@@ -36,6 +37,19 @@ namespace _Scripts.Timber_Man.Installers
             AddLeaderBoard();
 
             AddUI();
+
+            AddStorage();
+        }
+
+        private void AddStorage()
+        {
+            Container.Bind<IKeyValueStorage>()
+                .To<BayeganStorage>()
+                .AsTransient();
+
+            Container.Bind<IKeyValueStorage>()
+                .To<PlayerPrefsStorage>()
+                .AsTransient();
         }
 
         private void AddUI()
