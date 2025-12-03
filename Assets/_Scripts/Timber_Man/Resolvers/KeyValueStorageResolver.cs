@@ -3,7 +3,7 @@ using _Scripts.Timber_Man.Enums;
 using _Scripts.Timber_Man.Settings;
 using _Scripts.Timber_Man.Storages.Abstraction;
 
-namespace _Scripts.Timber_Man.Resolver
+namespace _Scripts.Timber_Man.Resolvers
 {
     public class KeyValueStorageResolver
     {

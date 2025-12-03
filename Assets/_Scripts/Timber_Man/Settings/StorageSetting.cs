@@ -4,6 +4,6 @@ namespace _Scripts.Timber_Man.Settings
 {
     public class StorageSetting
     {
-        public StorageType RepositoryType { get; }
+        public StorageType RepositoryType { get; set; }
     }
 }

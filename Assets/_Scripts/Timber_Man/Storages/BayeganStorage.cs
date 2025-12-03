@@ -2,6 +2,7 @@
 using _Scripts.Timber_Man.Storages.Abstraction;
 using Bayegan.Builder;
 using Bayegan.Storage.Abstractions;
+using UnityEngine;
 
 namespace _Scripts.Timber_Man.Storages
 {
@@ -23,11 +24,13 @@ namespace _Scripts.Timber_Man.Storages
 
         public void Save(string key, string value)
         {
+            Debug.Log("BayeganStorage Save");
             _bayeganDictionaryBuilder.Store(key, value);
         }
 
         public string Load(string key, string defaultValue)
         {
+            Debug.Log("BayeganStorage Load");
             return _bayeganDictionaryBuilder.Load(key, defaultValue);
         }
     }

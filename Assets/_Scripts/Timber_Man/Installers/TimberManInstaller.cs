@@ -1,26 +1,31 @@
 ﻿using _Scripts.Timber_Man.Controllers;
 using _Scripts.Timber_Man.Controllers.Ui;
+using _Scripts.Timber_Man.Enums;
 using _Scripts.Timber_Man.Handlers;
 using _Scripts.Timber_Man.Models.Branchs;
 using _Scripts.Timber_Man.Models.Branchs.Abstraction;
 using _Scripts.Timber_Man.Models.Parents;
 using _Scripts.Timber_Man.Pools;
 using _Scripts.Timber_Man.Repository;
-using _Scripts.Timber_Man.Resolver;
+using _Scripts.Timber_Man.Resolvers;
 using _Scripts.Timber_Man.Services;
 using _Scripts.Timber_Man.Services.Abstractions;
+using _Scripts.Timber_Man.Settings;
 using _Scripts.Timber_Man.Signals.Inputs;
 using _Scripts.Timber_Man.Signals.Players;
 using _Scripts.Timber_Man.Signals.UI;
 using _Scripts.Timber_Man.Storages;
 using _Scripts.Timber_Man.Storages.Abstraction;
 using _Scripts.Timber_Man.UI;
+using UnityEngine;
 using Zenject;
 
 namespace _Scripts.Timber_Man.Installers
 {
     public class TimberManInstaller : MonoInstaller<TimberManInstaller>
     {
+        [SerializeField] StorageType storageType;
+
         public override void InstallBindings()
         {
             AddPlayer();
@@ -40,6 +45,22 @@ namespace _Scripts.Timber_Man.Installers
             AddUI();
 
             AddStorage();
+
+            AddSettings();
+        }
+
+        private void AddSettings()
+        {
+            Container.Bind<StorageSetting>()
+                .FromMethod(f =>
+                {
+                    var temp = new StorageSetting
+                    {
+                        RepositoryType = storageType
+                    };
+
+                    return temp;
+                }).AsSingle();
         }
 
         private void AddStorage()
@@ -70,8 +91,6 @@ namespace _Scripts.Timber_Man.Installers
             Container.Bind<LeaderboardService>().AsSingle();
 
             Container.Bind<LeaderboardRepository>().AsSingle();
-
-            Container.Bind<BayeganStorage>().AsSingle();
         }
 
         private void AddTree()
