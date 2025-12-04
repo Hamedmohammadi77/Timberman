@@ -2,6 +2,7 @@
 using _Scripts.Timber_Man.Enums;
 using _Scripts.Timber_Man.Settings;
 using _Scripts.Timber_Man.Storages.Abstraction;
+using UnityEngine;
 
 namespace _Scripts.Timber_Man.Resolvers
 {
@@ -23,6 +24,8 @@ namespace _Scripts.Timber_Man.Resolvers
         {
             if(type.HasValue == false)
                 type = _storageSetting.RepositoryType;
+         
+            Debug.Log($"Construct   {type}");
             
             return _keyValueStorages.FirstOrDefault(hr => hr.Type == type);
         }
