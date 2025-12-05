@@ -1,4 +1,5 @@
 using _Scripts.Timber_Man.Enums;
+using _Scripts.Timber_Man.Services;
 using _Scripts.Timber_Man.Settings;
 using _Scripts.Timber_Man.Signals.UI.OptionSignals;
 using TMPro;
@@ -11,13 +12,16 @@ namespace _Scripts.Timber_Man.Panels
     public class StorageChangePanel : MonoBehaviour
     {
         [Inject] private readonly SignalBus _signalBus;
+        [Inject] private readonly RepositoryService _repositoryService;
         private Button _storageChangeButton;
-        private StorageType _thisStorageType = StorageType.BayeganStorage;
+        private StorageType _thisStorageType;
         private TextMeshProUGUI _storageChangeText;
 
         void Start()
         {
             _storageChangeText = GetComponentInChildren<TextMeshProUGUI>();
+
+            _thisStorageType = _repositoryService.Load().StorageType;
             _storageChangeText.text = _thisStorageType.ToString();
 
             _storageChangeButton = GetComponent<Button>();
@@ -37,16 +41,20 @@ namespace _Scripts.Timber_Man.Panels
                     break;
             }
 
-            Debug.Log(_thisStorageType);
             _storageChangeText.text = _thisStorageType.ToString();
 
             _signalBus.Fire(new StorageChangeSignal
             {
                 StorageSetting = new StorageSetting
                 {
-                    RepositoryType = _thisStorageType
+                    StorageType = _thisStorageType
                 }
             });
+        }
+
+        public void ChangeStorageType(StorageType storageType)
+        {
+            _thisStorageType = storageType;
         }
     }
 }

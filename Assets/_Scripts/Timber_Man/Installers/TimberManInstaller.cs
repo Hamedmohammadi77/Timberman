@@ -31,7 +31,7 @@ namespace _Scripts.Timber_Man.Installers
         {
             AddPlayer();
 
-            AddInputService();
+            AddServices();
 
             AddSignals();
 
@@ -50,18 +50,27 @@ namespace _Scripts.Timber_Man.Installers
             AddSettings();
         }
 
+        private void AddServices()
+        {
+            AddInputService();
+
+            AddRepositoryService();
+        }
+
+        private void AddRepositoryService()
+        {
+            Container.Bind<RepositoryService>().AsSingle();
+        }
+
         private void AddSettings()
         {
             Container.Bind<StorageSetting>()
-                .FromMethod(f =>
+                .FromMethod(ctx =>
                 {
-                    var temp = new StorageSetting
-                    {
-                        RepositoryType = storageType
-                    };
-
-                    return temp;
-                }).AsSingle();
+                    var repo = ctx.Container.Resolve<RepositoryService>();
+                    return repo.Load();
+                })
+                .AsTransient();
         }
 
         private void AddStorage()
@@ -83,7 +92,7 @@ namespace _Scripts.Timber_Man.Installers
             Container.Bind<UIController>().FromComponentsInHierarchy().AsSingle();
 
             Container.Bind<LeaderBoardUI>().FromComponentInHierarchy().AsSingle();
-            
+
             Container.Bind<OptionUI>().FromComponentInHierarchy().AsSingle();
 
             Container.Bind<ScoreUIController>().FromComponentInHierarchy().AsSingle();
@@ -178,6 +187,12 @@ namespace _Scripts.Timber_Man.Installers
 
             Container.DeclareSignal<ScoreSignal>();
 
+            Container.DeclareSignal<StorageChangeSignal>();
+
+            Container.BindSignal<StorageChangeSignal>()
+                .ToMethod<RepositoryHandler>((handler, signal) => handler.StorageChange(signal))
+                .FromResolve();
+
             Container.BindSignal<CloseLeaderBoardSignal>()
                 .ToMethod<UIHandler>((handler, signal) => handler.CloseLeaderBoard())
                 .FromResolve();
@@ -204,6 +219,8 @@ namespace _Scripts.Timber_Man.Installers
             Container.Bind<PlayerHandler>().AsTransient();
 
             Container.Bind<UIHandler>().AsTransient();
+
+            Container.Bind<RepositoryHandler>().AsTransient();
         }
 
         private void PlayerSignals()

@@ -10,13 +10,13 @@ namespace _Scripts.Timber_Man.Storages
 
         public void Save(string key, string value)
         {
-            Debug.Log("Playerprefs Constructor Saved");
+            Debug.Log($"Playerprefs Save ");
             PlayerPrefs.SetString(key, value);
         }
 
         public string Load(string key, string defaultValue)
         {
-            Debug.Log("Playerprefs Constructor Loaded");
+            Debug.Log("Playerprefs Loaded");
             var getdata = PlayerPrefs.GetString(key);
 
             if (!string.IsNullOrEmpty(getdata))

@@ -23,7 +23,7 @@ namespace _Scripts.Timber_Man.Resolvers
         public IKeyValueStorage Resolve(StorageType? type = null)
         {
             if(type.HasValue == false)
-                type = _storageSetting.RepositoryType;
+                type = _storageSetting.StorageType;
          
             Debug.Log($"Construct   {type}");
             

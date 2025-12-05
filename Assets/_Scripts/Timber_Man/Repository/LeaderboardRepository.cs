@@ -1,10 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using _Scripts.Timber_Man.Domain;
+using _Scripts.Timber_Man.Enums;
 using _Scripts.Timber_Man.Extensions;
 using _Scripts.Timber_Man.Resolvers;
+using _Scripts.Timber_Man.Services;
+using _Scripts.Timber_Man.Settings;
 using _Scripts.Timber_Man.Storages;
 using _Scripts.Timber_Man.Storages.Abstraction;
+using UnityEngine;
 
 
 namespace _Scripts.Timber_Man.Repository
@@ -19,44 +23,53 @@ namespace _Scripts.Timber_Man.Repository
         private const string LeaderBoardKeyForBayegan = "LeaderBoardBayegan";
         private const string LeaderBoardKeyForPlayerprefs = "LeaderBoardPlayerPrefs";
 
-        private readonly IKeyValueStorage _storage;
+        private IKeyValueStorage _storage;
+        private KeyValueStorageResolver _resolver;
+        private RepositoryService _repositoryService;
 
-        public LeaderboardRepository(KeyValueStorageResolver resolver)
+        public LeaderboardRepository(KeyValueStorageResolver resolver, RepositoryService repositoryService)
         {
-            _storage = resolver.Resolve();
+            _repositoryService = repositoryService;
+            _resolver = resolver;
+            _storage = _resolver.Resolve();
+            _repositoryService.Save(new StorageSetting { StorageType = _storage.Type });
+        }
+
+        public void ChangeStorage(StorageSetting setting)
+        {
+            _storage = _resolver.Resolve(setting.StorageType);
+            _repositoryService.Save(setting);
         }
 
         public void Save(List<LeaderboardRecord> recs)
         {
             var json = recs.ToJson();
-            if (_storage is BayeganStorage)
-            {
-                _storage.Save(LeaderBoardKeyForBayegan, json);
-            }
-
-            _storage.Save(LeaderBoardKeyForPlayerprefs, json);
+            _storage.Save(_storage is BayeganStorage ? LeaderBoardKeyForBayegan : LeaderBoardKeyForPlayerprefs, json);
         }
+
 
         public List<LeaderboardRecord> Load()
         {
-            string refineRecordsString;
-            if (_storage is BayeganStorage)
-            {
-                refineRecordsString = _storage.Load(LeaderBoardKeyForBayegan, string.Empty);
-            }
-            else
-            {
-                refineRecordsString = _storage.Load(LeaderBoardKeyForPlayerprefs, string.Empty);
-            }
+            var key = _storage.Type == StorageType.BayeganStorage
+                ? LeaderBoardKeyForBayegan
+                : LeaderBoardKeyForPlayerprefs;
 
-            if (string.IsNullOrEmpty(refineRecordsString))
+            var raw = _storage.Load(key, string.Empty);
+
+            if (string.IsNullOrEmpty(raw))
                 return new List<LeaderboardRecord>();
 
-            var refineRecords = refineRecordsString.FromJson<List<LeaderboardRecord>>();
-
-            return refineRecords
-                .OrderByDescending(record => record.Score)
-                .ToList();
+            try
+            {
+                return raw.FromJson<List<LeaderboardRecord>>()
+                    .OrderByDescending(r => r.Score)
+                    .ToList();
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError("CORRUPTED JSON => " + raw);
+                throw;
+            }
         }
     }
 }
