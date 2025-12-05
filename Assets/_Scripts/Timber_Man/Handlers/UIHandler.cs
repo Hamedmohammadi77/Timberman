@@ -10,12 +10,15 @@ namespace _Scripts.Timber_Man.Handlers
         private UIController _uiController;
         private LeaderBoardUI _leaderBoardUI;
         private ScoreUIController _scoreUIController;
+        private OptionUI _optionUI;
 
-        public UIHandler(UIController uiController, LeaderBoardUI leaderBoardUI, ScoreUIController scoreUIController)
+        public UIHandler(UIController uiController, LeaderBoardUI leaderBoardUI, ScoreUIController scoreUIController,
+            OptionUI optionUI)
         {
             _scoreUIController = scoreUIController;
             _uiController = uiController;
             _leaderBoardUI = leaderBoardUI;
+            _optionUI = optionUI;
         }
 
         public void OnPlayerDied()
@@ -36,6 +39,16 @@ namespace _Scripts.Timber_Man.Handlers
         public void ShowScoreboard(ScoreSignal signal)
         {
             _scoreUIController.ShowScoreUIController(signal.Score);
+        }
+
+        public void CloseOption()
+        {
+            _optionUI.CloseOtionUI();
+        }
+
+        public void OpenOption()
+        {
+            _optionUI.OpenOtionUI();
         }
     }
 }

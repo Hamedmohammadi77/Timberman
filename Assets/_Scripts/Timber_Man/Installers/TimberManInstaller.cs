@@ -14,6 +14,7 @@ using _Scripts.Timber_Man.Settings;
 using _Scripts.Timber_Man.Signals.Inputs;
 using _Scripts.Timber_Man.Signals.Players;
 using _Scripts.Timber_Man.Signals.UI;
+using _Scripts.Timber_Man.Signals.UI.OptionSignals;
 using _Scripts.Timber_Man.Storages;
 using _Scripts.Timber_Man.Storages.Abstraction;
 using _Scripts.Timber_Man.UI;
@@ -82,6 +83,8 @@ namespace _Scripts.Timber_Man.Installers
             Container.Bind<UIController>().FromComponentsInHierarchy().AsSingle();
 
             Container.Bind<LeaderBoardUI>().FromComponentInHierarchy().AsSingle();
+            
+            Container.Bind<OptionUI>().FromComponentInHierarchy().AsSingle();
 
             Container.Bind<ScoreUIController>().FromComponentInHierarchy().AsSingle();
         }
@@ -169,6 +172,10 @@ namespace _Scripts.Timber_Man.Installers
 
             Container.DeclareSignal<OpenLeaderBoardSignal>();
 
+            Container.DeclareSignal<OpenOptionSignal>();
+
+            Container.DeclareSignal<CloseOptionSignal>();
+
             Container.DeclareSignal<ScoreSignal>();
 
             Container.BindSignal<CloseLeaderBoardSignal>()
@@ -177,6 +184,14 @@ namespace _Scripts.Timber_Man.Installers
 
             Container.BindSignal<OpenLeaderBoardSignal>()
                 .ToMethod<UIHandler>((handler, signal) => handler.OpenLeaderBoard())
+                .FromResolve();
+
+            Container.BindSignal<OpenOptionSignal>()
+                .ToMethod<UIHandler>((handler, signal) => handler.OpenOption())
+                .FromResolve();
+
+            Container.BindSignal<CloseOptionSignal>()
+                .ToMethod<UIHandler>((handler, signal) => handler.CloseOption())
                 .FromResolve();
 
             Container.BindSignal<ScoreSignal>()
