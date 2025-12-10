@@ -72,6 +72,8 @@ namespace _Scripts.Timber_Man.Installers
                     return repo.Load();
                 })
                 .AsSingle();
+
+            Container.Bind<SettingService>().AsSingle();
         }
 
         private void AddStorage()
