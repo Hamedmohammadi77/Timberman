@@ -20,6 +20,7 @@ using _Scripts.Timber_Man.Storages.Abstraction;
 using _Scripts.Timber_Man.UI;
 using UnityEngine;
 using Zenject;
+using SettingRepository = _Scripts.Timber_Man.Repository.SettingRepository;
 
 namespace _Scripts.Timber_Man.Installers
 {
@@ -59,7 +60,7 @@ namespace _Scripts.Timber_Man.Installers
 
         private void AddRepositoryService()
         {
-            Container.Bind<RepositoryService>().AsSingle();
+            Container.Bind<SettingRepository>().AsSingle();
         }
 
         private void AddSettings()
@@ -67,10 +68,10 @@ namespace _Scripts.Timber_Man.Installers
             Container.Bind<StorageSetting>()
                 .FromMethod(ctx =>
                 {
-                    var repo = ctx.Container.Resolve<RepositoryService>();
+                    var repo = ctx.Container.Resolve<SettingRepository>();
                     return repo.Load();
                 })
-                .AsTransient();
+                .AsSingle();
         }
 
         private void AddStorage()
@@ -187,12 +188,6 @@ namespace _Scripts.Timber_Man.Installers
 
             Container.DeclareSignal<ScoreSignal>();
 
-            Container.DeclareSignal<StorageChangeSignal>();
-
-            Container.BindSignal<StorageChangeSignal>()
-                .ToMethod<RepositoryHandler>((handler, signal) => handler.StorageChange(signal))
-                .FromResolve();
-
             Container.BindSignal<CloseLeaderBoardSignal>()
                 .ToMethod<UIHandler>((handler, signal) => handler.CloseLeaderBoard())
                 .FromResolve();
@@ -219,8 +214,6 @@ namespace _Scripts.Timber_Man.Installers
             Container.Bind<PlayerHandler>().AsTransient();
 
             Container.Bind<UIHandler>().AsTransient();
-
-            Container.Bind<RepositoryHandler>().AsTransient();
         }
 
         private void PlayerSignals()

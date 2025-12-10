@@ -20,36 +20,33 @@ namespace _Scripts.Timber_Man.Repository
         // repository -> load and save data, how to get data
         // storage - how to save, file, database, player prefs, sever
 
-        private const string LeaderBoardKeyForBayegan = "LeaderBoardBayegan";
-        private const string LeaderBoardKeyForPlayerprefs = "LeaderBoardPlayerPrefs";
+        private const string LeaderBoardKeyPrefix = "Leaderboard_";
 
         private IKeyValueStorage _storage;
         private KeyValueStorageResolver _resolver;
-        private RepositoryService _repositoryService;
+        private SettingRepository _settingRepository;
 
-        public LeaderboardRepository(KeyValueStorageResolver resolver, RepositoryService repositoryService)
+        public LeaderboardRepository(KeyValueStorageResolver resolver, SettingRepository settingRepository)
         {
-            _repositoryService = repositoryService;
+            _settingRepository = settingRepository;
             _resolver = resolver;
             _storage = _resolver.Resolve();
-            _repositoryService.Save(new StorageSetting { StorageType = _storage.Type });
-        }
-
-        public void ChangeStorage(StorageSetting setting)
-        {
-            _storage = _resolver.Resolve(setting.StorageType);
-            _repositoryService.Save(setting);
         }
 
         public void Save(List<LeaderboardRecord> recs)
         {
+            _storage = _resolver.Resolve();
+            
             var json = recs.ToJson();
-            _storage.Save(_storage is BayeganStorage ? LeaderBoardKeyForBayegan : LeaderBoardKeyForPlayerprefs, json);
+            var key = $"{LeaderBoardKeyPrefix}{_storage.Type}";
+            _storage.Save(key, json);
         }
 
 
         public List<LeaderboardRecord> Load()
         {
+            _storage = _resolver.Resolve();
+            
             var key = _storage.Type == StorageType.BayeganStorage
                 ? LeaderBoardKeyForBayegan
                 : LeaderBoardKeyForPlayerprefs;

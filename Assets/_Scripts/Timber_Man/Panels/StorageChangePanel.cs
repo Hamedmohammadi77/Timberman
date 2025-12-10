@@ -1,4 +1,5 @@
 using _Scripts.Timber_Man.Enums;
+using _Scripts.Timber_Man.Repository;
 using _Scripts.Timber_Man.Services;
 using _Scripts.Timber_Man.Settings;
 using _Scripts.Timber_Man.Signals.UI.OptionSignals;
@@ -12,7 +13,7 @@ namespace _Scripts.Timber_Man.Panels
     public class StorageChangePanel : MonoBehaviour
     {
         [Inject] private readonly SignalBus _signalBus;
-        [Inject] private readonly RepositoryService _repositoryService;
+        [Inject] private readonly SettingRepository _settingRepository;
         private Button _storageChangeButton;
         private StorageType _thisStorageType;
         private TextMeshProUGUI _storageChangeText;
@@ -21,7 +22,7 @@ namespace _Scripts.Timber_Man.Panels
         {
             _storageChangeText = GetComponentInChildren<TextMeshProUGUI>();
 
-            _thisStorageType = _repositoryService.Load().StorageType;
+            _thisStorageType = _settingRepository.Load().StorageType;
             _storageChangeText.text = _thisStorageType.ToString();
 
             _storageChangeButton = GetComponent<Button>();
