@@ -1,12 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using _Scripts.Timber_Man.Domain;
-using _Scripts.Timber_Man.Enums;
 using _Scripts.Timber_Man.Extensions;
 using _Scripts.Timber_Man.Resolvers;
-using _Scripts.Timber_Man.Services;
-using _Scripts.Timber_Man.Settings;
-using _Scripts.Timber_Man.Storages;
 using _Scripts.Timber_Man.Storages.Abstraction;
 using UnityEngine;
 
@@ -24,11 +20,9 @@ namespace _Scripts.Timber_Man.Repository
 
         private IKeyValueStorage _storage;
         private KeyValueStorageResolver _resolver;
-        private SettingRepository _settingRepository;
 
-        public LeaderboardRepository(KeyValueStorageResolver resolver, SettingRepository settingRepository)
+        public LeaderboardRepository(KeyValueStorageResolver resolver)
         {
-            _settingRepository = settingRepository;
             _resolver = resolver;
             _storage = _resolver.Resolve();
         }
@@ -36,7 +30,7 @@ namespace _Scripts.Timber_Man.Repository
         public void Save(List<LeaderboardRecord> recs)
         {
             _storage = _resolver.Resolve();
-            
+
             var json = recs.ToJson();
             var key = $"{LeaderBoardKeyPrefix}{_storage.Type}";
             _storage.Save(key, json);
@@ -46,10 +40,8 @@ namespace _Scripts.Timber_Man.Repository
         public List<LeaderboardRecord> Load()
         {
             _storage = _resolver.Resolve();
-            
-            var key = _storage.Type == StorageType.BayeganStorage
-                ? LeaderBoardKeyForBayegan
-                : LeaderBoardKeyForPlayerprefs;
+
+            var key = $"{LeaderBoardKeyPrefix}{_storage.Type}";
 
             var raw = _storage.Load(key, string.Empty);
 
@@ -62,7 +54,7 @@ namespace _Scripts.Timber_Man.Repository
                     .OrderByDescending(r => r.Score)
                     .ToList();
             }
-            catch (System.Exception e)
+            catch (System.Exception)
             {
                 Debug.LogError("CORRUPTED JSON => " + raw);
                 throw;

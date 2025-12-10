@@ -1,8 +1,5 @@
 using _Scripts.Timber_Man.Enums;
 using _Scripts.Timber_Man.Repository;
-using _Scripts.Timber_Man.Services;
-using _Scripts.Timber_Man.Settings;
-using _Scripts.Timber_Man.Signals.UI.OptionSignals;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -43,19 +40,6 @@ namespace _Scripts.Timber_Man.Panels
             }
 
             _storageChangeText.text = _thisStorageType.ToString();
-
-            _signalBus.Fire(new StorageChangeSignal
-            {
-                StorageSetting = new StorageSetting
-                {
-                    StorageType = _thisStorageType
-                }
-            });
-        }
-
-        public void ChangeStorageType(StorageType storageType)
-        {
-            _thisStorageType = storageType;
         }
     }
 }

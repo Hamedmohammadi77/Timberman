@@ -12,21 +12,21 @@ namespace _Scripts.Timber_Man.Resolvers
         private readonly StorageSetting _storageSetting;
 
         public KeyValueStorageResolver(
-            IKeyValueStorage[] keyValueStorages, 
+            IKeyValueStorage[] keyValueStorages,
             StorageSetting storageSetting)
         {
             _keyValueStorages = keyValueStorages;
             _storageSetting = storageSetting;
         }
-        
-        
+
+
         public IKeyValueStorage Resolve(StorageType? type = null)
         {
-            if(type.HasValue == false)
+            if (type.HasValue == false)
                 type = _storageSetting.StorageType;
-         
+
             Debug.Log($"Construct   {type}");
-            
+
             return _keyValueStorages.FirstOrDefault(hr => hr.Type == type);
         }
     }
